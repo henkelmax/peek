@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "peek",
+  "version": "${version}",
+  "name": "Peek",
+  "description": "Additional information in item tooltips.",
+  "authors": [
+    "Max Henkel"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/peek",
+    "issues": "https://github.com/henkelmax/peek/issues",
+    "sources": "https://github.com/henkelmax/peek",
+    "email": "info@modrepo.de"
+  },
+  "license": "All Rights Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "de.maxhenkel.peek.Peek"
+    ],
+    "modmenu": [
+      "de.maxhenkel.peek.integration.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "peek.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_dependency}",
+    "java": ">=17"
+  },
+  "suggests": {
+    "modmenu": ">=${modmenu_version}",
+    "cloth-config2": ">=${cloth_config_version}"
+  },
+  "breaks": {
+    "fabric-api": "<${min_fabric_version}"
+  }
+}
