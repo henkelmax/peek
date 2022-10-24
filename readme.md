@@ -23,3 +23,6 @@ A client side Fabric mod that adds additional information to the tooltip of item
 
 
 ![](https://user-images.githubusercontent.com/13237524/197565139-a47886e5-00a2-4659-bbe0-2afdd18eaf08.png)
+
+
+![](https://user-images.githubusercontent.com/13237524/197566091-ef466c0c-cc57-4da0-9cd4-933951cdcf60.png)
