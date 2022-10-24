@@ -38,6 +38,12 @@ public class ClothConfigIntegration {
                 Peek.CLIENT_CONFIG.peekExplorationMaps
         ));
 
+        general.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.peek_compasses"),
+                Component.translatable("cloth_config.peek.peek_compasses.description"),
+                Peek.CLIENT_CONFIG.peekCompasses
+        ));
+
         return builder.build();
     }
 

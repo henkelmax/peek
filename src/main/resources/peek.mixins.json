@@ -8,7 +8,8 @@
     "ClientTooltipComponentMixin",
     "ShulkerBoxBlockMixin",
     "BeehiveBlockMixin",
-    "MapItemMixin"
+    "MapItemMixin",
+    "CompassItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
