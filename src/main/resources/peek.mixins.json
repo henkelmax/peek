@@ -9,7 +9,8 @@
     "ShulkerBoxBlockMixin",
     "BeehiveBlockMixin",
     "MapItemMixin",
-    "CompassItemMixin"
+    "CompassItemMixin",
+    "ItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

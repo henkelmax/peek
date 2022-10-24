@@ -64,7 +64,7 @@ public abstract class CompassItemMixin extends Item {
         MutableComponent dimensionName = Component.translatable(location.toString());
 
         if (location.getNamespace().equals("minecraft")) {
-            dimensionName = Component.translatable("tooltip.peek.compass.dimension." + location.getPath());
+            dimensionName = Component.translatable("tooltip.peek.dimension." + location.getPath());
         }
 
         list.add(Component.translatable("tooltip.peek.compass.lodestone_position.other_dimension",

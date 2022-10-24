@@ -44,6 +44,12 @@ public class ClothConfigIntegration {
                 Peek.CLIENT_CONFIG.peekCompasses
         ));
 
+        general.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.peek_recovery_compasses"),
+                Component.translatable("cloth_config.peek.peek_recovery_compasses.description"),
+                Peek.CLIENT_CONFIG.peekRecoveryCompasses
+        ));
+
         return builder.build();
     }
 

@@ -9,7 +9,7 @@ A client side Fabric mod that adds additional information to the tooltip of item
 
 ## Features
 
-**Shulker Box contents**
+**Shulker box contents**
 ![](https://user-images.githubusercontent.com/13237524/197565486-be5a0020-44f6-49a9-bd4d-1be84d733846.png)
 
 
@@ -28,8 +28,14 @@ A client side Fabric mod that adds additional information to the tooltip of item
 
 ![](https://user-images.githubusercontent.com/13237524/197607318-84e393b9-8769-4b1f-a365-8c3bda48c10d.png)
 
-![](https://user-images.githubusercontent.com/13237524/197607317-925bbb22-846b-43b7-9898-6bd66066f082.png)
+![](https://user-images.githubusercontent.com/13237524/197613517-42ab878f-8aba-4da5-9ab2-d6b40b04dc83.png)
+
+
+**Death locations of recovery compasses**
+![](https://user-images.githubusercontent.com/13237524/197613533-3d947f65-bf5c-4ebb-84e5-07e5aa06d792.png)
+
+![](https://user-images.githubusercontent.com/13237524/197613536-f30ecb24-4e21-4d63-98c6-d5e5d500d49c.png)
 
 
 **Fully configurable with [ModMenu](https://www.curseforge.com/minecraft/mc-mods/modmenu) and [ClothConfig](https://www.curseforge.com/minecraft/mc-mods/cloth-config)**
-![](https://user-images.githubusercontent.com/13237524/197566091-ef466c0c-cc57-4da0-9cd4-933951cdcf60.png)
+![](https://user-images.githubusercontent.com/13237524/197614303-1a199703-a283-4102-8b06-2729ecdd585f.png)
