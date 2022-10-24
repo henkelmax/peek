@@ -26,6 +26,12 @@ public class ClothConfigIntegration {
                 Peek.CLIENT_CONFIG.peekShulkerBoxes
         ));
 
+        general.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.peek_beehives"),
+                Component.translatable("cloth_config.peek.peek_beehives.description"),
+                Peek.CLIENT_CONFIG.peekBeehives
+        ));
+
         return builder.build();
     }
 

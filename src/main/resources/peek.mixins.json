@@ -6,7 +6,8 @@
   "client": [
     "BlockItemMixin",
     "ClientTooltipComponentMixin",
-    "ShulkerBoxBlockMixin"
+    "ShulkerBoxBlockMixin",
+    "BeehiveBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

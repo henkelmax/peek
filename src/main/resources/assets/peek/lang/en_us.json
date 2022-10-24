@@ -1,6 +1,10 @@
 {
+  "tooltip.peek.beehive.bee_count": "Contains %s bees",
+  "tooltip.peek.beehive.honey_level": "Honey level %s",
   "cloth_config.peek.settings": "Settings",
   "cloth_config.peek.category.general": "General",
   "cloth_config.peek.peek_shulker_boxes": "Peek Shulker Boxes",
-  "cloth_config.peek.peek_shulker_boxes.description": "Displays the items inside shulker boxes when hovering over them in the inventory."
+  "cloth_config.peek.peek_shulker_boxes.description": "Displays the items inside shulker boxes when hovering over them in the inventory.",
+  "cloth_config.peek.peek_beehives": "Peek Beehives",
+  "cloth_config.peek.peek_beehives.description": "Displays the amount of bees and the honey level when hovering over a beehive."
 }
