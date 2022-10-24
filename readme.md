@@ -10,8 +10,5 @@ A client side Fabric mod that adds additional information to the tooltip of item
 ## Features
 
 - Shulker Box item tooltip
-
-## Planned Features
-
 - Amount of bees in a bee nest
-- Location of the treasure on a map
+- Locations of markers on explorer maps

@@ -7,10 +7,12 @@ public class ClientConfig {
 
     public final ConfigEntry<Boolean> peekShulkerBoxes;
     public final ConfigEntry<Boolean> peekBeehives;
+    public final ConfigEntry<Boolean> peekExplorationMaps;
 
     public ClientConfig(ConfigBuilder builder) {
         peekShulkerBoxes = builder.booleanEntry("peek_shulker_boxes", true);
         peekBeehives = builder.booleanEntry("peek_beehives", true);
+        peekExplorationMaps = builder.booleanEntry("peek_exploration_maps", true);
     }
 
 }

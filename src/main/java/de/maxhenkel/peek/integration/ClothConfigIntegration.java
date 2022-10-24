@@ -32,6 +32,12 @@ public class ClothConfigIntegration {
                 Peek.CLIENT_CONFIG.peekBeehives
         ));
 
+        general.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.peek_exploration_maps"),
+                Component.translatable("cloth_config.peek.peek_exploration_maps.description"),
+                Peek.CLIENT_CONFIG.peekExplorationMaps
+        ));
+
         return builder.build();
     }
 
