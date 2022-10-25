@@ -41,7 +41,7 @@ A client side Fabric mod that adds additional information to the tooltip of item
 ![](https://user-images.githubusercontent.com/13237524/197613536-f30ecb24-4e21-4d63-98c6-d5e5d500d49c.png)
 
 
-**Effects of Suspicious Stews**
+**Effects of suspicious stews**
 
 ![](https://user-images.githubusercontent.com/13237524/197743511-4d0300c8-1195-428e-ba3e-bc56333d981b.png)
 
