@@ -1,2 +1,3 @@
 - Added chest peeking
 - Added dispenser peeking
+- Added barrel peeking

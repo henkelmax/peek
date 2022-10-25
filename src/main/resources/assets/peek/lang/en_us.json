@@ -24,6 +24,8 @@
   "cloth_config.peek.peek_recovery_compasses.description": "Displays your death location on recovery compasses.",
   "cloth_config.peek.peek_chests": "Peek Chests",
   "cloth_config.peek.peek_chests.description": "Displays the items inside pick-blocked chests and trapped chests.",
+  "cloth_config.peek.peek_barrels": "Peek Barrels",
+  "cloth_config.peek.peek_barrels.description": "Displays the items inside pick-blocked barrels.",
   "cloth_config.peek.peek_dispensers": "Peek Dispensers and Droppers",
   "cloth_config.peek.peek_dispensers.description": "Displays the items inside pick-blocked dispensers and droppers."
 }

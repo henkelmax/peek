@@ -10,10 +10,7 @@ import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.ChestBlock;
-import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraft.world.level.block.ShulkerBoxBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -40,6 +37,8 @@ public abstract class BlockItemMixin extends Item {
             return getShulkerBoxTooltipImage(stack);
         } else if (block instanceof ChestBlock) {
             return getChestTooltipImage(stack);
+        } else if (block instanceof BarrelBlock) {
+            return getBarrelTooltipImage(stack);
         } else if (block instanceof DispenserBlock) {
             return getDispenserTooltipImage(stack);
         }
@@ -67,18 +66,14 @@ public abstract class BlockItemMixin extends Item {
         if (!Peek.CLIENT_CONFIG.peekChests.get()) {
             return super.getTooltipImage(stack);
         }
+        return getDefaultChestSizeTooltipImage(stack);
+    }
 
-        NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
-        CompoundTag blockEntityData = BlockItem.getBlockEntityData(stack);
-        if (blockEntityData == null) {
+    private Optional<TooltipComponent> getBarrelTooltipImage(ItemStack stack) {
+        if (!Peek.CLIENT_CONFIG.peekBarrels.get()) {
             return super.getTooltipImage(stack);
         }
-        if (!blockEntityData.contains(ITEMS, NbtType.LIST)) {
-            return super.getTooltipImage(stack);
-        }
-
-        ContainerHelper.loadAllItems(blockEntityData, items);
-        return Optional.of(new ContainerTooltip(9, 3, items));
+        return getDefaultChestSizeTooltipImage(stack);
     }
 
     private Optional<TooltipComponent> getDispenserTooltipImage(ItemStack stack) {
@@ -97,6 +92,20 @@ public abstract class BlockItemMixin extends Item {
 
         ContainerHelper.loadAllItems(blockEntityData, items);
         return Optional.of(new ContainerTooltip(3, 3, items));
+    }
+
+    private Optional<TooltipComponent> getDefaultChestSizeTooltipImage(ItemStack stack) {
+        NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
+        CompoundTag blockEntityData = BlockItem.getBlockEntityData(stack);
+        if (blockEntityData == null) {
+            return super.getTooltipImage(stack);
+        }
+        if (!blockEntityData.contains(ITEMS, NbtType.LIST)) {
+            return super.getTooltipImage(stack);
+        }
+
+        ContainerHelper.loadAllItems(blockEntityData, items);
+        return Optional.of(new ContainerTooltip(9, 3, items));
     }
 
 }

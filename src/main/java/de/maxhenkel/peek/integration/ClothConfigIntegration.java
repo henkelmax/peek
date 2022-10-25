@@ -57,6 +57,12 @@ public class ClothConfigIntegration {
         ));
 
         general.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.peek_barrels"),
+                Component.translatable("cloth_config.peek.peek_barrels.description"),
+                Peek.CLIENT_CONFIG.peekBarrels
+        ));
+
+        general.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_dispensers"),
                 Component.translatable("cloth_config.peek.peek_dispensers.description"),
                 Peek.CLIENT_CONFIG.peekDispensers
