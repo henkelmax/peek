@@ -14,6 +14,7 @@ public class ClientConfig {
     public final ConfigEntry<Boolean> peekExplorationMaps;
     public final ConfigEntry<Boolean> peekCompasses;
     public final ConfigEntry<Boolean> peekRecoveryCompasses;
+    public final ConfigEntry<Boolean> peekSuspiciousStews;
 
     public ClientConfig(ConfigBuilder builder) {
         peekShulkerBoxes = builder.booleanEntry("peek_shulker_boxes", true);
@@ -25,6 +26,7 @@ public class ClientConfig {
         peekExplorationMaps = builder.booleanEntry("peek_exploration_maps", true);
         peekCompasses = builder.booleanEntry("peek_compasses", true);
         peekRecoveryCompasses = builder.booleanEntry("peek_recovery_compasses", true);
+        peekSuspiciousStews = builder.booleanEntry("peek_suspicious_stews", true);
     }
 
 }

@@ -41,6 +41,11 @@ A client side Fabric mod that adds additional information to the tooltip of item
 ![](https://user-images.githubusercontent.com/13237524/197613536-f30ecb24-4e21-4d63-98c6-d5e5d500d49c.png)
 
 
+**Effects of Suspicious Stews**
+
+![](https://user-images.githubusercontent.com/13237524/197743511-4d0300c8-1195-428e-ba3e-bc56333d981b.png)
+
+
 **Pick-blocked containers**
 
 ![](https://user-images.githubusercontent.com/13237524/197722463-66759d59-e15c-4741-b027-d165e8de285d.png)
@@ -53,4 +58,4 @@ A client side Fabric mod that adds additional information to the tooltip of item
 
 **Fully configurable with [ModMenu](https://www.curseforge.com/minecraft/mc-mods/modmenu) and [ClothConfig](https://www.curseforge.com/minecraft/mc-mods/cloth-config)**
 
-![](https://user-images.githubusercontent.com/13237524/197736944-51a6ed7c-13dd-4553-8eb2-a6941d39da5d.png)
+![](https://user-images.githubusercontent.com/13237524/197742785-cc89df99-037d-49cc-9488-f1c7703a4b95.png)

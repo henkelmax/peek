@@ -51,6 +51,12 @@ public class ClothConfigIntegration {
         ));
 
         general.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.peek_suspicious_stews"),
+                Component.translatable("cloth_config.peek.peek_suspicious_stews.description"),
+                Peek.CLIENT_CONFIG.peekSuspiciousStews
+        ));
+
+        general.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_chests"),
                 Component.translatable("cloth_config.peek.peek_chests.description"),
                 Peek.CLIENT_CONFIG.peekChests

@@ -2,3 +2,4 @@
 - Added dispenser peeking
 - Added barrel peeking
 - Added hopper peeking
+- Added suspicious stew peeking

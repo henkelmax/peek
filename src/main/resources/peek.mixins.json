@@ -10,7 +10,8 @@
     "BeehiveBlockMixin",
     "MapItemMixin",
     "CompassItemMixin",
-    "ItemMixin"
+    "ItemMixin",
+    "SuspiciousStewItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
