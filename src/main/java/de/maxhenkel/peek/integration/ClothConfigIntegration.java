@@ -68,6 +68,12 @@ public class ClothConfigIntegration {
                 Peek.CLIENT_CONFIG.peekDispensers
         ));
 
+        general.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.peek_hoppers"),
+                Component.translatable("cloth_config.peek.peek_hoppers.description"),
+                Peek.CLIENT_CONFIG.peekHoppers
+        ));
+
         return builder.build();
     }
 

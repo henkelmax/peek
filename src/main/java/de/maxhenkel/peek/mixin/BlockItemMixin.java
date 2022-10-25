@@ -41,6 +41,8 @@ public abstract class BlockItemMixin extends Item {
             return getBarrelTooltipImage(stack);
         } else if (block instanceof DispenserBlock) {
             return getDispenserTooltipImage(stack);
+        } else if (block instanceof HopperBlock) {
+            return getHopperTooltipImage(stack);
         }
 
         return super.getTooltipImage(stack);
@@ -92,6 +94,24 @@ public abstract class BlockItemMixin extends Item {
 
         ContainerHelper.loadAllItems(blockEntityData, items);
         return Optional.of(new ContainerTooltip(3, 3, items));
+    }
+
+    private Optional<TooltipComponent> getHopperTooltipImage(ItemStack stack) {
+        if (!Peek.CLIENT_CONFIG.peekHoppers.get()) {
+            return super.getTooltipImage(stack);
+        }
+
+        NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
+        CompoundTag blockEntityData = BlockItem.getBlockEntityData(stack);
+        if (blockEntityData == null) {
+            return super.getTooltipImage(stack);
+        }
+        if (!blockEntityData.contains(ITEMS, NbtType.LIST)) {
+            return super.getTooltipImage(stack);
+        }
+
+        ContainerHelper.loadAllItems(blockEntityData, items);
+        return Optional.of(new ContainerTooltip(5, 1, items));
     }
 
     private Optional<TooltipComponent> getDefaultChestSizeTooltipImage(ItemStack stack) {

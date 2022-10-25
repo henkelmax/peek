@@ -27,5 +27,7 @@
   "cloth_config.peek.peek_barrels": "Peek Barrels",
   "cloth_config.peek.peek_barrels.description": "Displays the items inside pick-blocked barrels.",
   "cloth_config.peek.peek_dispensers": "Peek Dispensers and Droppers",
-  "cloth_config.peek.peek_dispensers.description": "Displays the items inside pick-blocked dispensers and droppers."
+  "cloth_config.peek.peek_dispensers.description": "Displays the items inside pick-blocked dispensers and droppers.",
+  "cloth_config.peek.peek_hoppers": "Peek Hoppers",
+  "cloth_config.peek.peek_hoppers.description": "Displays the items inside pick-blocked hoppers."
 }

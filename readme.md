@@ -49,7 +49,8 @@ A client side Fabric mod that adds additional information to the tooltip of item
 
 ![](https://user-images.githubusercontent.com/13237524/197722466-6d4b0bdf-9fcb-4b78-867a-de462fe37d97.png)
 
+![](https://user-images.githubusercontent.com/13237524/197736803-e6496662-b14e-4ff4-9bb9-ea003ab62266.png)
 
 **Fully configurable with [ModMenu](https://www.curseforge.com/minecraft/mc-mods/modmenu) and [ClothConfig](https://www.curseforge.com/minecraft/mc-mods/cloth-config)**
 
-![](https://user-images.githubusercontent.com/13237524/197735310-dbc61d96-649a-4f7f-866c-1740a90a3a9f.png)
+![](https://user-images.githubusercontent.com/13237524/197736944-51a6ed7c-13dd-4553-8eb2-a6941d39da5d.png)
