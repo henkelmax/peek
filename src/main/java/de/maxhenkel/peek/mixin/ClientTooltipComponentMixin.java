@@ -1,7 +1,7 @@
 package de.maxhenkel.peek.mixin;
 
-import de.maxhenkel.peek.tooltips.ClientShulkerBoxTooltip;
-import de.maxhenkel.peek.tooltips.ShulkerBoxTooltip;
+import de.maxhenkel.peek.tooltips.ClientContainerTooltip;
+import de.maxhenkel.peek.tooltips.ContainerTooltip;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,8 +14,8 @@ public interface ClientTooltipComponentMixin {
 
     @Inject(method = "create(Lnet/minecraft/world/inventory/tooltip/TooltipComponent;)Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent;", at = @At("HEAD"), cancellable = true)
     private static void create(TooltipComponent component, CallbackInfoReturnable<ClientTooltipComponent> ci) {
-        if (component instanceof ShulkerBoxTooltip tooltip) {
-            ci.setReturnValue(new ClientShulkerBoxTooltip(tooltip));
+        if (component instanceof ContainerTooltip tooltip) {
+            ci.setReturnValue(new ClientContainerTooltip(tooltip));
         }
     }
 

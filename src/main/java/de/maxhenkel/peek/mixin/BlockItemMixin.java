@@ -1,7 +1,7 @@
 package de.maxhenkel.peek.mixin;
 
 import de.maxhenkel.peek.Peek;
-import de.maxhenkel.peek.tooltips.ShulkerBoxTooltip;
+import de.maxhenkel.peek.tooltips.ContainerTooltip;
 import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -52,6 +52,6 @@ public abstract class BlockItemMixin extends Item {
             }
         }
 
-        return Optional.of(new ShulkerBoxTooltip(items));
+        return Optional.of(new ContainerTooltip(9, 3, items));
     }
 }
