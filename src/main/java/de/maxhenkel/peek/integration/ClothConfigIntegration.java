@@ -50,6 +50,18 @@ public class ClothConfigIntegration {
                 Peek.CLIENT_CONFIG.peekRecoveryCompasses
         ));
 
+        general.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.peek_chests"),
+                Component.translatable("cloth_config.peek.peek_chests.description"),
+                Peek.CLIENT_CONFIG.peekChests
+        ));
+
+        general.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.peek_dispensers"),
+                Component.translatable("cloth_config.peek.peek_dispensers.description"),
+                Peek.CLIENT_CONFIG.peekDispensers
+        ));
+
         return builder.build();
     }
 

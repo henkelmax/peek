@@ -1,1 +1,2 @@
-- Added compass peeking
+- Added chest peeking
+- Added dispenser peeking

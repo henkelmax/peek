@@ -11,8 +11,7 @@ A client side Fabric mod that adds additional information to the tooltip of item
 
 **Shulker box contents**
 
-![](https://user-images.githubusercontent.com/13237524/197565486-be5a0020-44f6-49a9-bd4d-1be84d733846.png)
-
+![](https://user-images.githubusercontent.com/13237524/197722472-f145c3c7-d6a0-4ff1-9f5c-4954a3414379.png)
 
 **Amount of bees in a bee nest**
 
@@ -42,6 +41,13 @@ A client side Fabric mod that adds additional information to the tooltip of item
 ![](https://user-images.githubusercontent.com/13237524/197613536-f30ecb24-4e21-4d63-98c6-d5e5d500d49c.png)
 
 
+**Pick-blocked containers**
+
+![](https://user-images.githubusercontent.com/13237524/197722463-66759d59-e15c-4741-b027-d165e8de285d.png)
+
+![](https://user-images.githubusercontent.com/13237524/197722466-6d4b0bdf-9fcb-4b78-867a-de462fe37d97.png)
+
+
 **Fully configurable with [ModMenu](https://www.curseforge.com/minecraft/mc-mods/modmenu) and [ClothConfig](https://www.curseforge.com/minecraft/mc-mods/cloth-config)**
 
-![](https://user-images.githubusercontent.com/13237524/197614303-1a199703-a283-4102-8b06-2729ecdd585f.png)
+![](https://user-images.githubusercontent.com/13237524/197723731-a3c7f342-cbef-4a6c-87f4-3a08cdbdd4a4.png)
