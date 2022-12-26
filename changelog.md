@@ -1,1 +1,1 @@
-- Updated to 1.19.3
+- Added Simplified Chinese translation
