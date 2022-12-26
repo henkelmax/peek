@@ -1,5 +1,1 @@
-- Added chest peeking
-- Added dispenser peeking
-- Added barrel peeking
-- Added hopper peeking
-- Added suspicious stew peeking
+- Added Simplified Chinese translation
