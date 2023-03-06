@@ -12,6 +12,8 @@
   "tooltip.peek.dimension.the_nether": "The Nether",
   "cloth_config.peek.settings": "Settings",
   "cloth_config.peek.category.general": "General",
+  "cloth_config.peek.show_empty_containers": "Show Empty Containers",
+  "cloth_config.peek.show_empty_containers.description": "If containers without any items should be displayed.",
   "cloth_config.peek.peek_shulker_boxes": "Peek Shulker Boxes",
   "cloth_config.peek.peek_shulker_boxes.description": "Displays the items inside shulker boxes.",
   "cloth_config.peek.peek_beehives": "Peek Beehives",

@@ -1,1 +1,1 @@
-- Added Simplified Chinese translation
+- Added show empty containers config option
