@@ -53,12 +53,20 @@ public abstract class BlockItemMixin extends Item {
             return super.getTooltipImage(stack);
         }
 
-        NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
         CompoundTag blockEntityData = BlockItem.getBlockEntityData(stack);
-        if (blockEntityData != null) {
-            if (blockEntityData.contains(ShulkerBoxBlockEntity.ITEMS_TAG, NbtType.LIST)) {
-                ContainerHelper.loadAllItems(blockEntityData, items);
-            }
+        if (blockEntityData == null) {
+            return super.getTooltipImage(stack);
+        }
+
+        if (!blockEntityData.contains(ShulkerBoxBlockEntity.ITEMS_TAG, NbtType.LIST)) {
+            return super.getTooltipImage(stack);
+        }
+
+        NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(blockEntityData, items);
+
+        if (!Peek.CLIENT_CONFIG.showEmptyContainers.get() && items.stream().allMatch(ItemStack::isEmpty)) {
+            return super.getTooltipImage(stack);
         }
 
         return Optional.of(new ContainerTooltip(9, 3, items));
@@ -83,7 +91,6 @@ public abstract class BlockItemMixin extends Item {
             return super.getTooltipImage(stack);
         }
 
-        NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
         CompoundTag blockEntityData = BlockItem.getBlockEntityData(stack);
         if (blockEntityData == null) {
             return super.getTooltipImage(stack);
@@ -92,7 +99,13 @@ public abstract class BlockItemMixin extends Item {
             return super.getTooltipImage(stack);
         }
 
+        NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
         ContainerHelper.loadAllItems(blockEntityData, items);
+
+        if (!Peek.CLIENT_CONFIG.showEmptyContainers.get() && items.stream().allMatch(ItemStack::isEmpty)) {
+            return super.getTooltipImage(stack);
+        }
+
         return Optional.of(new ContainerTooltip(3, 3, items));
     }
 
@@ -101,7 +114,6 @@ public abstract class BlockItemMixin extends Item {
             return super.getTooltipImage(stack);
         }
 
-        NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
         CompoundTag blockEntityData = BlockItem.getBlockEntityData(stack);
         if (blockEntityData == null) {
             return super.getTooltipImage(stack);
@@ -110,12 +122,17 @@ public abstract class BlockItemMixin extends Item {
             return super.getTooltipImage(stack);
         }
 
+        NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
         ContainerHelper.loadAllItems(blockEntityData, items);
+
+        if (!Peek.CLIENT_CONFIG.showEmptyContainers.get() && items.stream().allMatch(ItemStack::isEmpty)) {
+            return super.getTooltipImage(stack);
+        }
+
         return Optional.of(new ContainerTooltip(5, 1, items));
     }
 
     private Optional<TooltipComponent> getDefaultChestSizeTooltipImage(ItemStack stack) {
-        NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
         CompoundTag blockEntityData = BlockItem.getBlockEntityData(stack);
         if (blockEntityData == null) {
             return super.getTooltipImage(stack);
@@ -124,7 +141,13 @@ public abstract class BlockItemMixin extends Item {
             return super.getTooltipImage(stack);
         }
 
+        NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
         ContainerHelper.loadAllItems(blockEntityData, items);
+
+        if (!Peek.CLIENT_CONFIG.showEmptyContainers.get() && items.stream().allMatch(ItemStack::isEmpty)) {
+            return super.getTooltipImage(stack);
+        }
+
         return Optional.of(new ContainerTooltip(9, 3, items));
     }
 

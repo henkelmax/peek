@@ -21,6 +21,12 @@ public class ClothConfigIntegration {
         ConfigCategory general = builder.getOrCreateCategory(Component.translatable("cloth_config.peek.category.general"));
 
         general.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.show_empty_containers"),
+                Component.translatable("cloth_config.peek.show_empty_containers.description"),
+                Peek.CLIENT_CONFIG.showEmptyContainers
+        ));
+
+        general.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_shulker_boxes"),
                 Component.translatable("cloth_config.peek.peek_shulker_boxes.description"),
                 Peek.CLIENT_CONFIG.peekShulkerBoxes
