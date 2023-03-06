@@ -30,6 +30,10 @@ repositories {
     maven { url = "https://maven.fabricmc.net/" }
     maven { url "https://maven.shedaniel.me/" }
     maven { url "https://maven.terraformersmc.com/releases/" }
+    maven {
+        name = 'henkelmax.public'
+        url = 'https://maven.maxhenkel.de/repository/public'
+    }
 }
 
 runClient.doFirst {
