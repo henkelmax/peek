@@ -39,7 +39,9 @@ public class ClientContainerTooltip implements ClientTooltipComponent {
     }
 
     @Override
-    public void renderImage(Font font, int tooltipX, int tooltipY, PoseStack poseStack, ItemRenderer itemRenderer, int layer) {
+    public void renderImage(Font font, int tooltipX, int tooltipY, PoseStack poseStack, ItemRenderer itemRenderer) {
+        int layer = 400;
+
         int slotId = 0;
         for (int y = 0; y < gridHeight; y++) {
             for (int x = 0; x < gridWidth; x++) {
@@ -58,8 +60,8 @@ public class ClientContainerTooltip implements ClientTooltipComponent {
         }
 
         blit(poseStack, posX, posY, layer, Texture.SLOT);
-        itemRenderer.renderAndDecorateItem(itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH, slotId);
-        itemRenderer.renderGuiItemDecorations(font, itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH);
+        itemRenderer.renderAndDecorateItem(poseStack, itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH, slotId);
+        itemRenderer.renderGuiItemDecorations(poseStack, font, itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH);
     }
 
     private void drawBorder(int x, int y, PoseStack poseStack, int layer) {

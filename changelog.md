@@ -1,1 +1,1 @@
-- Added show empty containers config option
+- Updated to 1.19.4
