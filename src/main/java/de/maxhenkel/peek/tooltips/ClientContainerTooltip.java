@@ -40,52 +40,50 @@ public class ClientContainerTooltip implements ClientTooltipComponent {
 
     @Override
     public void renderImage(Font font, int tooltipX, int tooltipY, PoseStack poseStack, ItemRenderer itemRenderer) {
-        int layer = 400;
-
         int slotId = 0;
         for (int y = 0; y < gridHeight; y++) {
             for (int x = 0; x < gridWidth; x++) {
                 int posX = tooltipX + x * SLOT_SIZE_X + BORDER_WIDTH;
                 int posY = tooltipY + y * SLOT_SIZE_Y + BORDER_WIDTH;
-                renderSlot(posX, posY, slotId++, font, poseStack, itemRenderer, layer);
+                renderSlot(posX, posY, slotId++, font, poseStack, itemRenderer);
             }
         }
-        drawBorder(tooltipX, tooltipY, poseStack, layer);
+        drawBorder(tooltipX, tooltipY, poseStack);
     }
 
-    private void renderSlot(int posX, int posY, int slotId, Font font, PoseStack poseStack, ItemRenderer itemRenderer, int layer) {
+    private void renderSlot(int posX, int posY, int slotId, Font font, PoseStack poseStack, ItemRenderer itemRenderer) {
         ItemStack itemStack = ItemStack.EMPTY;
         if (slotId < items.size()) {
             itemStack = items.get(slotId);
         }
 
-        blit(poseStack, posX, posY, layer, Texture.SLOT);
+        blit(poseStack, posX, posY, Texture.SLOT);
         itemRenderer.renderAndDecorateItem(poseStack, itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH, slotId);
         itemRenderer.renderGuiItemDecorations(poseStack, font, itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH);
     }
 
-    private void drawBorder(int x, int y, PoseStack poseStack, int layer) {
-        blit(poseStack, x, y, layer, Texture.BORDER_CORNER);
-        blit(poseStack, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y, layer, Texture.BORDER_CORNER);
+    private void drawBorder(int x, int y, PoseStack poseStack) {
+        blit(poseStack, x, y, Texture.BORDER_CORNER);
+        blit(poseStack, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y, Texture.BORDER_CORNER);
 
         for (int i = 0; i < gridWidth; i++) {
-            blit(poseStack, x + BORDER_WIDTH + i * SLOT_SIZE_X, y, layer, Texture.BORDER_HORIZONTAL);
-            blit(poseStack, x + BORDER_WIDTH + i * SLOT_SIZE_X, y + gridHeight * SLOT_SIZE_Y + 1, layer, Texture.BORDER_HORIZONTAL);
+            blit(poseStack, x + BORDER_WIDTH + i * SLOT_SIZE_X, y, Texture.BORDER_HORIZONTAL);
+            blit(poseStack, x + BORDER_WIDTH + i * SLOT_SIZE_X, y + gridHeight * SLOT_SIZE_Y + 1, Texture.BORDER_HORIZONTAL);
         }
 
         for (int i = 0; i < gridHeight; i++) {
-            blit(poseStack, x, y + i * SLOT_SIZE_Y + BORDER_WIDTH, layer, Texture.BORDER_VERTICAL);
-            blit(poseStack, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y + i * SLOT_SIZE_Y + BORDER_WIDTH, layer, Texture.BORDER_VERTICAL);
+            blit(poseStack, x, y + i * SLOT_SIZE_Y + BORDER_WIDTH, Texture.BORDER_VERTICAL);
+            blit(poseStack, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y + i * SLOT_SIZE_Y + BORDER_WIDTH, Texture.BORDER_VERTICAL);
         }
 
-        blit(poseStack, x, y + gridHeight * SLOT_SIZE_Y + 1, layer, Texture.BORDER_CORNER);
-        blit(poseStack, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y + gridHeight * SLOT_SIZE_Y + 1, layer, Texture.BORDER_CORNER);
+        blit(poseStack, x, y + gridHeight * SLOT_SIZE_Y + 1, Texture.BORDER_CORNER);
+        blit(poseStack, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y + gridHeight * SLOT_SIZE_Y + 1, Texture.BORDER_CORNER);
     }
 
-    private void blit(PoseStack poseStack, int i, int j, int k, Texture texture) {
+    private void blit(PoseStack poseStack, int i, int j, Texture texture) {
         RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
         RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-        GuiComponent.blit(poseStack, i, j, k, (float) texture.x, (float) texture.y, texture.w, texture.h, TEXTURE_SIZE, TEXTURE_SIZE);
+        GuiComponent.blit(poseStack, i, j, 0, (float) texture.x, (float) texture.y, texture.w, texture.h, TEXTURE_SIZE, TEXTURE_SIZE);
     }
 
     enum Texture {
