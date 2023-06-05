@@ -1,11 +1,9 @@
 package de.maxhenkel.peek.tooltips;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
-import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -39,51 +37,50 @@ public class ClientContainerTooltip implements ClientTooltipComponent {
     }
 
     @Override
-    public void renderImage(Font font, int tooltipX, int tooltipY, PoseStack poseStack, ItemRenderer itemRenderer) {
+    public void renderImage(Font font, int tooltipX, int tooltipY, GuiGraphics guiGraphics) {
         int slotId = 0;
         for (int y = 0; y < gridHeight; y++) {
             for (int x = 0; x < gridWidth; x++) {
                 int posX = tooltipX + x * SLOT_SIZE_X + BORDER_WIDTH;
                 int posY = tooltipY + y * SLOT_SIZE_Y + BORDER_WIDTH;
-                renderSlot(posX, posY, slotId++, font, poseStack, itemRenderer);
+                renderSlot(posX, posY, slotId++, font, guiGraphics);
             }
         }
-        drawBorder(tooltipX, tooltipY, poseStack);
+        drawBorder(tooltipX, tooltipY, guiGraphics);
     }
 
-    private void renderSlot(int posX, int posY, int slotId, Font font, PoseStack poseStack, ItemRenderer itemRenderer) {
+    private void renderSlot(int posX, int posY, int slotId, Font font, GuiGraphics guiGraphics) {
         ItemStack itemStack = ItemStack.EMPTY;
         if (slotId < items.size()) {
             itemStack = items.get(slotId);
         }
 
-        blit(poseStack, posX, posY, Texture.SLOT);
-        itemRenderer.renderAndDecorateItem(poseStack, itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH, slotId);
-        itemRenderer.renderGuiItemDecorations(poseStack, font, itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH);
+        blit(guiGraphics, posX, posY, Texture.SLOT);
+        guiGraphics.renderItem(itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH, slotId);
+        guiGraphics.renderItemDecorations(font, itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH);
     }
 
-    private void drawBorder(int x, int y, PoseStack poseStack) {
-        blit(poseStack, x, y, Texture.BORDER_CORNER);
-        blit(poseStack, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y, Texture.BORDER_CORNER);
+    private void drawBorder(int x, int y, GuiGraphics guiGraphics) {
+        blit(guiGraphics, x, y, Texture.BORDER_CORNER);
+        blit(guiGraphics, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y, Texture.BORDER_CORNER);
 
         for (int i = 0; i < gridWidth; i++) {
-            blit(poseStack, x + BORDER_WIDTH + i * SLOT_SIZE_X, y, Texture.BORDER_HORIZONTAL);
-            blit(poseStack, x + BORDER_WIDTH + i * SLOT_SIZE_X, y + gridHeight * SLOT_SIZE_Y + 1, Texture.BORDER_HORIZONTAL);
+            blit(guiGraphics, x + BORDER_WIDTH + i * SLOT_SIZE_X, y, Texture.BORDER_HORIZONTAL);
+            blit(guiGraphics, x + BORDER_WIDTH + i * SLOT_SIZE_X, y + gridHeight * SLOT_SIZE_Y + 1, Texture.BORDER_HORIZONTAL);
         }
 
         for (int i = 0; i < gridHeight; i++) {
-            blit(poseStack, x, y + i * SLOT_SIZE_Y + BORDER_WIDTH, Texture.BORDER_VERTICAL);
-            blit(poseStack, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y + i * SLOT_SIZE_Y + BORDER_WIDTH, Texture.BORDER_VERTICAL);
+            blit(guiGraphics, x, y + i * SLOT_SIZE_Y + BORDER_WIDTH, Texture.BORDER_VERTICAL);
+            blit(guiGraphics, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y + i * SLOT_SIZE_Y + BORDER_WIDTH, Texture.BORDER_VERTICAL);
         }
 
-        blit(poseStack, x, y + gridHeight * SLOT_SIZE_Y + 1, Texture.BORDER_CORNER);
-        blit(poseStack, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y + gridHeight * SLOT_SIZE_Y + 1, Texture.BORDER_CORNER);
+        blit(guiGraphics, x, y + gridHeight * SLOT_SIZE_Y + 1, Texture.BORDER_CORNER);
+        blit(guiGraphics, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y + gridHeight * SLOT_SIZE_Y + 1, Texture.BORDER_CORNER);
     }
 
-    private void blit(PoseStack poseStack, int i, int j, Texture texture) {
+    private void blit(GuiGraphics guiGraphics, int i, int j, Texture texture) {
         RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
-        RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-        GuiComponent.blit(poseStack, i, j, 0, (float) texture.x, (float) texture.y, texture.w, texture.h, TEXTURE_SIZE, TEXTURE_SIZE);
+        guiGraphics.blit(TEXTURE_LOCATION, i, j, 0, (float) texture.x, (float) texture.y, texture.w, texture.h, TEXTURE_SIZE, TEXTURE_SIZE);
     }
 
     enum Texture {

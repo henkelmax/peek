@@ -1,1 +1,1 @@
-- Fixed items sometimes not rendering
+- Updated to 1.20
