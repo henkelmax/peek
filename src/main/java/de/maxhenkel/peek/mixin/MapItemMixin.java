@@ -1,10 +1,10 @@
 package de.maxhenkel.peek.mixin;
 
 import de.maxhenkel.peek.Peek;
-import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -39,11 +39,11 @@ public abstract class MapItemMixin extends Item {
 
         CompoundTag tag = itemStack.getTag();
 
-        if (tag == null || !tag.contains(DECORATIONS, NbtType.LIST)) {
+        if (tag == null || !tag.contains(DECORATIONS, Tag.TAG_LIST)) {
             return;
         }
 
-        ListTag decorations = tag.getList(DECORATIONS, NbtType.COMPOUND);
+        ListTag decorations = tag.getList(DECORATIONS, Tag.TAG_COMPOUND);
 
         for (int i = 0; i < decorations.size(); i++) {
             CompoundTag decoration = decorations.getCompound(i);
