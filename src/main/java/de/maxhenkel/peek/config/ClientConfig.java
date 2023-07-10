@@ -6,6 +6,7 @@ import de.maxhenkel.configbuilder.ConfigEntry;
 public class ClientConfig {
 
     public final ConfigEntry<Boolean> showEmptyContainers;
+    public final ConfigEntry<Boolean> showShulkerBoxItemHint;
     public final ConfigEntry<Boolean> peekShulkerBoxes;
     public final ConfigEntry<Boolean> peekChests;
     public final ConfigEntry<Boolean> peekBarrels;
@@ -19,6 +20,7 @@ public class ClientConfig {
 
     public ClientConfig(ConfigBuilder builder) {
         showEmptyContainers = builder.booleanEntry("show_empty_containers", false);
+        showShulkerBoxItemHint = builder.booleanEntry("show_shulker_box_item_hint", true);
         peekShulkerBoxes = builder.booleanEntry("peek_shulker_boxes", true);
         peekChests = builder.booleanEntry("peek_chests", true);
         peekBarrels = builder.booleanEntry("peek_barrels", true);

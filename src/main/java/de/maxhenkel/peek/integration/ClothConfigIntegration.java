@@ -28,6 +28,12 @@ public class ClothConfigIntegration {
         ));
 
         general.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.show_shulker_box_item_hint"),
+                Component.translatable("cloth_config.peek.show_shulker_box_item_hint.description"),
+                Peek.CLIENT_CONFIG.showShulkerBoxItemHint
+        ));
+
+        general.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_shulker_boxes"),
                 Component.translatable("cloth_config.peek.peek_shulker_boxes.description"),
                 Peek.CLIENT_CONFIG.peekShulkerBoxes
