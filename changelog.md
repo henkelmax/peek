@@ -1,1 +1,1 @@
-- Fixed items sometimes not rendering
+- Added Shulker Box item hint

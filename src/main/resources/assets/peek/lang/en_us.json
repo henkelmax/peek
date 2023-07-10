@@ -14,6 +14,8 @@
   "cloth_config.peek.category.general": "General",
   "cloth_config.peek.show_empty_containers": "Show Empty Containers",
   "cloth_config.peek.show_empty_containers.description": "If containers without any items should be displayed.",
+  "cloth_config.peek.show_shulker_box_item_hint": "Show Shulker Box Item Hint",
+  "cloth_config.peek.show_shulker_box_item_hint.description": "If Shulker Boxes only contain one item type, the item will get rendered on the Shulker Box item.",
   "cloth_config.peek.peek_shulker_boxes": "Peek Shulker Boxes",
   "cloth_config.peek.peek_shulker_boxes.description": "Displays the items inside shulker boxes.",
   "cloth_config.peek.peek_beehives": "Peek Beehives",
