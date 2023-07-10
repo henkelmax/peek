@@ -2,9 +2,9 @@ package de.maxhenkel.peek.mixin;
 
 import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.tooltips.ContainerTooltip;
-import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.BlockItem;
@@ -58,7 +58,7 @@ public abstract class BlockItemMixin extends Item {
             return super.getTooltipImage(stack);
         }
 
-        if (!blockEntityData.contains(ShulkerBoxBlockEntity.ITEMS_TAG, NbtType.LIST)) {
+        if (!blockEntityData.contains(ShulkerBoxBlockEntity.ITEMS_TAG, Tag.TAG_LIST)) {
             return super.getTooltipImage(stack);
         }
 
@@ -95,7 +95,7 @@ public abstract class BlockItemMixin extends Item {
         if (blockEntityData == null) {
             return super.getTooltipImage(stack);
         }
-        if (!blockEntityData.contains(ITEMS, NbtType.LIST)) {
+        if (!blockEntityData.contains(ITEMS, Tag.TAG_LIST)) {
             return super.getTooltipImage(stack);
         }
 
@@ -118,7 +118,7 @@ public abstract class BlockItemMixin extends Item {
         if (blockEntityData == null) {
             return super.getTooltipImage(stack);
         }
-        if (!blockEntityData.contains(ITEMS, NbtType.LIST)) {
+        if (!blockEntityData.contains(ITEMS, Tag.TAG_LIST)) {
             return super.getTooltipImage(stack);
         }
 
@@ -137,7 +137,7 @@ public abstract class BlockItemMixin extends Item {
         if (blockEntityData == null) {
             return super.getTooltipImage(stack);
         }
-        if (!blockEntityData.contains(ITEMS, NbtType.LIST)) {
+        if (!blockEntityData.contains(ITEMS, Tag.TAG_LIST)) {
             return super.getTooltipImage(stack);
         }
 

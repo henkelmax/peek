@@ -1,9 +1,9 @@
 package de.maxhenkel.peek.mixin;
 
 import de.maxhenkel.peek.Peek;
-import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.effect.MobEffect;
@@ -35,13 +35,13 @@ public abstract class SuspiciousStewItemMixin extends Item {
         }
 
         CompoundTag compoundTag = itemStack.getTag();
-        if (compoundTag != null && compoundTag.contains(SuspiciousStewItem.EFFECTS_TAG, NbtType.LIST)) {
-            ListTag listTag = compoundTag.getList(SuspiciousStewItem.EFFECTS_TAG, NbtType.COMPOUND);
+        if (compoundTag != null && compoundTag.contains(SuspiciousStewItem.EFFECTS_TAG, Tag.TAG_LIST)) {
+            ListTag listTag = compoundTag.getList(SuspiciousStewItem.EFFECTS_TAG, Tag.TAG_COMPOUND);
 
             for (int i = 0; i < listTag.size(); i++) {
                 int duration = 160;
                 CompoundTag effectTag = listTag.getCompound(i);
-                if (effectTag.contains(SuspiciousStewItem.EFFECT_DURATION_TAG, NbtType.INT)) {
+                if (effectTag.contains(SuspiciousStewItem.EFFECT_DURATION_TAG, Tag.TAG_INT)) {
                     duration = effectTag.getInt(SuspiciousStewItem.EFFECT_DURATION_TAG);
                 }
                 MobEffect mobEffect = MobEffect.byId(effectTag.getInt(SuspiciousStewItem.EFFECT_ID_TAG));

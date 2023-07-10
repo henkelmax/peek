@@ -1,9 +1,9 @@
 package de.maxhenkel.peek.mixin;
 
 import de.maxhenkel.peek.Peek;
-import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -38,8 +38,8 @@ public abstract class BeehiveBlockMixin extends BaseEntityBlock {
         int beeCount = 0;
         CompoundTag blockEntityTag = itemStack.getTagElement(BLOCK_ENTITY_TAG);
         if (blockEntityTag != null) {
-            if (blockEntityTag.contains(BeehiveBlockEntity.BEES, NbtType.LIST)) {
-                beeCount = blockEntityTag.getList(BeehiveBlockEntity.BEES, NbtType.COMPOUND).size();
+            if (blockEntityTag.contains(BeehiveBlockEntity.BEES, Tag.TAG_LIST)) {
+                beeCount = blockEntityTag.getList(BeehiveBlockEntity.BEES, Tag.TAG_COMPOUND).size();
             }
         }
         list.add(Component.translatable("tooltip.peek.beehive.bee_count", Component.literal(beeCount + "/3").withStyle(ChatFormatting.WHITE)).withStyle(ChatFormatting.GRAY));
@@ -47,7 +47,7 @@ public abstract class BeehiveBlockMixin extends BaseEntityBlock {
         int honeyLevel = 0;
         CompoundTag blockStateTag = itemStack.getTagElement(BLOCK_STATE_TAG);
         if (blockStateTag != null) {
-            if (blockStateTag.contains(HONEY_LEVEL, NbtType.INT)) {
+            if (blockStateTag.contains(HONEY_LEVEL, Tag.TAG_INT)) {
                 honeyLevel = blockStateTag.getInt(HONEY_LEVEL);
             }
         }
