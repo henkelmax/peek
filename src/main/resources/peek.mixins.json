@@ -11,7 +11,8 @@
     "MapItemMixin",
     "CompassItemMixin",
     "ItemMixin",
-    "SuspiciousStewItemMixin"
+    "SuspiciousStewItemMixin",
+    "BlockEntityWithoutLevelRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
