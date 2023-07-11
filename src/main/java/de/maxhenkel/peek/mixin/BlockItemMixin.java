@@ -1,14 +1,26 @@
 package de.maxhenkel.peek.mixin;
 
+import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.events.TooltipImageEvents;
+import de.maxhenkel.peek.utils.ShulkerBoxUtils;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
 
@@ -31,4 +43,38 @@ public abstract class BlockItemMixin extends Item {
         }
         return tooltipImage;
     }
+
+    @Inject(method = "place", at = @At(value = "TAIL"))
+    private void place(BlockPlaceContext blockPlaceContext, CallbackInfoReturnable<InteractionResult> cir) {
+        if (!Peek.CLIENT_CONFIG.showShulkerBoxBlockHint.get()) {
+            return;
+        }
+        Level level = blockPlaceContext.getLevel();
+        if (!level.isClientSide) {
+            return;
+        }
+        BlockEntity blockEntity = level.getBlockEntity(blockPlaceContext.getClickedPos());
+        if (!(blockEntity instanceof ShulkerBoxBlockEntity shulkerBoxBlockEntity)) {
+            return;
+        }
+
+        ItemStack item = blockPlaceContext.getItemInHand();
+
+        if (!(item.getItem() instanceof BlockItem blockItem)) {
+            return;
+        }
+
+        if (!(blockItem.getBlock() instanceof ShulkerBoxBlock)) {
+            return;
+        }
+
+        NonNullList<ItemStack> items = ShulkerBoxUtils.getItems(item);
+
+        if (items == null) {
+            return;
+        }
+
+        shulkerBoxBlockEntity.setItems(items);
+    }
+
 }

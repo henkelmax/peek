@@ -2,13 +2,11 @@ package de.maxhenkel.peek.events;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import de.maxhenkel.peek.utils.ShulkerBoxUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
@@ -22,18 +20,10 @@ public class RenderEvents {
     public static final CompoundTag RENDER_ITEM_TAG = new CompoundTag();
 
     public static void renderShulkerBoxItemLabel(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
-        CompoundTag blockEntityData = BlockItem.getBlockEntityData(stack);
-        if (blockEntityData == null) {
+        NonNullList<ItemStack> items = ShulkerBoxUtils.getItems(stack);
+        if (items == null) {
             return;
         }
-
-        if (!blockEntityData.contains(ShulkerBoxBlockEntity.ITEMS_TAG, Tag.TAG_LIST)) {
-            return;
-        }
-
-        NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(blockEntityData, items);
-
         renderShulkerBoxLabel(items, 0F, poseStack, multiBufferSource, light, overlay, null);
     }
 
