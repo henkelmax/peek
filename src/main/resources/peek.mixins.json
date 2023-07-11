@@ -15,7 +15,8 @@
     "BlockEntityWithoutLevelRendererMixin",
     "ItemRendererMixin",
     "ShulkerBoxRendererMixin",
-    "ShulkerBoxMenuMixin"
+    "ShulkerBoxMenuMixin",
+    "ShulkerBoxScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

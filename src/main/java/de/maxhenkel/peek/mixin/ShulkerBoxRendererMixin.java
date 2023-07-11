@@ -20,9 +20,7 @@ public class ShulkerBoxRendererMixin {
             return;
         }
 
-        if (!shulkerBoxBlockEntity.isEmpty()) {
-            RenderEvents.renderShulkerBoxLabel(shulkerBoxBlockEntity, partialTicks, poseStack, multiBufferSource, light, overlay);
-        }
+        RenderEvents.renderShulkerBoxLabel(shulkerBoxBlockEntity, partialTicks, poseStack, multiBufferSource, light, overlay);
     }
 
 }

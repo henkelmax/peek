@@ -3,7 +3,7 @@ package de.maxhenkel.peek.mixin;
 import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.events.TooltipImageEvents;
 import de.maxhenkel.peek.utils.ShulkerBoxUtils;
-import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.BlockItem;
@@ -68,13 +68,12 @@ public abstract class BlockItemMixin extends Item {
             return;
         }
 
-        NonNullList<ItemStack> items = ShulkerBoxUtils.getItems(item);
+        shulkerBoxBlockEntity.setItems(ShulkerBoxUtils.getItems(item));
 
-        if (items == null) {
-            return;
+        Component customName = ShulkerBoxUtils.getCustomName(item);
+        if (customName != null) {
+            shulkerBoxBlockEntity.setCustomName(customName);
         }
-
-        shulkerBoxBlockEntity.setItems(items);
     }
 
 }
