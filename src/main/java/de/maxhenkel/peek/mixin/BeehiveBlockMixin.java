@@ -49,6 +49,11 @@ public abstract class BeehiveBlockMixin extends BaseEntityBlock {
         if (blockStateTag != null) {
             if (blockStateTag.contains(HONEY_LEVEL, Tag.TAG_INT)) {
                 honeyLevel = blockStateTag.getInt(HONEY_LEVEL);
+            } else if (blockStateTag.contains(HONEY_LEVEL, Tag.TAG_STRING)) {
+                try {
+                    honeyLevel = Integer.parseInt(blockStateTag.getString(HONEY_LEVEL));
+                } catch (NumberFormatException ignored) {
+                }
             }
         }
         list.add(Component.translatable("tooltip.peek.beehive.honey_level", Component.literal(honeyLevel + "/5").withStyle(ChatFormatting.WHITE)).withStyle(ChatFormatting.GRAY));
