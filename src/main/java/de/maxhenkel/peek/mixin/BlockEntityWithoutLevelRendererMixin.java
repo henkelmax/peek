@@ -18,18 +18,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class BlockEntityWithoutLevelRendererMixin {
 
     @Inject(method = "renderByItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderDispatcher;renderItem(Lnet/minecraft/world/level/block/entity/BlockEntity;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)Z", shift = At.Shift.AFTER))
-    public void renderItem(ItemStack itemStack, ItemDisplayContext itemDisplayContext, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j, CallbackInfo ci) {
-        if(!(itemStack.getItem() instanceof BlockItem blockItem)){
+    public void renderItem(ItemStack itemStack, ItemDisplayContext itemDisplayContext, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay, CallbackInfo ci) {
+        if (!(itemStack.getItem() instanceof BlockItem blockItem)) {
             return;
         }
-        if(!(blockItem.getBlock() instanceof ShulkerBoxBlock shulkerBoxBlock)){
+        if (!(blockItem.getBlock() instanceof ShulkerBoxBlock)) {
             return;
         }
         if (!Peek.CLIENT_CONFIG.showShulkerBoxItemHint.get()) {
             return;
         }
 
-        RenderEvents.renderShulkerBoxLabel(itemStack, itemDisplayContext, poseStack, multiBufferSource, i, j);
+        RenderEvents.renderShulkerBoxItemLabel(itemStack, itemDisplayContext, poseStack, multiBufferSource, light, overlay);
     }
 
 }

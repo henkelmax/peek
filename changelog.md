@@ -1,4 +1,5 @@
 - Added Simplified Chinese translation
 - Added show empty containers config option
 - Added Shulker Box item hint
+- Added Shulker Box block hint
 - Fixed honey level not displayed in all cases

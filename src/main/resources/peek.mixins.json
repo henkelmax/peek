@@ -13,7 +13,9 @@
     "ItemMixin",
     "SuspiciousStewItemMixin",
     "BlockEntityWithoutLevelRendererMixin",
-    "ItemRendererMixin"
+    "ItemRendererMixin",
+    "ShulkerBoxRendererMixin",
+    "ShulkerBoxMenuMixin"
   ],
   "injectors": {
     "defaultRequire": 1
