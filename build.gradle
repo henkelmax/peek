@@ -52,6 +52,10 @@ dependencies {
     modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/peek.accesswidener")
+}
+
 processResources {
     filesMatching('fabric.mod.json') {
         expand 'version': version,

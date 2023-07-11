@@ -1,2 +1,3 @@
 - Added Shulker Box item hint
+- Added Shulker Box block hint
 - Fixed honey level not displayed in all cases
