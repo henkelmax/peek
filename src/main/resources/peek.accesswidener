@@ -1,2 +1,3 @@
 accessWidener v1 named
 accessible method net/minecraft/world/level/block/entity/ShulkerBoxBlockEntity getItems ()Lnet/minecraft/core/NonNullList;
+accessible method net/minecraft/world/level/block/entity/ShulkerBoxBlockEntity setItems (Lnet/minecraft/core/NonNullList;)V
