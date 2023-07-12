@@ -122,16 +122,23 @@ public class ShulkerBoxUtils {
         }
 
         if (text != null) {
-            Matcher matcher = ITEM_ID_PATTERN.matcher(text);
-            if (matcher.find()) {
-                String replaced = matcher.replaceAll("").trim();
-                data.setLabel(replaced.isEmpty() ? null : Component.literal(replaced));
-            } else {
-                data.setLabel(name);
-            }
+            data.setLabel(cleanName(name));
         }
 
         return data;
+    }
+
+    @Nullable
+    public static Component cleanName(@Nullable Component component) {
+        if (component == null) {
+            return null;
+        }
+        Matcher matcher = ITEM_ID_PATTERN.matcher(component.getString());
+        if (matcher.find()) {
+            String replaced = matcher.replaceAll("").trim();
+            return replaced.isEmpty() ? null : Component.literal(replaced);
+        }
+        return component;
     }
 
 }
