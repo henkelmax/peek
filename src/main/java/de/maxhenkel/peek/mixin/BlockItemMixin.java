@@ -20,6 +20,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.Optional;
 
@@ -43,21 +44,21 @@ public abstract class BlockItemMixin extends Item {
         return tooltipImage;
     }
 
-    @Inject(method = "place", at = @At(value = "TAIL"))
-    private void place(BlockPlaceContext blockPlaceContext, CallbackInfoReturnable<InteractionResult> cir) {
+    @Inject(method = "place", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;gameEvent(Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
+    private void place(BlockPlaceContext blockPlaceContext, CallbackInfoReturnable<InteractionResult> cir, BlockPlaceContext blockPlaceContext2) {
         if (!Peek.CLIENT_CONFIG.showShulkerBoxBlockHint.get()) {
             return;
         }
-        Level level = blockPlaceContext.getLevel();
+        Level level = blockPlaceContext2.getLevel();
         if (!level.isClientSide) {
             return;
         }
-        BlockEntity blockEntity = level.getBlockEntity(blockPlaceContext.getClickedPos());
+        BlockEntity blockEntity = level.getBlockEntity(blockPlaceContext2.getClickedPos());
         if (!(blockEntity instanceof ShulkerBoxBlockEntity shulkerBoxBlockEntity)) {
             return;
         }
 
-        ItemStack item = blockPlaceContext.getItemInHand();
+        ItemStack item = blockPlaceContext2.getItemInHand();
         if (!ShulkerBoxUtils.isShulkerBox(item)) {
             return;
         }
