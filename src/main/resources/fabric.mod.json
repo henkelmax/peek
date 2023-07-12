@@ -38,5 +38,6 @@
   },
   "breaks": {
     "fabric-api": "<${min_fabric_version}"
-  }
+  },
+  "accessWidener" : "peek.accesswidener"
 }
