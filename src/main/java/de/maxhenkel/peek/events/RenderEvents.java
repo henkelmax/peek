@@ -3,10 +3,10 @@ package de.maxhenkel.peek.events;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import de.maxhenkel.peek.utils.ShulkerBoxUtils;
+import de.maxhenkel.peek.utils.ShulkerHintData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -23,14 +23,16 @@ public class RenderEvents {
     public static final CompoundTag RENDER_ITEM_TAG = new CompoundTag();
 
     public static void renderShulkerBoxItemLabel(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
-        renderShulkerBoxLabel(ShulkerBoxUtils.getItems(stack), 0F, poseStack, multiBufferSource, light, overlay, null, ShulkerBoxUtils.getCustomName(stack));
+        ShulkerHintData data = ShulkerBoxUtils.getHint(ShulkerBoxUtils.getItems(stack), ShulkerBoxUtils.getCustomName(stack));
+        renderShulkerBoxLabel(0F, poseStack, multiBufferSource, light, overlay, null, data);
     }
 
     public static void renderShulkerBoxLabel(ShulkerBoxBlockEntity shulkerBoxBlockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
-        renderShulkerBoxLabel(shulkerBoxBlockEntity.getItems(), partialTicks, poseStack, multiBufferSource, light, overlay, shulkerBoxBlockEntity, shulkerBoxBlockEntity.getCustomName());
+        ShulkerHintData data = ShulkerBoxUtils.getHint(shulkerBoxBlockEntity.getItems(), shulkerBoxBlockEntity.getCustomName());
+        renderShulkerBoxLabel(partialTicks, poseStack, multiBufferSource, light, overlay, shulkerBoxBlockEntity, data);
     }
 
-    private static void renderShulkerBoxLabel(NonNullList<ItemStack> items, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay, @Nullable ShulkerBoxBlockEntity shulkerBoxBlockEntity, @Nullable Component customName) {
+    private static void renderShulkerBoxLabel(float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay, @Nullable ShulkerBoxBlockEntity shulkerBoxBlockEntity, ShulkerHintData data) {
         poseStack.pushPose();
         poseStack.translate(0.5D, 0.5D, 0.5D);
         if (shulkerBoxBlockEntity != null) {
@@ -46,30 +48,32 @@ public class RenderEvents {
 
         poseStack.rotateAround(Axis.XP.rotationDegrees(-90F), 1F, 0F, 0F);
 
-        Item renderItem = ShulkerBoxUtils.getRenderItem(items);
-        if (renderItem != null) {
+        Item displayItem = data.getDisplayItem();
+        Component label = data.getLabel();
+
+        if (displayItem != null) {
             poseStack.pushPose();
-            if (customName != null) {
+            if (label != null) {
                 poseStack.translate(0F, 2F / 16F, 0F);
                 poseStack.scale(12F / 16F, 12F / 16F, 12F / 16F);
             }
-            ItemStack renderItemStack = new ItemStack(renderItem);
+            ItemStack renderItemStack = new ItemStack(displayItem);
             renderItemStack.setTag(RENDER_ITEM_TAG);
             mc.getItemRenderer().renderStatic(renderItemStack, ItemDisplayContext.GUI, light, overlay, poseStack, multiBufferSource, mc.level, 0);
             poseStack.popPose();
         }
 
-        if (customName != null) {
+        if (label != null) {
             poseStack.pushPose();
-            if (renderItem != null) {
+            if (displayItem != null) {
                 poseStack.translate(0F, -6F / 16F, 0F);
             }
-            int width = mc.font.width(customName);
+            int width = mc.font.width(label);
             float textScale = Math.min(0.8F / width, 0.02F);
             poseStack.scale(textScale, textScale, textScale);
             poseStack.translate(0F, mc.font.lineHeight / 2F, 0F);
             poseStack.rotateAround(Axis.XP.rotationDegrees(180F), 1F, 0F, 0F);
-            mc.font.drawInBatch8xOutline(customName.getVisualOrderText(), -width / 2F, 0F, 0xFFFFFF, 0x00, poseStack.last().pose(), multiBufferSource, light);
+            mc.font.drawInBatch8xOutline(label.getVisualOrderText(), -width / 2F, 0F, 0xFFFFFF, 0x00, poseStack.last().pose(), multiBufferSource, light);
             poseStack.popPose();
         }
         poseStack.popPose();
