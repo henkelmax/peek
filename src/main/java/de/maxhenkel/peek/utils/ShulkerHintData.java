@@ -14,6 +14,8 @@ import java.util.regex.Pattern;
 
 public class ShulkerHintData {
 
+    public static final Pattern DATA_PATTERN = Pattern.compile("\\{([^{}]+)}");
+
     @Nullable
     private Component label;
     @Nullable
@@ -45,8 +47,6 @@ public class ShulkerHintData {
     public void setDisplayItem(@Nullable Item displayItem) {
         this.displayItem = displayItem;
     }
-
-    private static final Pattern DATA_PATTERN = Pattern.compile("\\{([^{}]+)}");
 
     public static ShulkerHintData fromShulkerBox(NonNullList<ItemStack> contents, @Nullable Component name) {
         if (Peek.CLIENT_CONFIG.useShulkerBoxDataStrings.get()) {

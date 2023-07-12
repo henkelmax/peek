@@ -16,7 +16,9 @@
     "ItemRendererMixin",
     "ShulkerBoxRendererMixin",
     "ShulkerBoxMenuMixin",
-    "ShulkerBoxScreenMixin"
+    "ShulkerBoxScreenMixin",
+    "ItemStackMixin",
+    "AnvilScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
