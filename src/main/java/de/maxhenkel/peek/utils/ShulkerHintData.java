@@ -77,16 +77,28 @@ public class ShulkerHintData {
         ShulkerHintData data = new ShulkerHintData();
         String str = matcher.group(1);
         Map<String, String> map = parseData(str);
-        if (map.containsKey("label")) {
-            data.setLabel(Component.literal(map.get("label")));
+        String label = getFromMap(map, "label", "l");
+        if (label != null) {
+            data.setLabel(Component.literal(label));
         }
-        if (map.containsKey("item")) {
-            Item item = ShulkerBoxUtils.byId(map.get("item"));
+        String itemId = getFromMap(map, "item", "i");
+        if (itemId != null) {
+            Item item = ShulkerBoxUtils.byId(itemId);
             if (item != null) {
                 data.setDisplayItem(item);
             }
         }
         return data;
+    }
+
+    @Nullable
+    private static String getFromMap(Map<String, String> map, String... keys) {
+        for (String key : keys) {
+            if (map.containsKey(key)) {
+                return map.get(key);
+            }
+        }
+        return null;
     }
 
     private static Map<String, String> parseData(String s) {
