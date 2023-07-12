@@ -23,12 +23,12 @@ public class RenderEvents {
     public static final CompoundTag RENDER_ITEM_TAG = new CompoundTag();
 
     public static void renderShulkerBoxItemLabel(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
-        ShulkerHintData data = ShulkerBoxUtils.getHint(ShulkerBoxUtils.getItems(stack), ShulkerBoxUtils.getCustomName(stack));
+        ShulkerHintData data = ShulkerHintData.fromShulkerBox(ShulkerBoxUtils.getItems(stack), ShulkerBoxUtils.getCustomName(stack));
         renderShulkerBoxLabel(0F, poseStack, multiBufferSource, light, overlay, null, data);
     }
 
     public static void renderShulkerBoxLabel(ShulkerBoxBlockEntity shulkerBoxBlockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
-        ShulkerHintData data = ShulkerBoxUtils.getHint(shulkerBoxBlockEntity.getItems(), shulkerBoxBlockEntity.getCustomName());
+        ShulkerHintData data = ShulkerHintData.fromShulkerBox(shulkerBoxBlockEntity.getItems(), shulkerBoxBlockEntity.getCustomName());
         renderShulkerBoxLabel(partialTicks, poseStack, multiBufferSource, light, overlay, shulkerBoxBlockEntity, data);
     }
 
