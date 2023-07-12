@@ -12,7 +12,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 import org.spongepowered.asm.mixin.Final;
@@ -59,12 +58,7 @@ public abstract class BlockItemMixin extends Item {
         }
 
         ItemStack item = blockPlaceContext.getItemInHand();
-
-        if (!(item.getItem() instanceof BlockItem blockItem)) {
-            return;
-        }
-
-        if (!(blockItem.getBlock() instanceof ShulkerBoxBlock)) {
+        if (!ShulkerBoxUtils.isShulkerBox(item)) {
             return;
         }
 

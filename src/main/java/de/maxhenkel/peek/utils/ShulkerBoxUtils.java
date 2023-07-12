@@ -1,5 +1,6 @@
 package de.maxhenkel.peek.utils;
 
+import de.maxhenkel.peek.interfaces.PeekItemStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.NonNullList;
@@ -13,9 +14,11 @@ import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 
 import javax.annotation.Nullable;
+import java.util.regex.Matcher;
 
 public class ShulkerBoxUtils {
 
@@ -39,7 +42,7 @@ public class ShulkerBoxUtils {
     @Nullable
     public static Component getCustomName(ItemStack stack) {
         if (stack.hasCustomHoverName()) {
-            return stack.getHoverName();
+            return ((PeekItemStack) (Object) stack).peek$getRealHoverName();
         }
 
         CompoundTag blockEntityData = BlockItem.getBlockEntityData(stack);
@@ -91,6 +94,19 @@ public class ShulkerBoxUtils {
             return null;
         }
         return level.registryAccess().registryOrThrow(Registries.ITEM).get(new ResourceLocation(id));
+    }
+
+    public static Component cleanName(Component component) {
+        Matcher matcher = ShulkerHintData.DATA_PATTERN.matcher(component.getString());
+        if (matcher.find()) {
+            String replaced = matcher.replaceAll("").trim();
+            return replaced.isEmpty() ? Component.empty() : Component.literal(replaced);
+        }
+        return component;
+    }
+
+    public static boolean isShulkerBox(ItemStack stack) {
+        return stack.getItem() instanceof BlockItem && ((BlockItem) stack.getItem()).getBlock() instanceof ShulkerBoxBlock;
     }
 
 }
