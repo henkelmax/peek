@@ -11,11 +11,10 @@
   "tooltip.peek.dimension.the_end": "The End",
   "tooltip.peek.dimension.the_nether": "The Nether",
   "cloth_config.peek.settings": "Settings",
-  "cloth_config.peek.category.general": "General",
+  "cloth_config.peek.category.tooltips": "Tooltips",
+  "cloth_config.peek.category.shulker_box_hints": "Shulker Box Hints",
   "cloth_config.peek.show_empty_containers": "Show Empty Containers",
   "cloth_config.peek.show_empty_containers.description": "If containers without any items should be displayed.",
-  "cloth_config.peek.show_shulker_box_item_hint": "Show Shulker Box Item Hint",
-  "cloth_config.peek.show_shulker_box_item_hint.description": "If Shulker Boxes only contain one item type, the item will get rendered on the Shulker Box item.",
   "cloth_config.peek.peek_shulker_boxes": "Peek Shulker Boxes",
   "cloth_config.peek.peek_shulker_boxes.description": "Displays the items inside shulker boxes.",
   "cloth_config.peek.peek_beehives": "Peek Beehives",
@@ -35,5 +34,9 @@
   "cloth_config.peek.peek_dispensers": "Peek Dispensers and Droppers",
   "cloth_config.peek.peek_dispensers.description": "Displays the items inside pick-blocked dispensers and droppers.",
   "cloth_config.peek.peek_hoppers": "Peek Hoppers",
-  "cloth_config.peek.peek_hoppers.description": "Displays the items inside pick-blocked hoppers."
+  "cloth_config.peek.peek_hoppers.description": "Displays the items inside pick-blocked hoppers.",
+  "cloth_config.peek.show_shulker_box_item_hint": "Show Shulker Box Item Hint",
+  "cloth_config.peek.show_shulker_box_item_hint.description": "If Shulker Box items should render information on the lid.",
+  "cloth_config.peek.show_shulker_box_block_hint": "Show Shulker Box Block Hint",
+  "cloth_config.peek.show_shulker_box_block_hint.description": "If Shulker Box blocks should render information on the lid."
 }
