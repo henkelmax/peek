@@ -1,5 +1,6 @@
 package de.maxhenkel.peek.utils;
 
+import de.maxhenkel.peek.Peek;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -48,9 +49,11 @@ public class ShulkerHintData {
     private static final Pattern DATA_PATTERN = Pattern.compile("\\{([^{}]+)}");
 
     public static ShulkerHintData fromShulkerBox(NonNullList<ItemStack> contents, @Nullable Component name) {
-        ShulkerHintData data = ShulkerHintData.fromDataString(ShulkerBoxUtils.getStringFromComponent(name));
-        if (data != null) {
-            return data;
+        if (Peek.CLIENT_CONFIG.useShulkerBoxDataStrings.get()) {
+            ShulkerHintData data = ShulkerHintData.fromDataString(ShulkerBoxUtils.getStringFromComponent(name));
+            if (data != null) {
+                return data;
+            }
         }
         return fromContents(contents, name);
     }
