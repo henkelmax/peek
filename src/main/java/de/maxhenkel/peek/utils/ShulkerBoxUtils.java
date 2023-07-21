@@ -4,7 +4,7 @@ import de.maxhenkel.peek.interfaces.PeekItemStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
@@ -93,7 +93,7 @@ public class ShulkerBoxUtils {
         if (level == null) {
             return null;
         }
-        return level.registryAccess().registryOrThrow(Registries.ITEM).get(new ResourceLocation(id));
+        return level.registryAccess().registryOrThrow(Registry.ITEM_REGISTRY).get(new ResourceLocation(id));
     }
 
     public static Component cleanName(Component component) {
