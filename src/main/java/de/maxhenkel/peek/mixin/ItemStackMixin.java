@@ -3,6 +3,7 @@ package de.maxhenkel.peek.mixin;
 import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.interfaces.PeekItemStack;
 import de.maxhenkel.peek.utils.ShulkerBoxUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
@@ -28,6 +29,11 @@ public abstract class ItemStackMixin implements PeekItemStack {
         if (!Peek.CLIENT_CONFIG.useShulkerBoxDataStrings.get()) {
             return;
         }
+
+        if (!Minecraft.getInstance().isSameThread()) {
+            return;
+        }
+
         cir.setReturnValue(ShulkerBoxUtils.cleanName(cir.getReturnValue()));
     }
 
