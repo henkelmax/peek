@@ -2,6 +2,7 @@ package de.maxhenkel.peek.events;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
+import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.utils.ShulkerBoxUtils;
 import de.maxhenkel.peek.utils.ShulkerHintData;
 import net.minecraft.client.Minecraft;
@@ -20,7 +21,13 @@ import javax.annotation.Nullable;
 public class RenderEvents {
 
     private static final Minecraft mc = Minecraft.getInstance();
-    public static final CompoundTag RENDER_ITEM_TAG = new CompoundTag();
+    private static final String TAG_CUSTOM_MODEL_DATA = "CustomModelData";
+    public static final CompoundTag RENDER_ITEM_TAG;
+
+    static {
+        RENDER_ITEM_TAG = new CompoundTag();
+        RENDER_ITEM_TAG.putInt(TAG_CUSTOM_MODEL_DATA, Peek.CLIENT_CONFIG.shulkerBoxItemHintCustomModelData.get());
+    }
 
     public static void renderShulkerBoxItemLabel(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
         ShulkerHintData data = ShulkerHintData.fromShulkerBox(ShulkerBoxUtils.getItems(stack), ShulkerBoxUtils.getCustomName(stack));
@@ -59,7 +66,7 @@ public class RenderEvents {
             }
             ItemStack renderItemStack = new ItemStack(displayItem);
             renderItemStack.setTag(RENDER_ITEM_TAG);
-            mc.getItemRenderer().renderStatic(renderItemStack, ItemTransforms.TransformType.GUI, light, overlay, poseStack, multiBufferSource, 0);
+            mc.getItemRenderer().renderStatic(renderItemStack, ItemTransforms.TransformType.GUI, light, overlay, poseStack, multiBufferSource, Peek.CLIENT_CONFIG.shulkerBoxItemHintCustomModelData.get());
             poseStack.popPose();
         }
 

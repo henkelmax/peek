@@ -22,6 +22,7 @@ public class ClientConfig {
     public final ConfigEntry<Boolean> showShulkerBoxBlockHint;
     public final ConfigEntry<Boolean> useShulkerBoxDataStrings;
     public final ConfigEntry<Boolean> hideShulkerBoxDataStrings;
+    public final ConfigEntry<Integer> shulkerBoxItemHintCustomModelData;
 
     public ClientConfig(ConfigBuilder builder) {
         showEmptyContainers = builder.booleanEntry("show_empty_containers", false);
@@ -41,6 +42,7 @@ public class ClientConfig {
         showShulkerBoxBlockHint = builder.booleanEntry("show_shulker_box_block_hint", true);
         useShulkerBoxDataStrings = builder.booleanEntry("use_shulker_box_data_strings", false);
         hideShulkerBoxDataStrings = builder.booleanEntry("hide_shulker_box_data_strings", true);
+        shulkerBoxItemHintCustomModelData = builder.integerEntry("shulher_box_item_hint_custom_model_data", 1702, 0, Integer.MAX_VALUE);
     }
 
 }
