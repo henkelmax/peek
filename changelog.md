@@ -1,1 +1,1 @@
-- Added russian translation
+- Added custom model data to shulker box hints
