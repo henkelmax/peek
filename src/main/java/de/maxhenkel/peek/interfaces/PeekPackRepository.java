@@ -2,7 +2,7 @@ package de.maxhenkel.peek.interfaces;
 
 import net.minecraft.server.packs.repository.RepositorySource;
 
-public interface IPackRepository {
+public interface PeekPackRepository {
 
     void peek$addSource(RepositorySource source);
 
