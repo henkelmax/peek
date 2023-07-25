@@ -1,5 +1,6 @@
 package de.maxhenkel.peek.mixin;
 
+import de.maxhenkel.peek.Peek;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -24,11 +25,17 @@ public abstract class ShulkerBoxBlockEntityMixin extends RandomizableContainerBl
     @Nullable
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
+        if (!Peek.CONFIG.sendShulkerBoxDataToClient.get()) {
+            return super.getUpdatePacket();
+        }
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
     public CompoundTag getUpdateTag() {
+        if (!Peek.CONFIG.sendShulkerBoxDataToClient.get()) {
+            return super.getUpdateTag();
+        }
         CompoundTag tag = new CompoundTag();
         saveAdditional(tag);
         return tag;
