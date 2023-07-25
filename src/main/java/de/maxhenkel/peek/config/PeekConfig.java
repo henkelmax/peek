@@ -40,13 +40,47 @@ public class PeekConfig {
         peekRecoveryCompasses = builder.booleanEntry("peek_recovery_compasses", true);
         peekSuspiciousStews = builder.booleanEntry("peek_suspicious_stews", true);
 
-        showShulkerBoxItemHint = builder.booleanEntry("show_shulker_box_item_hint", true);
-        showShulkerBoxBlockHint = builder.booleanEntry("show_shulker_box_block_hint", true);
-        useShulkerBoxDataStrings = builder.booleanEntry("use_shulker_box_data_strings", false);
-        useShulkerBoxItemNames = builder.booleanEntry("use_shulker_box_item_names", false);
-        hideShulkerBoxDataStrings = builder.booleanEntry("hide_shulker_box_data_strings", true);
-        shulkerBoxItemHintCustomModelData = builder.integerEntry("shulker_box_item_hint_custom_model_data", 1702, 0, Integer.MAX_VALUE);
-        sendShulkerBoxDataToClient = builder.booleanEntry("send_shulker_box_data_to_client", true);
+        showShulkerBoxItemHint = builder.booleanEntry(
+                "show_shulker_box_item_hint",
+                true,
+                "If this is enabled, the mod will show additional information about the items in shulker boxes when in item form"
+        );
+        showShulkerBoxBlockHint = builder.booleanEntry(
+                "show_shulker_box_block_hint",
+                true,
+                "If this is enabled, the mod will show additional information about the shulker box block on the lid of the shulker box"
+        );
+        useShulkerBoxDataStrings = builder.booleanEntry(
+                "use_shulker_box_data_strings",
+                false,
+                "If this is enabled, the mod will use the data strings to determine what to show on the shulker box lid",
+                "Note that this setting is experimental and subject to change"
+        );
+        useShulkerBoxItemNames = builder.booleanEntry(
+                "use_shulker_box_item_names",
+                false,
+                "If this is enabled, the mod will use item names to determine what to show on the shulker box lid",
+                "Note that this setting is experimental and subject to change"
+        );
+        hideShulkerBoxDataStrings = builder.booleanEntry(
+                "hide_shulker_box_data_strings",
+                true,
+                "If this is enabled, the mod will hide the data strings on tooltips and GUIs"
+        );
+        shulkerBoxItemHintCustomModelData = builder.integerEntry(
+                "shulker_box_item_hint_custom_model_data",
+                1702,
+                0,
+                Integer.MAX_VALUE,
+                "The custom model data ID of shulker box item hint items"
+        );
+        sendShulkerBoxDataToClient = builder.booleanEntry(
+                "send_shulker_box_data_to_client",
+                true,
+                "If this is enabled, the mod will send the contents of placed down shulker boxes to the client",
+                "This allows the mod to display hints on shulker boxes that are placed down without needing to open them first",
+                "If you want to use this feature on a server, the server needs the mod installed and this setting enabled"
+        );
     }
 
 }
