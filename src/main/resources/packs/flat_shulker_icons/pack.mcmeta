@@ -3,7 +3,7 @@
     "pack_format": 15,
     "description": [
       {
-        "translate": "resourcepack.peek.orthogonal_shulker_icons.description",
+        "translate": "resourcepack.peek.flat_shulker_icons.description",
         "color": "light_gray"
       }
     ]
