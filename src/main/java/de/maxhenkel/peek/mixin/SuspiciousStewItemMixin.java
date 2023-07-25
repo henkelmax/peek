@@ -30,7 +30,7 @@ public abstract class SuspiciousStewItemMixin extends Item {
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
         super.appendHoverText(itemStack, level, list, tooltipFlag);
 
-        if (!Peek.CLIENT_CONFIG.peekSuspiciousStews.get()) {
+        if (!Peek.CONFIG.peekSuspiciousStews.get()) {
             return;
         }
 

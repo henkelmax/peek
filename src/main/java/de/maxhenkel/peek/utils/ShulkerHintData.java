@@ -49,7 +49,7 @@ public class ShulkerHintData {
     }
 
     public static ShulkerHintData fromShulkerBox(NonNullList<ItemStack> contents, @Nullable Component name) {
-        if (Peek.CLIENT_CONFIG.useShulkerBoxDataStrings.get()) {
+        if (Peek.CONFIG.useShulkerBoxDataStrings.get()) {
             ShulkerHintData data = ShulkerHintData.fromDataString(ShulkerBoxUtils.getStringFromComponent(name));
             if (data != null) {
                 return data;
