@@ -23,14 +23,16 @@ public class MinecraftMixin {
     @Inject(method = "setLevel", at = @At("RETURN"))
     public void setLevel(ClientLevel clientLevel, CallbackInfo ci) {
         if (clientLevel != null) {
-            ItemNameCache.load(clientLevel);
+            ItemNameCache.loadTranslatedNames(clientLevel);
+            ItemNameCache.loadIdNames(clientLevel);
         }
     }
 
     @Inject(method = "reloadResourcePacks()Ljava/util/concurrent/CompletableFuture;", at = @At("RETURN"))
     public void reloadResourcePacks(CallbackInfoReturnable<CompletableFuture<Void>> cir) {
         if (level != null) {
-            ItemNameCache.load(level);
+            ItemNameCache.loadTranslatedNames(level);
+            ItemNameCache.loadIdNames(level);
         }
     }
 
