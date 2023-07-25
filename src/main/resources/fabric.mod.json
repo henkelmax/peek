@@ -20,6 +20,9 @@
     "main": [
       "de.maxhenkel.peek.Peek"
     ],
+    "client": [
+      "de.maxhenkel.peek.PeekClient"
+    ],
     "modmenu": [
       "de.maxhenkel.peek.integration.ModMenuIntegration"
     ]
