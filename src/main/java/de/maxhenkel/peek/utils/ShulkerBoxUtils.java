@@ -93,6 +93,9 @@ public class ShulkerBoxUtils {
         if (level == null) {
             return null;
         }
+        if (!ResourceLocation.isValidResourceLocation(id)) {
+            return null;
+        }
         return level.registryAccess().registryOrThrow(Registries.ITEM).get(new ResourceLocation(id));
     }
 
