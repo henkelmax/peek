@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(ShulkerBoxBlockEntity.class)
 public abstract class ShulkerBoxBlockEntityMixin extends RandomizableContainerBlockEntity implements WorldlyContainer {
-    
+
     protected ShulkerBoxBlockEntityMixin(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
         super(blockEntityType, blockPos, blockState);
     }
