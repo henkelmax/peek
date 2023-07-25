@@ -1,1 +1,1 @@
-- Added ukrainian translation
+- Fixed config not getting created on servers
