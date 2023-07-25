@@ -17,7 +17,7 @@
   "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
+    "main": [
       "de.maxhenkel.peek.Peek"
     ],
     "modmenu": [
