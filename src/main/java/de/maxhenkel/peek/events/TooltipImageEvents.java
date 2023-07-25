@@ -37,7 +37,7 @@ public class TooltipImageEvents {
     }
 
     private static Optional<TooltipComponent> getShulkerBoxTooltipImage(ItemStack stack) {
-        if (!Peek.CLIENT_CONFIG.peekShulkerBoxes.get()) {
+        if (!Peek.CONFIG.peekShulkerBoxes.get()) {
             return null;
         }
 
@@ -53,7 +53,7 @@ public class TooltipImageEvents {
         NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
         ContainerHelper.loadAllItems(blockEntityData, items);
 
-        if (!Peek.CLIENT_CONFIG.showEmptyContainers.get() && items.stream().allMatch(ItemStack::isEmpty)) {
+        if (!Peek.CONFIG.showEmptyContainers.get() && items.stream().allMatch(ItemStack::isEmpty)) {
             return null;
         }
 
@@ -61,21 +61,21 @@ public class TooltipImageEvents {
     }
 
     private static Optional<TooltipComponent> getChestTooltipImage(ItemStack stack) {
-        if (!Peek.CLIENT_CONFIG.peekChests.get()) {
+        if (!Peek.CONFIG.peekChests.get()) {
             return null;
         }
         return getDefaultChestSizeTooltipImage(stack);
     }
 
     private static Optional<TooltipComponent> getBarrelTooltipImage(ItemStack stack) {
-        if (!Peek.CLIENT_CONFIG.peekBarrels.get()) {
+        if (!Peek.CONFIG.peekBarrels.get()) {
             return null;
         }
         return getDefaultChestSizeTooltipImage(stack);
     }
 
     private static Optional<TooltipComponent> getDispenserTooltipImage(ItemStack stack) {
-        if (!Peek.CLIENT_CONFIG.peekDispensers.get()) {
+        if (!Peek.CONFIG.peekDispensers.get()) {
             return null;
         }
 
@@ -90,7 +90,7 @@ public class TooltipImageEvents {
         NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
         ContainerHelper.loadAllItems(blockEntityData, items);
 
-        if (!Peek.CLIENT_CONFIG.showEmptyContainers.get() && items.stream().allMatch(ItemStack::isEmpty)) {
+        if (!Peek.CONFIG.showEmptyContainers.get() && items.stream().allMatch(ItemStack::isEmpty)) {
             return null;
         }
 
@@ -98,7 +98,7 @@ public class TooltipImageEvents {
     }
 
     private static Optional<TooltipComponent> getHopperTooltipImage(ItemStack stack) {
-        if (!Peek.CLIENT_CONFIG.peekHoppers.get()) {
+        if (!Peek.CONFIG.peekHoppers.get()) {
             return null;
         }
 
@@ -113,7 +113,7 @@ public class TooltipImageEvents {
         NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
         ContainerHelper.loadAllItems(blockEntityData, items);
 
-        if (!Peek.CLIENT_CONFIG.showEmptyContainers.get() && items.stream().allMatch(ItemStack::isEmpty)) {
+        if (!Peek.CONFIG.showEmptyContainers.get() && items.stream().allMatch(ItemStack::isEmpty)) {
             return null;
         }
 
@@ -132,7 +132,7 @@ public class TooltipImageEvents {
         NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
         ContainerHelper.loadAllItems(blockEntityData, items);
 
-        if (!Peek.CLIENT_CONFIG.showEmptyContainers.get() && items.stream().allMatch(ItemStack::isEmpty)) {
+        if (!Peek.CONFIG.showEmptyContainers.get() && items.stream().allMatch(ItemStack::isEmpty)) {
             return null;
         }
 

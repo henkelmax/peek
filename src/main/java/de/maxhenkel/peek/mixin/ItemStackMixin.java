@@ -26,7 +26,7 @@ public abstract class ItemStackMixin implements PeekItemStack {
         if (!ShulkerBoxUtils.isShulkerBox((ItemStack) (Object) this)) {
             return;
         }
-        if (!Peek.CLIENT_CONFIG.useShulkerBoxDataStrings.get()) {
+        if (!Peek.CONFIG.useShulkerBoxDataStrings.get()) {
             return;
         }
 

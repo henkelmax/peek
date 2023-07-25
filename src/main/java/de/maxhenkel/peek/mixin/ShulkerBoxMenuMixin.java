@@ -14,7 +14,7 @@ public class ShulkerBoxMenuMixin {
 
     @ModifyVariable(method = "<init>(ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/Container;)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     private static Container container(Container container) {
-        if (!Peek.CLIENT_CONFIG.showShulkerBoxBlockHint.get()) {
+        if (!Peek.CONFIG.showShulkerBoxBlockHint.get()) {
             return container;
         }
 

@@ -23,67 +23,67 @@ public class ClothConfigIntegration {
         peeking.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.show_empty_containers"),
                 Component.translatable("cloth_config.peek.show_empty_containers.description"),
-                Peek.CLIENT_CONFIG.showEmptyContainers
+                Peek.CONFIG.showEmptyContainers
         ));
 
         peeking.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_shulker_boxes"),
                 Component.translatable("cloth_config.peek.peek_shulker_boxes.description"),
-                Peek.CLIENT_CONFIG.peekShulkerBoxes
+                Peek.CONFIG.peekShulkerBoxes
         ));
 
         peeking.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_beehives"),
                 Component.translatable("cloth_config.peek.peek_beehives.description"),
-                Peek.CLIENT_CONFIG.peekBeehives
+                Peek.CONFIG.peekBeehives
         ));
 
         peeking.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_exploration_maps"),
                 Component.translatable("cloth_config.peek.peek_exploration_maps.description"),
-                Peek.CLIENT_CONFIG.peekExplorationMaps
+                Peek.CONFIG.peekExplorationMaps
         ));
 
         peeking.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_compasses"),
                 Component.translatable("cloth_config.peek.peek_compasses.description"),
-                Peek.CLIENT_CONFIG.peekCompasses
+                Peek.CONFIG.peekCompasses
         ));
 
         peeking.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_recovery_compasses"),
                 Component.translatable("cloth_config.peek.peek_recovery_compasses.description"),
-                Peek.CLIENT_CONFIG.peekRecoveryCompasses
+                Peek.CONFIG.peekRecoveryCompasses
         ));
 
         peeking.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_suspicious_stews"),
                 Component.translatable("cloth_config.peek.peek_suspicious_stews.description"),
-                Peek.CLIENT_CONFIG.peekSuspiciousStews
+                Peek.CONFIG.peekSuspiciousStews
         ));
 
         peeking.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_chests"),
                 Component.translatable("cloth_config.peek.peek_chests.description"),
-                Peek.CLIENT_CONFIG.peekChests
+                Peek.CONFIG.peekChests
         ));
 
         peeking.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_barrels"),
                 Component.translatable("cloth_config.peek.peek_barrels.description"),
-                Peek.CLIENT_CONFIG.peekBarrels
+                Peek.CONFIG.peekBarrels
         ));
 
         peeking.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_dispensers"),
                 Component.translatable("cloth_config.peek.peek_dispensers.description"),
-                Peek.CLIENT_CONFIG.peekDispensers
+                Peek.CONFIG.peekDispensers
         ));
 
         peeking.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_hoppers"),
                 Component.translatable("cloth_config.peek.peek_hoppers.description"),
-                Peek.CLIENT_CONFIG.peekHoppers
+                Peek.CONFIG.peekHoppers
         ));
 
         ConfigCategory shulkerBoxHints = builder.getOrCreateCategory(Component.translatable("cloth_config.peek.category.shulker_box_hints"));
@@ -91,13 +91,13 @@ public class ClothConfigIntegration {
         shulkerBoxHints.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.show_shulker_box_item_hint"),
                 Component.translatable("cloth_config.peek.show_shulker_box_item_hint.description"),
-                Peek.CLIENT_CONFIG.showShulkerBoxItemHint
+                Peek.CONFIG.showShulkerBoxItemHint
         ));
 
         shulkerBoxHints.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.show_shulker_box_block_hint"),
                 Component.translatable("cloth_config.peek.show_shulker_box_block_hint.description"),
-                Peek.CLIENT_CONFIG.showShulkerBoxBlockHint
+                Peek.CONFIG.showShulkerBoxBlockHint
         ));
 
         return builder.build();

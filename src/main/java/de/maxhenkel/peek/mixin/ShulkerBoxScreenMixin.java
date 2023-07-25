@@ -23,15 +23,15 @@ public abstract class ShulkerBoxScreenMixin extends AbstractContainerScreen<Shul
 
     @Inject(method = "<init>", at = @At(value = "RETURN"))
     private void init(ShulkerBoxMenu shulkerBoxMenu, Inventory inventory, Component component, CallbackInfo ci) {
-        if (Peek.CLIENT_CONFIG.hideShulkerBoxDataStrings.get()) {
+        if (Peek.CONFIG.hideShulkerBoxDataStrings.get()) {
             title = ShulkerBoxUtils.cleanName(title);
         }
 
-        if (!Peek.CLIENT_CONFIG.showShulkerBoxItemHint.get() && !Peek.CLIENT_CONFIG.showShulkerBoxBlockHint.get()) {
+        if (!Peek.CONFIG.showShulkerBoxItemHint.get() && !Peek.CONFIG.showShulkerBoxBlockHint.get()) {
             return;
         }
 
-        if (!Peek.CLIENT_CONFIG.showShulkerBoxBlockHint.get()) {
+        if (!Peek.CONFIG.showShulkerBoxBlockHint.get()) {
             return;
         }
 

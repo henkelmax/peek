@@ -46,7 +46,7 @@ public abstract class BlockItemMixin extends Item {
 
     @Inject(method = "place", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;gameEvent(Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
     private void place(BlockPlaceContext blockPlaceContext, CallbackInfoReturnable<InteractionResult> cir, BlockPlaceContext blockPlaceContext2) {
-        if (!Peek.CLIENT_CONFIG.showShulkerBoxBlockHint.get()) {
+        if (!Peek.CONFIG.showShulkerBoxBlockHint.get()) {
             return;
         }
         Level level = blockPlaceContext2.getLevel();

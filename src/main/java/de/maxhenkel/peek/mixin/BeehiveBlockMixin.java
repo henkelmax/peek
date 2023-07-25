@@ -31,7 +31,7 @@ public abstract class BeehiveBlockMixin extends BaseEntityBlock {
     public void appendHoverText(ItemStack itemStack, @Nullable BlockGetter blockGetter, List<Component> list, TooltipFlag tooltipFlag) {
         super.appendHoverText(itemStack, blockGetter, list, tooltipFlag);
 
-        if (!Peek.CLIENT_CONFIG.peekBeehives.get()) {
+        if (!Peek.CONFIG.peekBeehives.get()) {
             return;
         }
 

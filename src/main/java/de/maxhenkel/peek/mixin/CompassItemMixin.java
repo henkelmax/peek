@@ -28,7 +28,7 @@ public abstract class CompassItemMixin extends Item {
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
         super.appendHoverText(itemStack, level, list, tooltipFlag);
 
-        if (!Peek.CLIENT_CONFIG.peekCompasses.get()) {
+        if (!Peek.CONFIG.peekCompasses.get()) {
             return;
         }
 
