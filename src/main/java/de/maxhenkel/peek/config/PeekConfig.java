@@ -21,6 +21,7 @@ public class PeekConfig {
     public final ConfigEntry<Boolean> showShulkerBoxItemHint;
     public final ConfigEntry<Boolean> showShulkerBoxBlockHint;
     public final ConfigEntry<Boolean> useShulkerBoxDataStrings;
+    public final ConfigEntry<Boolean> useShulkerBoxItemNames;
     public final ConfigEntry<Boolean> hideShulkerBoxDataStrings;
     public final ConfigEntry<Integer> shulkerBoxItemHintCustomModelData;
     public final ConfigEntry<Boolean> sendShulkerBoxDataToClient;
@@ -42,6 +43,7 @@ public class PeekConfig {
         showShulkerBoxItemHint = builder.booleanEntry("show_shulker_box_item_hint", true);
         showShulkerBoxBlockHint = builder.booleanEntry("show_shulker_box_block_hint", true);
         useShulkerBoxDataStrings = builder.booleanEntry("use_shulker_box_data_strings", false);
+        useShulkerBoxItemNames = builder.booleanEntry("use_shulker_box_item_names", false);
         hideShulkerBoxDataStrings = builder.booleanEntry("hide_shulker_box_data_strings", true);
         shulkerBoxItemHintCustomModelData = builder.integerEntry("shulker_box_item_hint_custom_model_data", 1702, 0, Integer.MAX_VALUE);
         sendShulkerBoxDataToClient = builder.booleanEntry("send_shulker_box_data_to_client", true);
