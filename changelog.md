@@ -1,1 +1,1 @@
-- Added custom model data to shulker box hints
+- Fixed crash when using invalid item ID in shulker box data string
