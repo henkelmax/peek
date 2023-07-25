@@ -18,7 +18,8 @@
     "ShulkerBoxMenuMixin",
     "ShulkerBoxScreenMixin",
     "ItemStackMixin",
-    "AnvilScreenMixin"
+    "AnvilScreenMixin",
+    "MinecraftMixin"
   ],
   "mixins": [
     "ShulkerBoxBlockEntityMixin"
