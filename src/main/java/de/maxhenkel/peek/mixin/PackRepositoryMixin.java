@@ -1,6 +1,6 @@
 package de.maxhenkel.peek.mixin;
 
-import de.maxhenkel.peek.interfaces.IPackRepository;
+import de.maxhenkel.peek.interfaces.PeekPackRepository;
 import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.server.packs.repository.RepositorySource;
 import org.spongepowered.asm.mixin.Final;
@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Mixin(value = PackRepository.class, priority = 0)
-public class PackRepositoryMixin implements IPackRepository {
+public class PackRepositoryMixin implements PeekPackRepository {
 
     @Shadow
     @Final
