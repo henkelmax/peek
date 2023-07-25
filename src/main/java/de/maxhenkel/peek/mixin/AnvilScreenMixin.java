@@ -24,7 +24,7 @@ public class AnvilScreenMixin {
         if (!ShulkerBoxUtils.isShulkerBox(stack)) {
             return;
         }
-        if (!Peek.CLIENT_CONFIG.hideShulkerBoxDataStrings.get()) {
+        if (!Peek.CONFIG.hideShulkerBoxDataStrings.get()) {
             return;
         }
         if (stack.isEmpty()) {

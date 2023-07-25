@@ -31,7 +31,7 @@ public class ItemMixin {
             return;
         }
 
-        if (!Peek.CLIENT_CONFIG.peekRecoveryCompasses.get()) {
+        if (!Peek.CONFIG.peekRecoveryCompasses.get()) {
             return;
         }
 

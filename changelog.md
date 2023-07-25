@@ -1,1 +1,1 @@
-- Fixed crash when using invalid item ID in shulker box data string
+- Added config option to send shulker box block data to the client

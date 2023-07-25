@@ -23,14 +23,14 @@ public class ShulkerBoxBlockMixin {
 
     @Inject(method = "appendHoverText", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/BaseEntityBlock;appendHoverText(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/BlockGetter;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V", shift = At.Shift.AFTER), cancellable = true)
     private void appendHoverText(CallbackInfo ci) {
-        if (Peek.CLIENT_CONFIG.peekShulkerBoxes.get()) {
+        if (Peek.CONFIG.peekShulkerBoxes.get()) {
             ci.cancel();
         }
     }
 
     @Inject(method = "use", at = @At(value = "HEAD"))
     private void use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult, CallbackInfoReturnable<InteractionResult> cir) {
-        if (!Peek.CLIENT_CONFIG.showShulkerBoxBlockHint.get()) {
+        if (!Peek.CONFIG.showShulkerBoxBlockHint.get()) {
             return;
         }
 

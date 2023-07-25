@@ -1,7 +1,7 @@
 package de.maxhenkel.peek;
 
 import de.maxhenkel.configbuilder.ConfigBuilder;
-import de.maxhenkel.peek.config.ClientConfig;
+import de.maxhenkel.peek.config.PeekConfig;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -14,10 +14,10 @@ public class Peek implements ClientModInitializer {
 
     public static final String MODID = "peek";
     public static final Logger LOGGER = LogManager.getLogger(MODID);
-    public static ClientConfig CLIENT_CONFIG;
+    public static PeekConfig CONFIG;
 
     @Override
     public void onInitializeClient() {
-        CLIENT_CONFIG = ConfigBuilder.build(FabricLoader.getInstance().getConfigDir().resolve(MODID).resolve("peek.properties"), ClientConfig::new);
+        CONFIG = ConfigBuilder.build(FabricLoader.getInstance().getConfigDir().resolve(MODID).resolve("peek.properties"), PeekConfig::new);
     }
 }

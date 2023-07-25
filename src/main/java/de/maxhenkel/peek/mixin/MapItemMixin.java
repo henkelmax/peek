@@ -33,7 +33,7 @@ public abstract class MapItemMixin extends Item {
 
     @Inject(method = "appendHoverText", at = @At("HEAD"))
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag, CallbackInfo ci) {
-        if (!Peek.CLIENT_CONFIG.peekExplorationMaps.get()) {
+        if (!Peek.CONFIG.peekExplorationMaps.get()) {
             return;
         }
 

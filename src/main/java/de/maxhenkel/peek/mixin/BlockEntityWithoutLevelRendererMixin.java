@@ -21,7 +21,7 @@ public class BlockEntityWithoutLevelRendererMixin {
         if (!ShulkerBoxUtils.isShulkerBox(itemStack)) {
             return;
         }
-        if (!Peek.CLIENT_CONFIG.showShulkerBoxItemHint.get()) {
+        if (!Peek.CONFIG.showShulkerBoxItemHint.get()) {
             return;
         }
 

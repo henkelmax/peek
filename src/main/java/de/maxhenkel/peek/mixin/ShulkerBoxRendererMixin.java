@@ -16,7 +16,7 @@ public class ShulkerBoxRendererMixin {
 
     @Inject(method = "render", at = @At(value = "TAIL"))
     private void render(ShulkerBoxBlockEntity shulkerBoxBlockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay, CallbackInfo ci) {
-        if (!Peek.CLIENT_CONFIG.showShulkerBoxBlockHint.get()) {
+        if (!Peek.CONFIG.showShulkerBoxBlockHint.get()) {
             return;
         }
 

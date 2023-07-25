@@ -26,7 +26,7 @@ public class RenderEvents {
 
     static {
         RENDER_ITEM_TAG = new CompoundTag();
-        RENDER_ITEM_TAG.putInt(TAG_CUSTOM_MODEL_DATA, Peek.CLIENT_CONFIG.shulkerBoxItemHintCustomModelData.get());
+        RENDER_ITEM_TAG.putInt(TAG_CUSTOM_MODEL_DATA, Peek.CONFIG.shulkerBoxItemHintCustomModelData.get());
     }
 
     public static void renderShulkerBoxItemLabel(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
@@ -66,7 +66,7 @@ public class RenderEvents {
             }
             ItemStack renderItemStack = new ItemStack(displayItem);
             renderItemStack.setTag(RENDER_ITEM_TAG);
-            mc.getItemRenderer().renderStatic(renderItemStack, ItemTransforms.TransformType.GUI, light, overlay, poseStack, multiBufferSource, Peek.CLIENT_CONFIG.shulkerBoxItemHintCustomModelData.get());
+            mc.getItemRenderer().renderStatic(renderItemStack, ItemTransforms.TransformType.GUI, light, overlay, poseStack, multiBufferSource, Peek.CONFIG.shulkerBoxItemHintCustomModelData.get());
             poseStack.popPose();
         }
 
