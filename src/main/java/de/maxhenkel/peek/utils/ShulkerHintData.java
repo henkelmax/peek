@@ -99,11 +99,15 @@ public class ShulkerHintData {
 
     @Nullable
     public static ShulkerHintData fromItemName(Component label) {
-        Item item = ItemNameCache.byName(label.getString());
-        if (item == null) {
-            return null;
+        Item item = ItemNameCache.byIdName(label.getString());
+        if (item != null) {
+            return new ShulkerHintData(null, item);
         }
-        return new ShulkerHintData(null, item);
+        item = ItemNameCache.byName(label.getString());
+        if (item != null) {
+            return new ShulkerHintData(null, item);
+        }
+        return null;
     }
 
     @Nullable
