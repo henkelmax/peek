@@ -15,6 +15,6 @@ public class Peek implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        CONFIG = ConfigBuilder.build(FabricLoader.getInstance().getConfigDir().resolve(MODID).resolve("peek.properties"), PeekConfig::new);
+        CONFIG = ConfigBuilder.build(FabricLoader.getInstance().getConfigDir().resolve(MODID).resolve("peek.properties"), true, PeekConfig::new);
     }
 }
