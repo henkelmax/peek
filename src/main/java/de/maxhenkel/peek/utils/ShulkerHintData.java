@@ -55,6 +55,12 @@ public class ShulkerHintData {
                 return data;
             }
         }
+        if (name != null && Peek.CONFIG.useShulkerBoxItemNames.get()) {
+            ShulkerHintData data = ShulkerHintData.fromItemName(name);
+            if (data != null) {
+                return data;
+            }
+        }
         return fromContents(contents, name);
     }
 
@@ -89,6 +95,15 @@ public class ShulkerHintData {
             }
         }
         return data;
+    }
+
+    @Nullable
+    public static ShulkerHintData fromItemName(Component label) {
+        Item item = ItemNameCache.byName(label.getString());
+        if (item == null) {
+            return null;
+        }
+        return new ShulkerHintData(null, item);
     }
 
     @Nullable

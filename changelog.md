@@ -1,1 +1,1 @@
-- Fixed config not getting created on servers
+- Added use_shulker_box_item_names config option
