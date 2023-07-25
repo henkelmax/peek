@@ -10,6 +10,8 @@
   "tooltip.peek.dimension.overworld": "Overworld",
   "tooltip.peek.dimension.the_end": "The End",
   "tooltip.peek.dimension.the_nether": "The Nether",
+  "resourcepack.peek.orthogonal_shulker_icons": "Orthogonal Shulker Icons",
+  "resourcepack.peek.orthogonal_shulker_icons.description": "Improves Shulker Box visibility in GUIs",
   "cloth_config.peek.settings": "Settings",
   "cloth_config.peek.category.tooltips": "Tooltips",
   "cloth_config.peek.category.shulker_box_hints": "Shulker Box Hints",
