@@ -27,18 +27,62 @@ public class PeekConfig {
     public final ConfigEntry<Boolean> sendShulkerBoxDataToClient;
 
     public PeekConfig(ConfigBuilder builder) {
-        showEmptyContainers = builder.booleanEntry("show_empty_containers", false);
+        showEmptyContainers = builder.booleanEntry(
+                "show_empty_containers",
+                false,
+                "If empty containers should show the item slots in the tooltip"
+        );
 
-        peekShulkerBoxes = builder.booleanEntry("peek_shulker_boxes", true);
-        peekChests = builder.booleanEntry("peek_chests", true);
-        peekBarrels = builder.booleanEntry("peek_barrels", true);
-        peekDispensers = builder.booleanEntry("peek_dispensers", true);
-        peekHoppers = builder.booleanEntry("peek_hoppers", true);
-        peekBeehives = builder.booleanEntry("peek_beehives", true);
-        peekExplorationMaps = builder.booleanEntry("peek_exploration_maps", true);
-        peekCompasses = builder.booleanEntry("peek_compasses", true);
-        peekRecoveryCompasses = builder.booleanEntry("peek_recovery_compasses", true);
-        peekSuspiciousStews = builder.booleanEntry("peek_suspicious_stews", true);
+        peekShulkerBoxes = builder.booleanEntry(
+                "peek_shulker_boxes",
+                true,
+                "Displays the items inside shulker boxes"
+        );
+        peekChests = builder.booleanEntry(
+                "peek_chests",
+                true,
+                "Displays the items inside pick-blocked chests and trapped chests"
+        );
+        peekBarrels = builder.booleanEntry(
+                "peek_barrels",
+                true,
+                "Displays the items inside pick-blocked barrels"
+        );
+        peekDispensers = builder.booleanEntry(
+                "peek_dispensers",
+                true,
+                "Displays the items inside pick-blocked dispensers and droppers"
+        );
+        peekHoppers = builder.booleanEntry(
+                "peek_hoppers",
+                true,
+                "Displays the items inside pick-blocked hoppers"
+        );
+        peekBeehives = builder.booleanEntry(
+                "peek_beehives",
+                true,
+                "Displays the amount of bees and the honey level"
+        );
+        peekExplorationMaps = builder.booleanEntry(
+                "peek_exploration_maps",
+                true,
+                "Displays the marker coordinates of exploration maps"
+        );
+        peekCompasses = builder.booleanEntry(
+                "peek_compasses",
+                true,
+                "Displays the destinations of compasses"
+        );
+        peekRecoveryCompasses = builder.booleanEntry(
+                "peek_recovery_compasses",
+                true,
+                "Displays your death location on recovery compasses"
+        );
+        peekSuspiciousStews = builder.booleanEntry(
+                "peek_suspicious_stews",
+                true,
+                "Displays the effect of suspicious stews"
+        );
 
         showShulkerBoxItemHint = builder.booleanEntry(
                 "show_shulker_box_item_hint",
