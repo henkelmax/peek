@@ -19,7 +19,6 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -53,14 +52,10 @@ public class PeekResourcePack extends AbstractPackResources {
         return getResource(String.join("/", strings));
     }
 
-    private static String getPathFromLocation(PackType packType, ResourceLocation resourceLocation) {
-        return String.format(Locale.ROOT, "%s/%s/%s", packType.getDirectory(), resourceLocation.getNamespace(), resourceLocation.getPath());
-    }
-
     @Nullable
     @Override
     public IoSupplier<InputStream> getResource(PackType packType, ResourceLocation resourceLocation) {
-        return getResource(getPathFromLocation(packType, resourceLocation));
+        return getRootResource(packType.getDirectory(), resourceLocation.getNamespace(), resourceLocation.getPath());
     }
 
     @Nullable
