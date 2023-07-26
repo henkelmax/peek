@@ -16,7 +16,7 @@
   "cloth_config.peek.category.tooltips": "Tooltips",
   "cloth_config.peek.category.shulker_box_hints": "Shulker Box Hints",
   "cloth_config.peek.show_empty_containers": "Show Empty Containers",
-  "cloth_config.peek.show_empty_containers.description": "If containers without any items should be displayed.",
+  "cloth_config.peek.show_empty_containers.description": "If empty containers should show the item slots in the tooltip.",
   "cloth_config.peek.peek_shulker_boxes": "Peek Shulker Boxes",
   "cloth_config.peek.peek_shulker_boxes.description": "Displays the items inside shulker boxes.",
   "cloth_config.peek.peek_beehives": "Peek Beehives",
