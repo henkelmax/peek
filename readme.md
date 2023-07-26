@@ -1,6 +1,6 @@
 # Peek
 
-A Fabric mod that provides additional information to items and blocks.
+A Fabric mod that provides additional information about items and blocks.
 Can be used client-side only.
 
 ## Optional Dependencies
