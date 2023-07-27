@@ -1,44 +1,62 @@
 package de.maxhenkel.peek.resourcepacks;
 
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 import de.maxhenkel.peek.Peek;
-import net.minecraft.SharedConstants;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.AbstractPackResources;
 import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackCompatibility;
 import net.minecraft.server.packs.repository.PackSource;
-import net.minecraft.server.packs.resources.IoSupplier;
-import net.minecraft.world.flag.FeatureFlagSet;
-import net.minecraft.world.flag.FeatureFlags;
 
 import javax.annotation.Nullable;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class PeekResourcePack extends AbstractPackResources {
 
-    public PeekResourcePack(String id) {
-        super(id, true);
+    protected String path;
+    protected Component name;
+
+    public PeekResourcePack(String path, Component name) {
+        super(null);
+        this.path = path;
+        this.name = name;
     }
 
-    public Pack toPack(Component name) {
-        Pack.ResourcesSupplier resourcesSupplier = (s) -> this;
-        Pack.Info info = Pack.readPackInfo("", resourcesSupplier);
-        if (info == null) {
-            info = new Pack.Info(name, SharedConstants.getCurrentVersion().getPackVersion(PackType.CLIENT_RESOURCES), FeatureFlagSet.of(FeatureFlags.VANILLA));
+    @Nullable
+    public Pack toPack() {
+        try {
+            PackMetadataSection packMetadataSection = getMetadataSection(PackMetadataSection.SERIALIZER);
+            if (packMetadataSection == null) {
+                return null;
+            }
+            return new Pack(path, false, () -> this, name, packMetadataSection.getDescription(), PackCompatibility.forMetadata(packMetadataSection, PackType.CLIENT_RESOURCES), Pack.Position.TOP, false, PackSource.BUILT_IN);
+        } catch (IOException e) {
+            return null;
         }
-        return Pack.create(packId(), name, false, resourcesSupplier, info, PackType.CLIENT_RESOURCES, Pack.Position.TOP, false, PackSource.BUILT_IN);
+    }
+
+    @Override
+    public String getName() {
+        return path;
     }
 
     private String getPath() {
-        return "/packs/" + packId() + "/";
+        return "/packs/" + path + "/";
     }
 
     @Nullable
@@ -46,50 +64,49 @@ public class PeekResourcePack extends AbstractPackResources {
         return Peek.class.getResourceAsStream(getPath() + name);
     }
 
-    @Nullable
     @Override
-    public IoSupplier<InputStream> getRootResource(String... strings) {
-        return getResource(String.join("/", strings));
-    }
-
-    @Nullable
-    @Override
-    public IoSupplier<InputStream> getResource(PackType packType, ResourceLocation resourceLocation) {
-        return getRootResource(packType.getDirectory(), resourceLocation.getNamespace(), resourceLocation.getPath());
-    }
-
-    @Nullable
-    private IoSupplier<InputStream> getResource(String path) {
-        InputStream resourceAsStream = get(path);
+    protected InputStream getResource(String name) throws IOException {
+        InputStream resourceAsStream = get(name);
         if (resourceAsStream == null) {
-            return null;
+            throw new FileNotFoundException("Resource " + name + " does not exist");
         }
-        return () -> resourceAsStream;
+        return resourceAsStream;
     }
 
     @Override
-    public void listResources(PackType type, String namespace, String prefix, ResourceOutput resourceOutput) {
+    protected boolean hasResource(String name) {
+        try {
+            return get(name) != null;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public Collection<ResourceLocation> getResources(PackType type, String namespace, String prefix, Predicate<ResourceLocation> pathFilter) {
+        List<ResourceLocation> list = Lists.newArrayList();
         try {
             URL url = Peek.class.getResource(getPath());
             if (url == null) {
-                return;
+                return list;
             }
             Path namespacePath = Paths.get(url.toURI()).resolve(type.getDirectory()).resolve(namespace);
             Path resPath = namespacePath.resolve(prefix);
 
             if (!Files.exists(resPath)) {
-                return;
+                return list;
             }
 
             try (Stream<Path> files = Files.walk(resPath)) {
                 files.filter(path -> !Files.isDirectory(path)).forEach(path -> {
                     ResourceLocation resourceLocation = new ResourceLocation(namespace, convertPath(path).substring(convertPath(namespacePath).length() + 1));
-                    resourceOutput.accept(resourceLocation, getResource(type, resourceLocation));
+                    list.add(resourceLocation);
                 });
             }
         } catch (Exception e) {
             Peek.LOGGER.error("Failed to list builtin pack resources", e);
         }
+        return list.stream().filter(pathFilter).toList();
     }
 
     private static String convertPath(Path path) {

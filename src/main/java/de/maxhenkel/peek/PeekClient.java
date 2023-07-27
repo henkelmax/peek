@@ -12,9 +12,9 @@ public class PeekClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        ORTHOGONAL_SHULKER_ICONS = new PeekResourcePack("flat_shulker_icons");
+        ORTHOGONAL_SHULKER_ICONS = new PeekResourcePack("flat_shulker_icons", Component.translatable("resourcepack.peek.flat_shulker_icons"));
         PeekPackRepository repository = (PeekPackRepository) Minecraft.getInstance().getResourcePackRepository();
-        repository.peek$addSource((consumer) -> consumer.accept(ORTHOGONAL_SHULKER_ICONS.toPack(Component.translatable("resourcepack.peek.flat_shulker_icons"))));
+        repository.peek$addSource((consumer, packConstructor) -> consumer.accept(ORTHOGONAL_SHULKER_ICONS.toPack()));
     }
 
 }

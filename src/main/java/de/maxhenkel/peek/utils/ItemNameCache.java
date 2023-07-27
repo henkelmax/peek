@@ -2,7 +2,6 @@ package de.maxhenkel.peek.utils;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -19,8 +18,7 @@ public class ItemNameCache {
 
     public static void loadTranslatedNames(ClientLevel clientLevel) {
         translatedItemNamesCache.clear();
-        Registry<Item> itemRegistry = clientLevel.registryAccess().registryOrThrow(Registries.ITEM);
-        for (Item item : itemRegistry) {
+        for (Item item : Registry.ITEM) {
             Component name = Component.translatable(item.getDescriptionId());
             translatedItemNamesCache.put(name.getString().toLowerCase(), item);
         }
@@ -28,8 +26,7 @@ public class ItemNameCache {
 
     public static void loadIdNames(ClientLevel clientLevel) {
         translatedItemIdNamesCache.clear();
-        Registry<Item> itemRegistry = clientLevel.registryAccess().registryOrThrow(Registries.ITEM);
-        for (Map.Entry<ResourceKey<Item>, Item> item : itemRegistry.entrySet()) {
+        for (Map.Entry<ResourceKey<Item>, Item> item : Registry.ITEM.entrySet()) {
             ResourceLocation location = item.getKey().location();
             if (location.getNamespace().equals(ResourceLocation.DEFAULT_NAMESPACE)) {
                 translatedItemIdNamesCache.put(getResourceLocationName(location.getPath()), item.getValue());
