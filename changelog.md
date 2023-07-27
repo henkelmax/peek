@@ -1,2 +1,1 @@
-- Added use_shulker_box_item_names config option
-- Added builtin resource pack for better shulker visibility
+- Updated ukrainian translation
