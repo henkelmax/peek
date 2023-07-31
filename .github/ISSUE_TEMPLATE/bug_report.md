@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: bug
+labels: triage
 assignees: henkelmax
 
 ---
@@ -21,7 +21,7 @@ A clear and concise description of what you expected to happen.
 
 **Log files**
 Please provide log files of the game session in which the problem occurred.
-Don't paste the complete logs into the issue. 
+Don't paste the complete logs into the issue.
 You can use [https://gist.github.com/](https://gist.github.com/).
 
 **Versions**
