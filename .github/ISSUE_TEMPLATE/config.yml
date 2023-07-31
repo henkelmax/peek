@@ -1,1 +1,8 @@
 blank_issues_enabled: false
+contact_links:
+  - name: Wiki
+    about: Useful information about configuring and setting up the mod
+    url: https://modrepo.de/minecraft/peek/wiki/overview
+  - name: FAQ
+    about: Frequently asked questions
+    url: https://modrepo.de/minecraft/peek/faq
