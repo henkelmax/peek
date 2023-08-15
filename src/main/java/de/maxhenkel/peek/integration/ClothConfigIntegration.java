@@ -100,6 +100,18 @@ public class ClothConfigIntegration {
                 Peek.CONFIG.showShulkerBoxBlockHint
         ));
 
+        shulkerBoxHints.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.show_shulker_box_items"),
+                Component.translatable("cloth_config.peek.show_shulker_box_items.description"),
+                Peek.CONFIG.showShulkerBoxItems
+        ));
+
+        shulkerBoxHints.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.show_shulker_box_labels"),
+                Component.translatable("cloth_config.peek.show_shulker_box_labels.description"),
+                Peek.CONFIG.showShulkerBoxLabels
+        ));
+
         return builder.build();
     }
 
