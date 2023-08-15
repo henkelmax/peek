@@ -1,7 +1,7 @@
 package de.maxhenkel.peek.config;
 
 import de.maxhenkel.configbuilder.ConfigBuilder;
-import de.maxhenkel.configbuilder.ConfigEntry;
+import de.maxhenkel.configbuilder.entry.ConfigEntry;
 
 public class PeekConfig {
 
