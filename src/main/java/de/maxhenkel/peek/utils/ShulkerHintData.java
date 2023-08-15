@@ -66,8 +66,12 @@ public class ShulkerHintData {
 
     public static ShulkerHintData fromContents(NonNullList<ItemStack> contents, @Nullable Component name) {
         ShulkerHintData data = new ShulkerHintData();
-        data.setDisplayItem(ShulkerBoxUtils.getBulkItem(contents));
-        data.setLabel(name);
+        if (Peek.CONFIG.showShulkerBoxItems.get()) {
+            data.setDisplayItem(ShulkerBoxUtils.getBulkItem(contents));
+        }
+        if (Peek.CONFIG.showShulkerBoxLabels.get()) {
+            data.setLabel(name);
+        }
         return data;
     }
 

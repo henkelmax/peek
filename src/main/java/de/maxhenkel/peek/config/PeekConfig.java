@@ -20,6 +20,8 @@ public class PeekConfig {
 
     public final ConfigEntry<Boolean> showShulkerBoxItemHint;
     public final ConfigEntry<Boolean> showShulkerBoxBlockHint;
+    public final ConfigEntry<Boolean> showShulkerBoxItems;
+    public final ConfigEntry<Boolean> showShulkerBoxLabels;
     public final ConfigEntry<Boolean> useShulkerBoxDataStrings;
     public final ConfigEntry<Boolean> useShulkerBoxItemNames;
     public final ConfigEntry<Boolean> hideShulkerBoxDataStrings;
@@ -93,6 +95,16 @@ public class PeekConfig {
                 "show_shulker_box_block_hint",
                 true,
                 "If this is enabled, the mod will show additional information about the shulker box block on the lid of the shulker box"
+        );
+        showShulkerBoxItems = builder.booleanEntry(
+                "show_shulker_box_items",
+                true,
+                "If this is enabled, the mod will show the item on the shulker box lid if it only contains one type of item"
+        );
+        showShulkerBoxLabels = builder.booleanEntry(
+                "show_shulker_box_labels",
+                true,
+                "If this is enabled, the mod will show the custom name of the shulker box on the lid of the shulker box"
         );
         useShulkerBoxDataStrings = builder.booleanEntry(
                 "use_shulker_box_data_strings",

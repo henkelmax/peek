@@ -1,1 +1,1 @@
-- Updated ukrainian translation
+- Added config options to show items and labels by default
