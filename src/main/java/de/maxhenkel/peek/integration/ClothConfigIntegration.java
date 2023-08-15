@@ -1,7 +1,6 @@
 package de.maxhenkel.peek.integration;
 
-import de.maxhenkel.configbuilder.ConfigBuilderImpl;
-import de.maxhenkel.configbuilder.ConfigEntry;
+import de.maxhenkel.configbuilder.entry.*;
 import de.maxhenkel.peek.Peek;
 import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
@@ -105,7 +104,7 @@ public class ClothConfigIntegration {
     }
 
     private static <T> AbstractConfigListEntry<T> fromConfigEntry(ConfigEntryBuilder entryBuilder, Component name, Component description, ConfigEntry<T> entry) {
-        if (entry instanceof ConfigBuilderImpl.DoubleConfigEntry e) {
+        if (entry instanceof DoubleConfigEntry e) {
             return (AbstractConfigListEntry<T>) entryBuilder
                     .startDoubleField(name, e.get())
                     .setTooltip(description)
@@ -114,7 +113,7 @@ public class ClothConfigIntegration {
                     .setDefaultValue(e::getDefault)
                     .setSaveConsumer(d -> e.set(d).save())
                     .build();
-        } else if (entry instanceof ConfigBuilderImpl.IntegerConfigEntry e) {
+        } else if (entry instanceof IntegerConfigEntry e) {
             return (AbstractConfigListEntry<T>) entryBuilder
                     .startIntField(name, e.get())
                     .setTooltip(description)
@@ -123,14 +122,14 @@ public class ClothConfigIntegration {
                     .setDefaultValue(e::getDefault)
                     .setSaveConsumer(d -> e.set(d).save())
                     .build();
-        } else if (entry instanceof ConfigBuilderImpl.BooleanConfigEntry e) {
+        } else if (entry instanceof BooleanConfigEntry e) {
             return (AbstractConfigListEntry<T>) entryBuilder
                     .startBooleanToggle(name, e.get())
                     .setTooltip(description)
                     .setDefaultValue(e::getDefault)
                     .setSaveConsumer(d -> e.set(d).save())
                     .build();
-        } else if (entry instanceof ConfigBuilderImpl.StringConfigEntry e) {
+        } else if (entry instanceof StringConfigEntry e) {
             return (AbstractConfigListEntry<T>) entryBuilder
                     .startStrField(name, e.get())
                     .setTooltip(description)
