@@ -40,5 +40,9 @@
   "cloth_config.peek.show_shulker_box_item_hint": "Hinweis für Shulker-Kisten-Gegenstand anzeigen",
   "cloth_config.peek.show_shulker_box_item_hint.description": "Ob Informationen zum Gegenstand auf dem Deckel von Shulker-Kisten angezeigt werden sollen.",
   "cloth_config.peek.show_shulker_box_block_hint": "Hinweis für Shulker-Kisten-Block anzeigen",
-  "cloth_config.peek.show_shulker_box_block_hint.description": "Ob Informationen zum Block auf dem Deckel von Shulker-Kisten angezeigt werden sollen."
+  "cloth_config.peek.show_shulker_box_block_hint.description": "Ob Informationen zum Block auf dem Deckel von Shulker-Kisten angezeigt werden sollen.",
+  "cloth_config.peek.show_shulker_box_items": "Gegenstände auf Shulker-Kisten anzeigen",
+  "cloth_config.peek.show_shulker_box_items.description": "Ob der Mod den Gegenstand auf dem Deckel der Shulker-Box anzeigen soll, wenn sie nur eine Art von Gegenstand enthält.",
+  "cloth_config.peek.show_shulker_box_labels": "Shulker-Kisten Namen anzeigen",
+  "cloth_config.peek.show_shulker_box_labels.description": "Ob der Mod den benutzerdefinierten Namen der Shulker-Box auf dem Deckel der Shulker Box anzeigen soll."
 }
