@@ -20,7 +20,10 @@
     "ItemStackMixin",
     "AnvilScreenMixin",
     "MinecraftMixin",
-    "PackRepositoryMixin"
+    "PackRepositoryMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "MultiPlayerGameModeMixin",
+    "LocalPlayerMixin"
   ],
   "mixins": [
     "ShulkerBoxBlockEntityMixin"

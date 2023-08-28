@@ -29,6 +29,8 @@
   "cloth_config.peek.peek_recovery_compasses.description": "Displays your death location on recovery compasses.",
   "cloth_config.peek.peek_suspicious_stews": "Peek Suspicious Stews",
   "cloth_config.peek.peek_suspicious_stews.description": "Displays the effect of suspicious stews.",
+  "cloth_config.peek.peek_ender_chests": "Peek Ender Chests",
+  "cloth_config.peek.peek_ender_chests.description": "Displays the cached contents of ender chests.",
   "cloth_config.peek.peek_chests": "Peek Chests",
   "cloth_config.peek.peek_chests.description": "Displays the items inside pick-blocked chests and trapped chests.",
   "cloth_config.peek.peek_barrels": "Peek Barrels",
