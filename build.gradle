@@ -33,7 +33,8 @@ dependencies {
 
     Set<String> apiModules = [
             'fabric-api-base',
-            'fabric-resource-loader-v0'
+            'fabric-resource-loader-v0',
+            'fabric-networking-api-v1'
     ]
 
     apiModules.forEach {
