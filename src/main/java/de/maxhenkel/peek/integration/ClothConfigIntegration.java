@@ -86,6 +86,12 @@ public class ClothConfigIntegration {
                 Peek.CONFIG.peekHoppers
         ));
 
+        peeking.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.peek_ender_chests"),
+                Component.translatable("cloth_config.peek.peek_ender_chests.description"),
+                Peek.CONFIG.peekEnderChests
+        ));
+
         ConfigCategory shulkerBoxHints = builder.getOrCreateCategory(Component.translatable("cloth_config.peek.category.shulker_box_hints"));
 
         shulkerBoxHints.addEntry(fromConfigEntry(entryBuilder,

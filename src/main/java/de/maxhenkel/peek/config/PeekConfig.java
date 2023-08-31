@@ -17,6 +17,7 @@ public class PeekConfig {
     public final ConfigEntry<Boolean> peekCompasses;
     public final ConfigEntry<Boolean> peekRecoveryCompasses;
     public final ConfigEntry<Boolean> peekSuspiciousStews;
+    public final ConfigEntry<Boolean> peekEnderChests;
 
     public final ConfigEntry<Boolean> showShulkerBoxItemHint;
     public final ConfigEntry<Boolean> showShulkerBoxBlockHint;
@@ -84,6 +85,11 @@ public class PeekConfig {
                 "peek_suspicious_stews",
                 true,
                 "Displays the effect of suspicious stews"
+        );
+        peekEnderChests = builder.booleanEntry(
+                "peek_ender_chests",
+                true,
+                "Displays the cached contents of ender chests"
         );
 
         showShulkerBoxItemHint = builder.booleanEntry(

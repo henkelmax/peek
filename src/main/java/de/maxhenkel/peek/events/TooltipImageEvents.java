@@ -1,6 +1,7 @@
 package de.maxhenkel.peek.events;
 
 import de.maxhenkel.peek.Peek;
+import de.maxhenkel.peek.data.DataStore;
 import de.maxhenkel.peek.tooltips.ContainerTooltip;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -31,11 +32,25 @@ public class TooltipImageEvents {
             return getDispenserTooltipImage(stack);
         } else if (block instanceof HopperBlock) {
             return getHopperTooltipImage(stack);
+        } else if (block instanceof EnderChestBlock) {
+            return getEnderChestTooltipImage();
         }
 
         return null;
     }
 
+    private static Optional<TooltipComponent> getEnderChestTooltipImage() {
+
+        if (!Peek.CONFIG.peekEnderChests.get()) {
+            return null;
+        }
+
+        if (DataStore.enderChestInventory == null) {
+            return null;
+        }
+
+        return Optional.of(new ContainerTooltip(9, 3, DataStore.enderChestInventory));
+    }
     private static Optional<TooltipComponent> getShulkerBoxTooltipImage(ItemStack stack) {
         if (!Peek.CONFIG.peekShulkerBoxes.get()) {
             return null;
