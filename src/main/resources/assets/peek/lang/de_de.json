@@ -37,6 +37,8 @@
   "cloth_config.peek.peek_dispensers.description": "Zeigt die Gegenstände in per Pick-Block kopierten Spendern und Druckplatten an.",
   "cloth_config.peek.peek_hoppers": "Trichter anzeigen",
   "cloth_config.peek.peek_hoppers.description": "Zeigt die Gegenstände in per Pick-Block kopierten Trichtern an.",
+  "cloth_config.peek.peek_ender_chests": "Endertruhen anzeigen",
+  "cloth_config.peek.peek_ender_chests.description": "Zeigt den zwischengespeicherten Inhalt von Endertruhen an.",
   "cloth_config.peek.show_shulker_box_item_hint": "Hinweis für Shulker-Kisten-Gegenstand anzeigen",
   "cloth_config.peek.show_shulker_box_item_hint.description": "Ob Informationen zum Gegenstand auf dem Deckel von Shulker-Kisten angezeigt werden sollen.",
   "cloth_config.peek.show_shulker_box_block_hint": "Hinweis für Shulker-Kisten-Block anzeigen",
