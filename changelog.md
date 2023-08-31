@@ -1,2 +1,1 @@
-- Added config options to show items and labels by default
-- Updated ConfigBuilder
+- Added ender chest peeking
