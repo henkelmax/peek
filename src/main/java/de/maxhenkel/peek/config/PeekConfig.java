@@ -88,7 +88,7 @@ public class PeekConfig {
         );
         peekEnderChests = builder.booleanEntry(
                 "peek_ender_chests",
-                true,
+                false,
                 "Displays the cached contents of ender chests"
         );
 
