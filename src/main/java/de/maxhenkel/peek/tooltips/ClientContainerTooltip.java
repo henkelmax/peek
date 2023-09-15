@@ -2,6 +2,7 @@ package de.maxhenkel.peek.tooltips;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import de.maxhenkel.peek.Peek;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
@@ -12,10 +13,10 @@ import net.minecraft.world.item.ItemStack;
 
 public class ClientContainerTooltip implements ClientTooltipComponent {
 
-    public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation("textures/gui/container/bundle.png");
+    public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(Peek.MODID, "textures/gui/container/slot.png");
     private static final int MARGIN_Y = 4;
     private static final int BORDER_WIDTH = 1;
-    private static final int TEXTURE_SIZE = 128;
+    private static final int TEXTURE_SIZE = 32;
     private static final int SLOT_SIZE_X = 18;
     private static final int SLOT_SIZE_Y = 18;
     private final int gridWidth;
@@ -87,10 +88,10 @@ public class ClientContainerTooltip implements ClientTooltipComponent {
     }
 
     enum Texture {
-        SLOT(0, 0, 18, 18),
-        BORDER_VERTICAL(0, 18, 1, 18),
-        BORDER_HORIZONTAL(0, 20, 18, 1),
-        BORDER_CORNER(0, 20, 1, 1);
+        SLOT(0, 0, SLOT_SIZE_X, SLOT_SIZE_Y),
+        BORDER_HORIZONTAL(0, SLOT_SIZE_Y, SLOT_SIZE_X, BORDER_WIDTH),
+        BORDER_VERTICAL(SLOT_SIZE_X, 0, BORDER_WIDTH, SLOT_SIZE_Y),
+        BORDER_CORNER(SLOT_SIZE_X, SLOT_SIZE_Y, BORDER_WIDTH, BORDER_WIDTH);
 
         public final int x;
         public final int y;
