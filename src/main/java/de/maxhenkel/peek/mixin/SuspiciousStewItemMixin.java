@@ -2,11 +2,10 @@ package de.maxhenkel.peek.mixin;
 
 import de.maxhenkel.peek.Peek;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.item.Item;
@@ -14,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SuspiciousStewItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -36,19 +36,11 @@ public abstract class SuspiciousStewItemMixin extends Item {
 
         CompoundTag compoundTag = itemStack.getTag();
         if (compoundTag != null && compoundTag.contains(SuspiciousStewItem.EFFECTS_TAG, Tag.TAG_LIST)) {
-            ListTag listTag = compoundTag.getList(SuspiciousStewItem.EFFECTS_TAG, Tag.TAG_COMPOUND);
-
-            for (int i = 0; i < listTag.size(); i++) {
-                int duration = 160;
-                CompoundTag effectTag = listTag.getCompound(i);
-                if (effectTag.contains(SuspiciousStewItem.EFFECT_DURATION_TAG, Tag.TAG_INT)) {
-                    duration = effectTag.getInt(SuspiciousStewItem.EFFECT_DURATION_TAG);
+            SuspiciousEffectHolder.EffectEntry.LIST_CODEC.parse(NbtOps.INSTANCE, compoundTag.getList(SuspiciousStewItem.EFFECTS_TAG, Tag.TAG_COMPOUND)).result().ifPresent(effectEntries -> {
+                for (SuspiciousEffectHolder.EffectEntry effectEntry : effectEntries) {
+                    addPotionTooltip(effectEntry.createEffectInstance(), list);
                 }
-                MobEffect mobEffect = MobEffect.byId(effectTag.getInt(SuspiciousStewItem.EFFECT_ID_TAG));
-                if (mobEffect != null) {
-                    addPotionTooltip(new MobEffectInstance(mobEffect, duration), list);
-                }
-            }
+            });
         }
     }
 

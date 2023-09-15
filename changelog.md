@@ -1,1 +1,1 @@
-- Added ender chest peeking
+- Updated to 1.20.2
