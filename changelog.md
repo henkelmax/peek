@@ -1,1 +1,2 @@
-- Updated to 1.20.2
+- Updated Russian translation
+- Added Tatar translation
