@@ -1,1 +1,2 @@
-- Added ender chest peeking
+- Updated Russian translation
+- Added Tatar translation
