@@ -1,2 +1,2 @@
-- Updated Russian translation
-- Added Tatar translation
+- Updated config builder
+- Fixed server not stopping properly
