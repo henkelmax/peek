@@ -19,7 +19,7 @@ public class ModMenuIntegration implements ModMenuApi {
         if (FabricLoader.getInstance().isModLoaded("cloth-config2")) {
             try {
                 Class.forName("me.shedaniel.clothconfig2.api.ConfigBuilder");
-                Peek.LOGGER.warn("Using Cloth Config GUI");
+                Peek.LOGGER.info("Using Cloth Config GUI");
                 return true;
             } catch (Exception e) {
                 Peek.LOGGER.warn("Failed to load Cloth Config", e);
