@@ -38,13 +38,13 @@ public abstract class SuspiciousStewItemMixin extends Item {
         if (compoundTag != null && compoundTag.contains(SuspiciousStewItem.EFFECTS_TAG, Tag.TAG_LIST)) {
             SuspiciousEffectHolder.EffectEntry.LIST_CODEC.parse(NbtOps.INSTANCE, compoundTag.getList(SuspiciousStewItem.EFFECTS_TAG, Tag.TAG_COMPOUND)).result().ifPresent(effectEntries -> {
                 for (SuspiciousEffectHolder.EffectEntry effectEntry : effectEntries) {
-                    addPotionTooltip(effectEntry.createEffectInstance(), list);
+                    addPotionTooltip(level, effectEntry.createEffectInstance(), list);
                 }
             });
         }
     }
 
-    private static void addPotionTooltip(MobEffectInstance effect, List<Component> list) {
+    private static void addPotionTooltip(@Nullable Level level, MobEffectInstance effect, List<Component> list) {
         MutableComponent tooltip = Component.translatable(effect.getDescriptionId());
 
         if (effect.getAmplifier() > 0) {
@@ -52,7 +52,7 @@ public abstract class SuspiciousStewItemMixin extends Item {
         }
 
         if (effect.getDuration() > 20) {
-            tooltip = Component.translatable("potion.withDuration", tooltip, MobEffectUtil.formatDuration(effect, 1F));
+            tooltip = Component.translatable("potion.withDuration", tooltip, MobEffectUtil.formatDuration(effect, 1F, level == null ? 20F : level.tickRateManager().tickrate()));
         }
 
         list.add(tooltip.withStyle(effect.getEffect().getCategory().getTooltipFormatting()));

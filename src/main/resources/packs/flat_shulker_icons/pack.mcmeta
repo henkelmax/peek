@@ -1,11 +1,10 @@
 {
   "pack": {
-    "pack_format": 18,
-    "description": [
-      {
-        "translate": "resourcepack.peek.flat_shulker_icons.description",
-        "color": "light_gray"
-      }
-    ]
+    "pack_format": 22,
+    "description": {
+      "type": "translatable",
+      "translate": "resourcepack.peek.flat_shulker_icons.description",
+      "color": "gray"
+    }
   }
 }
