@@ -25,7 +25,7 @@ processResources {
         expand 'mod_version': mod_version,
                 'minecraft_dependency': minecraft_dependency,
                 'fabric_loader_dependency': fabric_loader_dependency,
-                'fabric_api_dependency': fabric_api_dependency,
+                'fabric_api_dependency_breaks': fabric_api_dependency_breaks,
                 'cloth_config_version': cloth_config_version,
                 'modmenu_version': modmenu_version
     }
