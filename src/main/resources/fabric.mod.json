@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "peek",
-  "version": "${version}",
+  "version": "${mod_version}",
   "name": "Peek",
   "description": "Additional information in item tooltips.",
   "authors": [
@@ -31,7 +31,7 @@
     "peek.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=${loader_version}",
+    "fabricloader": "${fabric_loader_dependency}",
     "minecraft": ["1.20", "1.20.1"],
     "java": ">=17"
   },
@@ -40,7 +40,7 @@
     "cloth-config2": ">=${cloth_config_version}"
   },
   "breaks": {
-    "fabric-api": "<${min_fabric_version}"
+    "fabric-api": "${fabric_api_dependency}"
   },
   "conflicts": {
     "enhancedblockentities": "*"
