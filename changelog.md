@@ -1,2 +1,1 @@
-- Updated config builder
-- Fixed server not stopping properly
+- Updated dependencies
