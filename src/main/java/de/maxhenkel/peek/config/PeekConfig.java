@@ -26,7 +26,6 @@ public class PeekConfig {
     public final ConfigEntry<Boolean> useShulkerBoxDataStrings;
     public final ConfigEntry<Boolean> useShulkerBoxItemNames;
     public final ConfigEntry<Boolean> hideShulkerBoxDataStrings;
-    public final ConfigEntry<Integer> shulkerBoxItemHintCustomModelData;
     public final ConfigEntry<Boolean> sendShulkerBoxDataToClient;
 
     public PeekConfig(ConfigBuilder builder) {
@@ -128,13 +127,6 @@ public class PeekConfig {
                 "hide_shulker_box_data_strings",
                 true,
                 "If this is enabled, the mod will hide the data strings on tooltips and GUIs"
-        );
-        shulkerBoxItemHintCustomModelData = builder.integerEntry(
-                "shulker_box_item_hint_custom_model_data",
-                1702,
-                0,
-                Integer.MAX_VALUE,
-                "The custom model data ID of shulker box item hint items"
         );
         sendShulkerBoxDataToClient = builder.booleanEntry(
                 "send_shulker_box_data_to_client",

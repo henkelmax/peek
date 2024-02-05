@@ -9,8 +9,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
@@ -20,14 +21,10 @@ import javax.annotation.Nullable;
 
 public class RenderEvents {
 
-    private static final Minecraft mc = Minecraft.getInstance();
-    private static final String TAG_CUSTOM_MODEL_DATA = "CustomModelData";
-    public static final CompoundTag RENDER_ITEM_TAG;
+    public static final ResourceLocation SHULKER_ITEM_PREDICATE = new ResourceLocation(Peek.MODID, "shulker_item");
 
-    static {
-        RENDER_ITEM_TAG = new CompoundTag();
-        RENDER_ITEM_TAG.putInt(TAG_CUSTOM_MODEL_DATA, Peek.CONFIG.shulkerBoxItemHintCustomModelData.get());
-    }
+    private static final Minecraft mc = Minecraft.getInstance();
+    private static final String SHULKER_ITEM_TAG = "ShulkerBoxItem";
 
     public static void renderShulkerBoxItemLabel(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
         ShulkerHintData data = ShulkerHintData.fromShulkerBox(ShulkerBoxUtils.getItems(stack), ShulkerBoxUtils.getCustomName(stack));
@@ -55,7 +52,7 @@ public class RenderEvents {
 
         poseStack.rotateAround(Axis.XP.rotationDegrees(-90F), 1F, 0F, 0F);
 
-        Item displayItem = data.getDisplayItem();
+        ItemStack displayItem = data.getDisplayItem();
         Component label = data.getLabel();
 
         if (displayItem != null) {
@@ -64,9 +61,8 @@ public class RenderEvents {
                 poseStack.translate(0F, 2F / 16F, 0F);
                 poseStack.scale(12F / 16F, 12F / 16F, 12F / 16F);
             }
-            ItemStack renderItemStack = new ItemStack(displayItem);
-            renderItemStack.setTag(RENDER_ITEM_TAG);
-            mc.getItemRenderer().renderStatic(renderItemStack, ItemDisplayContext.GUI, light, overlay, poseStack, multiBufferSource, mc.level, Peek.CONFIG.shulkerBoxItemHintCustomModelData.get());
+            ItemStack renderItemStack = createShulkerRenderStack(displayItem);
+            mc.getItemRenderer().renderStatic(renderItemStack, ItemDisplayContext.GUI, light, overlay, poseStack, multiBufferSource, mc.level, 0);
             poseStack.popPose();
         }
 
@@ -84,6 +80,17 @@ public class RenderEvents {
             poseStack.popPose();
         }
         poseStack.popPose();
+    }
+
+    public static boolean isShulkerRenderStack(ItemStack stack) {
+        CompoundTag tag = stack.getTag();
+        return tag != null && tag.contains(SHULKER_ITEM_TAG, Tag.TAG_BYTE);
+    }
+
+    public static ItemStack createShulkerRenderStack(ItemStack source) {
+        ItemStack stack = source.copy();
+        stack.getOrCreateTag().putBoolean(SHULKER_ITEM_TAG, true);
+        return stack;
     }
 
 }
