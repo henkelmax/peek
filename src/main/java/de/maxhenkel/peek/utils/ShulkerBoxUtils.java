@@ -77,7 +77,7 @@ public class ShulkerBoxUtils {
             if (exactSame && ItemStack.isSameItemSameTags(renderItem, itemStack)) {
                 continue;
             }
-            if (ItemStack.isSameItem(renderItem, itemStack)) {
+            if (renderItem.sameItem(itemStack)) {
                 exactSame = false;
             } else {
                 return null;
