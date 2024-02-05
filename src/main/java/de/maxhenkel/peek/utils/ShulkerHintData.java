@@ -19,9 +19,9 @@ public class ShulkerHintData {
     @Nullable
     private Component label;
     @Nullable
-    private Item displayItem;
+    private ItemStack displayItem;
 
-    public ShulkerHintData(@Nullable Component label, @Nullable Item displayItem) {
+    public ShulkerHintData(@Nullable Component label, @Nullable ItemStack displayItem) {
         this.label = label;
         this.displayItem = displayItem;
     }
@@ -36,7 +36,7 @@ public class ShulkerHintData {
     }
 
     @Nullable
-    public Item getDisplayItem() {
+    public ItemStack getDisplayItem() {
         return displayItem;
     }
 
@@ -44,7 +44,7 @@ public class ShulkerHintData {
         this.label = label;
     }
 
-    public void setDisplayItem(@Nullable Item displayItem) {
+    public void setDisplayItem(@Nullable ItemStack displayItem) {
         this.displayItem = displayItem;
     }
 
@@ -95,7 +95,7 @@ public class ShulkerHintData {
         if (itemId != null) {
             Item item = ShulkerBoxUtils.byId(itemId);
             if (item != null) {
-                data.setDisplayItem(item);
+                data.setDisplayItem(new ItemStack(item));
             }
         }
         return data;
@@ -105,11 +105,11 @@ public class ShulkerHintData {
     public static ShulkerHintData fromItemName(Component label) {
         Item item = ItemNameCache.byIdName(label.getString());
         if (item != null) {
-            return new ShulkerHintData(null, item);
+            return new ShulkerHintData(null, new ItemStack(item));
         }
         item = ItemNameCache.byName(label.getString());
         if (item != null) {
-            return new ShulkerHintData(null, item);
+            return new ShulkerHintData(null, new ItemStack(item));
         }
         return null;
     }
