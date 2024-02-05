@@ -63,21 +63,27 @@ public class ShulkerBoxUtils {
     }
 
     @Nullable
-    public static Item getBulkItem(NonNullList<ItemStack> contents) {
-        Item renderItem = null;
+    public static ItemStack getBulkItem(NonNullList<ItemStack> contents) {
+        boolean exactSame = true;
+        ItemStack renderItem = null;
         for (ItemStack itemStack : contents) {
             if (itemStack.isEmpty()) {
                 continue;
             }
             if (renderItem == null) {
-                renderItem = itemStack.getItem();
+                renderItem = itemStack;
+                continue;
+            }
+            if (exactSame && ItemStack.isSameItemSameTags(renderItem, itemStack)) {
+                continue;
+            }
+            if (ItemStack.isSameItem(renderItem, itemStack)) {
+                exactSame = false;
             } else {
-                if (!renderItem.equals(itemStack.getItem())) {
-                    return null;
-                }
+                return null;
             }
         }
-        return renderItem;
+        return exactSame ? renderItem : new ItemStack(renderItem.getItem());
     }
 
     public static String getStringFromComponent(@Nullable Component component) {

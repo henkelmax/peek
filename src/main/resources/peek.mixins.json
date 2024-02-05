@@ -23,7 +23,8 @@
     "PackRepositoryMixin",
     "ClientPlayNetworkHandlerMixin",
     "MultiPlayerGameModeMixin",
-    "LocalPlayerMixin"
+    "LocalPlayerMixin",
+    "ItemPropertiesMixin"
   ],
   "mixins": [
     "ShulkerBoxBlockEntityMixin"

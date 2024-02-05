@@ -1,1 +1,3 @@
-- Updated dependencies
+- Removed custom model data override
+- Support items with metadata
+- Added custom override predicate

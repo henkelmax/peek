@@ -17,7 +17,7 @@ public class ItemRendererMixin {
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/block/model/ItemTransform;apply(ZLcom/mojang/blaze3d/vertex/PoseStack;)V", shift = At.Shift.AFTER))
     private void apply(ItemStack itemStack, ItemTransforms.TransformType transformType, boolean bl, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j, BakedModel bakedModel, CallbackInfo ci) {
-        if (itemStack.getTag() != RenderEvents.RENDER_ITEM_TAG) {
+        if (!RenderEvents.isShulkerRenderStack(itemStack)) {
             return;
         }
         poseStack.popPose();
