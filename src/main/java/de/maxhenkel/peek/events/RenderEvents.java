@@ -57,7 +57,7 @@ public class RenderEvents {
 
         if (displayItem != null) {
             poseStack.pushPose();
-            poseStack.rotateAround(Axis.YP.rotationDegrees(180F), 0F, 1F, 0F);
+            poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));
             if (label != null) {
                 poseStack.translate(0F, 2F / 16F, 0F);
                 poseStack.scale(12F / 16F, 12F / 16F, 12F / 16F);
