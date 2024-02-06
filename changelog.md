@@ -1,3 +1,1 @@
-- Removed custom model data override
-- Support items with metadata
-- Added custom override predicate
+- Fixed items being flipped on shulker boxes
