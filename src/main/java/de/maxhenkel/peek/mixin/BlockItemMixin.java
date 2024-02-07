@@ -37,11 +37,7 @@ public abstract class BlockItemMixin extends Item {
 
     @Override
     public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
-        Optional<TooltipComponent> tooltipImage = TooltipImageEvents.getTooltipImage(stack, block);
-        if (tooltipImage == null) {
-            return super.getTooltipImage(stack);
-        }
-        return tooltipImage;
+        return TooltipImageEvents.getTooltipImage(stack, block).or(() -> super.getTooltipImage(stack));
     }
 
     @Inject(method = "place", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;gameEvent(Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
