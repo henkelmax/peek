@@ -3,6 +3,8 @@ package de.maxhenkel.peek.config;
 import de.maxhenkel.configbuilder.ConfigBuilder;
 import de.maxhenkel.configbuilder.entry.ConfigEntry;
 
+import java.math.BigInteger;
+
 public class PeekConfig {
 
     public final ConfigEntry<Boolean> showEmptyContainers;
@@ -27,6 +29,13 @@ public class PeekConfig {
     public final ConfigEntry<Boolean> useShulkerBoxItemNames;
     public final ConfigEntry<Boolean> hideShulkerBoxDataStrings;
     public final ConfigEntry<Boolean> sendShulkerBoxDataToClient;
+
+    public final ConfigEntry<Boolean> showHud;
+    public final ConfigEntry<String> hudBackgroundColor;
+    public final ConfigEntry<String> hudTextColor;
+
+    public final int hudBackgroundColorValue;
+    public final int hudTextColorValue;
 
     public PeekConfig(ConfigBuilder builder) {
         showEmptyContainers = builder.booleanEntry(
@@ -135,6 +144,25 @@ public class PeekConfig {
                 "This allows the mod to display hints on shulker boxes that are placed down without needing to open them first",
                 "If you want to use this feature on a server, the server needs the mod installed and this setting enabled"
         );
+        showHud = builder.booleanEntry(
+                "show_hud",
+                false,
+                "If the HUD should be shown",
+                "NOTE: This option is experimental"
+        );
+        hudBackgroundColor = builder.stringEntry(
+                "hud_background_color",
+                "AA000000",
+                "The background color of the HUD in ARGB hex"
+        );
+        hudTextColor = builder.stringEntry(
+                "hud_text_color",
+                "FFFFFFFF",
+                "The color of the HUD text in ARGB hex"
+        );
+
+        hudBackgroundColorValue = new BigInteger(hudBackgroundColor.get(), 16).intValue();
+        hudTextColorValue = new BigInteger(hudTextColor.get(), 16).intValue();
     }
 
 }
