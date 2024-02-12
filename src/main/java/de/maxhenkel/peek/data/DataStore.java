@@ -10,5 +10,5 @@ public class DataStore {
     @Nullable
     public static ShulkerBoxBlockEntity lastOpenedShulkerBox;
     @Nullable
-    public static NonNullList<ItemStack> enderChestInventory = null;
+    public static NonNullList<ItemStack> enderChestInventory;
 }

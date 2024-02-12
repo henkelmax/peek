@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 
 import javax.annotation.Nullable;
 
-public class RenderEvents {
+public class ShulkerRenderEvents {
 
     public static final ResourceLocation SHULKER_ITEM_PREDICATE = new ResourceLocation(Peek.MODID, "shulker_item");
 
