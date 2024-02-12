@@ -1,7 +1,7 @@
 package de.maxhenkel.peek.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import de.maxhenkel.peek.events.RenderEvents;
+import de.maxhenkel.peek.events.ShulkerRenderEvents;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
@@ -17,7 +17,7 @@ public class ItemRendererMixin {
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/block/model/ItemTransform;apply(ZLcom/mojang/blaze3d/vertex/PoseStack;)V", shift = At.Shift.AFTER))
     private void apply(ItemStack itemStack, ItemDisplayContext itemDisplayContext, boolean bl, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j, BakedModel bakedModel, CallbackInfo ci) {
-        if (!RenderEvents.isShulkerRenderStack(itemStack)) {
+        if (!ShulkerRenderEvents.isShulkerRenderStack(itemStack)) {
             return;
         }
         poseStack.popPose();
