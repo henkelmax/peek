@@ -2,7 +2,7 @@ package de.maxhenkel.peek.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import de.maxhenkel.peek.Peek;
-import de.maxhenkel.peek.events.RenderEvents;
+import de.maxhenkel.peek.events.ShulkerRenderEvents;
 import de.maxhenkel.peek.utils.ShulkerBoxUtils;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -25,7 +25,7 @@ public class BlockEntityWithoutLevelRendererMixin {
             return;
         }
 
-        RenderEvents.renderShulkerBoxItemLabel(itemStack, itemDisplayContext, poseStack, multiBufferSource, light, overlay);
+        ShulkerRenderEvents.renderShulkerBoxItemLabel(itemStack, itemDisplayContext, poseStack, multiBufferSource, light, overlay);
     }
 
 }
