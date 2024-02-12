@@ -24,7 +24,8 @@
     "ClientPlayNetworkHandlerMixin",
     "MultiPlayerGameModeMixin",
     "LocalPlayerMixin",
-    "ItemPropertiesMixin"
+    "ItemPropertiesMixin",
+    "GuiMixin"
   ],
   "mixins": [
     "ShulkerBoxBlockEntityMixin"
