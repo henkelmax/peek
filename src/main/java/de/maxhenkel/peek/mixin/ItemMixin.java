@@ -15,6 +15,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -48,6 +49,7 @@ public class ItemMixin {
         addDeathLocationText(level, list, lastDeathLocation);
     }
 
+    @Unique
     private void addDeathLocationText(@Nullable Level level, List<Component> list, GlobalPos deathLocation) {
         ResourceLocation location = deathLocation.dimension().location();
 
