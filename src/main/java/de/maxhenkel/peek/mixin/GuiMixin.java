@@ -1,8 +1,8 @@
 package de.maxhenkel.peek.mixin;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import de.maxhenkel.peek.events.HudEvents;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiGraphics;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,9 +17,9 @@ public class GuiMixin {
     @Shadow
     private int screenHeight;
 
-    @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/Gui;renderEffects(Lnet/minecraft/client/gui/GuiGraphics;)V"))
-    private void render(GuiGraphics graphics, float f, CallbackInfo ci) {
-        HudEvents.onRenderHud(graphics, screenWidth, screenHeight);
+    @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/Gui;renderEffects(Lcom/mojang/blaze3d/vertex/PoseStack;)V"))
+    private void render(PoseStack poseStack, float f, CallbackInfo ci) {
+        HudEvents.onRenderHud(poseStack, screenWidth, screenHeight);
     }
 
 }
