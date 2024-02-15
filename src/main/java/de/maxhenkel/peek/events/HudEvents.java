@@ -91,7 +91,6 @@ public class HudEvents {
         graphics.drawString(font, name, hudLeft + maxEntityWidth + PADDING * 2, hudHeight / 2 - font.lineHeight / 2, Peek.CONFIG.hudTextColorValue);
     }
 
-    private static final Vector3f ENTITY_TRANSLATION = new Vector3f();
     private static final Quaternionf ENTITY_ANGLE = new Quaternionf().rotationXYZ(0F, Mth.DEG_TO_RAD * 180F, Mth.DEG_TO_RAD * 180F);
 
     private static void renderEntity(GuiGraphics graphics, float x, float y, float maxWidth, float maxHeight, LivingEntity entity) {
@@ -104,7 +103,8 @@ public class HudEvents {
         float r = (float) (((double) System.currentTimeMillis() / 20D) % 360D);
         ENTITY_ANGLE.rotateY(Mth.DEG_TO_RAD * r, rot);
 
-        InventoryScreen.renderEntityInInventory(graphics, x, y, entityScale, ENTITY_TRANSLATION, rot, null, entity);
+        //TODO Rotation
+        InventoryScreen.renderEntityInInventory(graphics, (int) x, (int) y, entityScale, ENTITY_ANGLE, null, entity);
     }
 
     private static final Map<EntityType<?>, LivingEntity> ENTITY_CACHE = new HashMap<>();
