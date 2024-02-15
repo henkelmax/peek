@@ -10,6 +10,7 @@
   "tooltip.peek.dimension.overworld": "Верхньому світі",
   "tooltip.peek.dimension.the_end": "Енді",
   "tooltip.peek.dimension.the_nether": "Незері",
+  "label.peek.decorated_pot_count": "x%s",
   "resourcepack.peek.flat_shulker_icons": "Плоскі іконки шалкера",
   "resourcepack.peek.flat_shulker_icons.description": "Покращує видимість шалкерового ящика в інтерфейсі",
   "cloth_config.peek.settings": "Налаштування",

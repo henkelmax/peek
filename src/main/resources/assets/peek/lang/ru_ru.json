@@ -10,6 +10,7 @@
   "tooltip.peek.dimension.overworld": "обычном мире",
   "tooltip.peek.dimension.the_end": "Энде",
   "tooltip.peek.dimension.the_nether": "Незере",
+  "label.peek.decorated_pot_count": "x%s",
   "cloth_config.peek.settings": "Подсказки",
   "cloth_config.peek.show_empty_containers": "Подсказки пустых контейнеров",
   "cloth_config.peek.show_empty_containers.description": "Отображать контейнер без предметов",

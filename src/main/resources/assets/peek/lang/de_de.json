@@ -10,11 +10,13 @@
   "tooltip.peek.dimension.overworld": "Oberwelt",
   "tooltip.peek.dimension.the_end": "Das Ende",
   "tooltip.peek.dimension.the_nether": "Der Nether",
+  "label.peek.decorated_pot_count": "x%s",
   "resourcepack.peek.flat_shulker_icons": "Flache Shulker-Symbole",
   "resourcepack.peek.flat_shulker_icons.description": "Verbessert die Sichtbarkeit von Shulker-Kisten in Benutzeroberflächen",
   "cloth_config.peek.settings": "Einstellungen",
   "cloth_config.peek.category.tooltips": "Tooltips",
   "cloth_config.peek.category.shulker_box_hints": "Shulker-Kisten Hinweise",
+  "cloth_config.peek.category.decorated_pot_hints": "Dekorierte Krüge Hinweise",
   "cloth_config.peek.show_empty_containers": "Leere Behälter anzeigen",
   "cloth_config.peek.show_empty_containers.description": "Ob Behälter ohne Gegenstände angezeigt werden sollen.",
   "cloth_config.peek.peek_shulker_boxes": "Shulker-Kisten anzeigen",
@@ -46,5 +48,7 @@
   "cloth_config.peek.show_shulker_box_items": "Gegenstände auf Shulker-Kisten anzeigen",
   "cloth_config.peek.show_shulker_box_items.description": "Ob der Mod den Gegenstand auf dem Deckel der Shulker-Box anzeigen soll, wenn sie nur eine Art von Gegenstand enthält.",
   "cloth_config.peek.show_shulker_box_labels": "Shulker-Kisten Namen anzeigen",
-  "cloth_config.peek.show_shulker_box_labels.description": "Ob der Mod den benutzerdefinierten Namen der Shulker-Box auf dem Deckel der Shulker Box anzeigen soll."
+  "cloth_config.peek.show_shulker_box_labels.description": "Ob der Mod den benutzerdefinierten Namen der Shulker-Box auf dem Deckel der Shulker Box anzeigen soll.",
+  "cloth_config.peek.show_decorated_pot_hint": "Hinweis für verzierte Krüge anzeigen",
+  "cloth_config.peek.show_decorated_pot_hint.description": "Ob Informationen zum Gegenstand in dekorierten Krügen angezeigt werden sollen."
 }

@@ -10,6 +10,7 @@
   "tooltip.peek.dimension.overworld": "主世界",
   "tooltip.peek.dimension.the_end": "末地",
   "tooltip.peek.dimension.the_nether": "下界",
+  "label.peek.decorated_pot_count": "x%s",
   "cloth_config.peek.settings": "设置",
   "cloth_config.peek.peek_shulker_boxes": "预览潜影箱",
   "cloth_config.peek.peek_shulker_boxes.description": "显示潜影箱内的物品。",

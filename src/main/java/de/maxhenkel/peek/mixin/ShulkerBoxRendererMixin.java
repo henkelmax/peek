@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ShulkerBoxRenderer.class)
 public class ShulkerBoxRendererMixin {
 
-    @Inject(method = "render", at = @At(value = "TAIL"))
+    @Inject(method = "render(Lnet/minecraft/world/level/block/entity/ShulkerBoxBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V", at = @At(value = "TAIL"))
     private void render(ShulkerBoxBlockEntity shulkerBoxBlockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay, CallbackInfo ci) {
         if (!Peek.CONFIG.showShulkerBoxBlockHint.get()) {
             return;

@@ -30,6 +30,9 @@ public class PeekConfig {
     public final ConfigEntry<Boolean> hideShulkerBoxDataStrings;
     public final ConfigEntry<Boolean> sendShulkerBoxDataToClient;
 
+    public final ConfigEntry<Boolean> showDecoratedPotHint;
+    public final ConfigEntry<Boolean> sendDecoratedPotDataToClient;
+
     public final ConfigEntry<Boolean> showHud;
     public final ConfigEntry<String> hudBackgroundColor;
     public final ConfigEntry<String> hudTextColor;
@@ -142,6 +145,20 @@ public class PeekConfig {
                 true,
                 "If this is enabled, the mod will send the contents of placed down shulker boxes to the client",
                 "This allows the mod to display hints on shulker boxes that are placed down without needing to open them first",
+                "If you want to use this feature on a server, the server needs the mod installed and this setting enabled"
+        );
+        showDecoratedPotHint = builder.booleanEntry(
+                "show_decorated_pot_hint",
+                false,
+                "If this is enabled, decorated pots will show the contained item and amount",
+                "If you are playing on a player, you need to have the mod installed on the server with the config option 'send_decorated_pot_data_to_client' enabled",
+                "If you are on singleplayer, the config option 'send_decorated_pot_data_to_client' must be enabled"
+        );
+        sendDecoratedPotDataToClient = builder.booleanEntry(
+                "send_decorated_pot_data_to_client",
+                true,
+                "If this is enabled, the mod will send the contents of decorated pots to the client",
+                "This allows the mod to display hints on decorated pots",
                 "If you want to use this feature on a server, the server needs the mod installed and this setting enabled"
         );
         showHud = builder.booleanEntry(

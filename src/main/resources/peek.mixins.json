@@ -25,7 +25,10 @@
     "MultiPlayerGameModeMixin",
     "LocalPlayerMixin",
     "ItemPropertiesMixin",
-    "GuiMixin"
+    "GuiMixin",
+    "DecoratedPotRendererMixin",
+    "DecoratedPotBlockEntityMixin",
+    "DecoratedPotBlockMixin"
   ],
   "mixins": [
     "ShulkerBoxBlockEntityMixin"

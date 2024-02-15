@@ -1,5 +1,6 @@
 package de.maxhenkel.peek.mixin;
 
+import de.maxhenkel.peek.events.DecoratedPotRenderEvents;
 import de.maxhenkel.peek.events.ShulkerRenderEvents;
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -22,6 +23,9 @@ public abstract class ItemPropertiesMixin {
     private static void init(CallbackInfo ci) {
         registerGeneric(ShulkerRenderEvents.SHULKER_ITEM_PREDICATE, (stack, lvl, e, i) -> {
             return ShulkerRenderEvents.isShulkerRenderStack(stack) ? 1F : 0F;
+        });
+        registerGeneric(DecoratedPotRenderEvents.DECORATED_POT_ITEM_PREDICATE, (stack, lvl, e, i) -> {
+            return DecoratedPotRenderEvents.isPotRenderStack(stack) ? 1F : 0F;
         });
     }
 

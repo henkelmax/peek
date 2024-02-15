@@ -10,11 +10,13 @@
   "tooltip.peek.dimension.overworld": "Overworld",
   "tooltip.peek.dimension.the_end": "The End",
   "tooltip.peek.dimension.the_nether": "The Nether",
+  "label.peek.decorated_pot_count": "x%s",
   "resourcepack.peek.flat_shulker_icons": "Flat Shulker Icons",
   "resourcepack.peek.flat_shulker_icons.description": "Improves Shulker Box visibility in GUIs",
   "cloth_config.peek.settings": "Settings",
   "cloth_config.peek.category.tooltips": "Tooltips",
   "cloth_config.peek.category.shulker_box_hints": "Shulker Box Hints",
+  "cloth_config.peek.category.decorated_pot_hints": "Decorated Pot Hints",
   "cloth_config.peek.show_empty_containers": "Show Empty Containers",
   "cloth_config.peek.show_empty_containers.description": "If empty containers should show the item slots in the tooltip.",
   "cloth_config.peek.peek_shulker_boxes": "Peek Shulker Boxes",
@@ -46,5 +48,7 @@
   "cloth_config.peek.show_shulker_box_items": "Show Shulker Box Items",
   "cloth_config.peek.show_shulker_box_items.description": "If this is enabled, the mod will show the item on the Shulker Box lid if it only contains one type of item.",
   "cloth_config.peek.show_shulker_box_labels": "Show Shulker Box Labels",
-  "cloth_config.peek.show_shulker_box_labels.description": "If this is enabled, the mod will show the custom name of the Shulker Box on the lid of the shulker box."
+  "cloth_config.peek.show_shulker_box_labels.description": "If this is enabled, the mod will show the custom name of the Shulker Box on the lid of the shulker box.",
+  "cloth_config.peek.show_decorated_pot_hint": "Show Decorated Pot Hint",
+  "cloth_config.peek.show_decorated_pot_hint.description": "If this is enabled, decorated pots will show the contained item and amount."
 }
