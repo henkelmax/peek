@@ -1,1 +1,1 @@
-- Fixed items being flipped on shulker boxes
+- Fixed crash when looking at another player with HUD enabled
