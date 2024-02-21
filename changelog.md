@@ -1,1 +1,1 @@
-- Added decorated pot hints
+- Fixed crash when looking at another player with HUD enabled
