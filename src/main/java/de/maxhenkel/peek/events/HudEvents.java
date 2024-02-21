@@ -94,6 +94,9 @@ public class HudEvents {
     private static final Quaternionf ENTITY_ANGLE = new Quaternionf().rotationXYZ(0F, Mth.DEG_TO_RAD * 180F, Mth.DEG_TO_RAD * 180F);
 
     private static void renderEntity(GuiGraphics graphics, float x, float y, float maxWidth, float maxHeight, LivingEntity entity) {
+        if (entity == null) {
+            return;
+        }
         float maxXScale = maxWidth / entity.getBbWidth();
         float maxYScale = maxHeight / entity.getBbHeight();
 
