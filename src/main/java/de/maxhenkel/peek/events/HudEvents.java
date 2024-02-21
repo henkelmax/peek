@@ -90,6 +90,9 @@ public class HudEvents {
     }
 
     private static void renderEntity(PoseStack poseStack, float x, float y, float maxWidth, float maxHeight, LivingEntity entity) {
+        if (entity == null) {
+            return;
+        }
         float maxXScale = maxWidth / entity.getBbWidth();
         float maxYScale = maxHeight / entity.getBbHeight();
 
