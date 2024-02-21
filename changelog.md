@@ -1,1 +1,2 @@
 - Fixed crash when looking at another player with HUD enabled
+- Improve shulker box content synchronization
