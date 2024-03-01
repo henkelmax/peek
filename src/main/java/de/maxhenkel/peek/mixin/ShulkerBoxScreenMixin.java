@@ -4,6 +4,8 @@ import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.utils.ShulkerBoxUtils;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.ShulkerBoxScreen;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.player.Inventory;
@@ -45,6 +47,9 @@ public abstract class ShulkerBoxScreenMixin extends AbstractContainerScreen<Shul
             }
         }
 
-        shulkerBoxBlockEntity.setCustomName(component);
+        DataComponentMap.Builder builder = DataComponentMap.builder();
+        shulkerBoxBlockEntity.collectComponents(builder);
+        builder.set(DataComponents.CUSTOM_NAME, component);
+        shulkerBoxBlockEntity.applyComponents(builder.build());
     }
 }
