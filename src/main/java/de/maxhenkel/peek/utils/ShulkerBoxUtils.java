@@ -48,7 +48,7 @@ public class ShulkerBoxUtils {
                 renderItem = itemStack;
                 continue;
             }
-            if (exactSame && ItemStack.isSameItemSameTags(renderItem, itemStack)) {
+            if (exactSame && ItemStack.isSameItemSameComponents(renderItem, itemStack)) {
                 continue;
             }
             if (ItemStack.isSameItem(renderItem, itemStack)) {

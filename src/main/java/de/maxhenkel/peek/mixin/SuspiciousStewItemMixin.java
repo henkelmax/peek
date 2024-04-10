@@ -13,8 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SuspiciousStewItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
-import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
@@ -28,8 +26,8 @@ public abstract class SuspiciousStewItemMixin extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
-        super.appendHoverText(itemStack, level, list, tooltipFlag);
+    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+        super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
 
         if (!Peek.CONFIG.peekSuspiciousStews.get()) {
             return;
@@ -37,12 +35,12 @@ public abstract class SuspiciousStewItemMixin extends Item {
 
         SuspiciousStewEffects effects = itemStack.getOrDefault(DataComponents.SUSPICIOUS_STEW_EFFECTS, SuspiciousStewEffects.EMPTY);
         for (SuspiciousStewEffects.Entry entry : effects.effects()) {
-            addPotionTooltip(level, entry.createEffectInstance(), list);
+            addPotionTooltip(tooltipContext, entry.createEffectInstance(), list);
         }
     }
 
     @Unique
-    private static void addPotionTooltip(@Nullable Level level, MobEffectInstance effect, List<Component> list) {
+    private static void addPotionTooltip(TooltipContext tooltipContext, MobEffectInstance effect, List<Component> list) {
         MutableComponent tooltip = Component.translatable(effect.getDescriptionId());
 
         if (effect.getAmplifier() > 0) {
@@ -50,7 +48,7 @@ public abstract class SuspiciousStewItemMixin extends Item {
         }
 
         if (effect.getDuration() > 20) {
-            tooltip = Component.translatable("potion.withDuration", tooltip, MobEffectUtil.formatDuration(effect, 1F, level == null ? 20F : level.tickRateManager().tickrate()));
+            tooltip = Component.translatable("potion.withDuration", tooltip, MobEffectUtil.formatDuration(effect, 1F, tooltipContext.tickRate()));
         }
 
         Holder<MobEffect> effectHolder = effect.getEffect();

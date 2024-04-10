@@ -47,9 +47,12 @@ public abstract class ShulkerBoxScreenMixin extends AbstractContainerScreen<Shul
             }
         }
 
-        DataComponentMap.Builder builder = DataComponentMap.builder();
-        shulkerBoxBlockEntity.collectComponents(builder);
-        builder.set(DataComponents.CUSTOM_NAME, component);
-        shulkerBoxBlockEntity.applyComponents(builder.build());
+        DataComponentMap components = shulkerBoxBlockEntity.collectComponents();
+        DataComponentMap newComponents = DataComponentMap
+                .builder()
+                .addAll(components)
+                .set(DataComponents.CUSTOM_NAME, component)
+                .build();
+        shulkerBoxBlockEntity.setComponents(newComponents);
     }
 }

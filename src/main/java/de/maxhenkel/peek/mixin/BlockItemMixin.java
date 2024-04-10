@@ -58,7 +58,7 @@ public abstract class BlockItemMixin extends Item {
             return;
         }
 
-        shulkerBoxBlockEntity.applyComponents(item.getComponents());
+        shulkerBoxBlockEntity.applyComponentsFromItemStack(item);
     }
 
 }
