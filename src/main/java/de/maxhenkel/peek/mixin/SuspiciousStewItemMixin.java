@@ -1,21 +1,20 @@
 package de.maxhenkel.peek.mixin;
 
 import de.maxhenkel.peek.Peek;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtOps;
-import net.minecraft.nbt.Tag;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SuspiciousStewItem;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.SuspiciousEffectHolder;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.item.component.SuspiciousStewEffects;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.List;
 
@@ -27,24 +26,21 @@ public abstract class SuspiciousStewItemMixin extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
-        super.appendHoverText(itemStack, level, list, tooltipFlag);
+    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+        super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
 
         if (!Peek.CONFIG.peekSuspiciousStews.get()) {
             return;
         }
 
-        CompoundTag compoundTag = itemStack.getTag();
-        if (compoundTag != null && compoundTag.contains(SuspiciousStewItem.EFFECTS_TAG, Tag.TAG_LIST)) {
-            SuspiciousEffectHolder.EffectEntry.LIST_CODEC.parse(NbtOps.INSTANCE, compoundTag.getList(SuspiciousStewItem.EFFECTS_TAG, Tag.TAG_COMPOUND)).result().ifPresent(effectEntries -> {
-                for (SuspiciousEffectHolder.EffectEntry effectEntry : effectEntries) {
-                    addPotionTooltip(level, effectEntry.createEffectInstance(), list);
-                }
-            });
+        SuspiciousStewEffects effects = itemStack.getOrDefault(DataComponents.SUSPICIOUS_STEW_EFFECTS, SuspiciousStewEffects.EMPTY);
+        for (SuspiciousStewEffects.Entry entry : effects.effects()) {
+            addPotionTooltip(tooltipContext, entry.createEffectInstance(), list);
         }
     }
 
-    private static void addPotionTooltip(@Nullable Level level, MobEffectInstance effect, List<Component> list) {
+    @Unique
+    private static void addPotionTooltip(TooltipContext tooltipContext, MobEffectInstance effect, List<Component> list) {
         MutableComponent tooltip = Component.translatable(effect.getDescriptionId());
 
         if (effect.getAmplifier() > 0) {
@@ -52,10 +48,16 @@ public abstract class SuspiciousStewItemMixin extends Item {
         }
 
         if (effect.getDuration() > 20) {
-            tooltip = Component.translatable("potion.withDuration", tooltip, MobEffectUtil.formatDuration(effect, 1F, level == null ? 20F : level.tickRateManager().tickrate()));
+            tooltip = Component.translatable("potion.withDuration", tooltip, MobEffectUtil.formatDuration(effect, 1F, tooltipContext.tickRate()));
         }
 
-        list.add(tooltip.withStyle(effect.getEffect().getCategory().getTooltipFormatting()));
+        Holder<MobEffect> effectHolder = effect.getEffect();
+
+        if (effectHolder.isBound()) {
+            list.add(tooltip.withStyle(effectHolder.value().getCategory().getTooltipFormatting()));
+        } else {
+            list.add(tooltip);
+        }
     }
 
 }

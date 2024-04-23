@@ -4,16 +4,14 @@ import de.maxhenkel.peek.interfaces.PeekItemStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 
@@ -23,41 +21,17 @@ import java.util.regex.Matcher;
 public class ShulkerBoxUtils {
 
     public static NonNullList<ItemStack> getItems(ItemStack stack) {
-        NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
-
-        CompoundTag blockEntityData = BlockItem.getBlockEntityData(stack);
-        if (blockEntityData == null) {
-            return items;
-        }
-
-        if (!blockEntityData.contains(ShulkerBoxBlockEntity.ITEMS_TAG, Tag.TAG_LIST)) {
-            return items;
-        }
-
-        ContainerHelper.loadAllItems(blockEntityData, items);
-
+        NonNullList<ItemStack> items = NonNullList.withSize(ShulkerBoxBlockEntity.CONTAINER_SIZE, ItemStack.EMPTY);
+        ItemContainerContents contents = stack.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY);
+        contents.copyInto(items);
         return items;
     }
 
     @Nullable
     public static Component getCustomName(ItemStack stack) {
-        if (stack.hasCustomHoverName()) {
+        Component customName = stack.get(DataComponents.CUSTOM_NAME);
+        if (customName != null) {
             return ((PeekItemStack) (Object) stack).peek$getRealHoverName();
-        }
-
-        CompoundTag blockEntityData = BlockItem.getBlockEntityData(stack);
-
-        if (blockEntityData == null) {
-            return null;
-        }
-
-        String customNameJson = blockEntityData.getString("CustomName");
-        try {
-            MutableComponent component = Component.Serializer.fromJson(customNameJson);
-            if (component != null) {
-                return component;
-            }
-        } catch (Exception ignored) {
         }
         return null;
     }
@@ -74,7 +48,7 @@ public class ShulkerBoxUtils {
                 renderItem = itemStack;
                 continue;
             }
-            if (exactSame && ItemStack.isSameItemSameTags(renderItem, itemStack)) {
+            if (exactSame && ItemStack.isSameItemSameComponents(renderItem, itemStack)) {
                 continue;
             }
             if (ItemStack.isSameItem(renderItem, itemStack)) {

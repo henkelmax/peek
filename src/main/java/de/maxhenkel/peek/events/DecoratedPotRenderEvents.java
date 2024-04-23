@@ -6,6 +6,8 @@ import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.interfaces.PeekDecoratedPot;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
@@ -13,6 +15,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.block.entity.DecoratedPotBlockEntity;
 
 public class DecoratedPotRenderEvents {
@@ -54,13 +57,15 @@ public class DecoratedPotRenderEvents {
     }
 
     public static boolean isPotRenderStack(ItemStack stack) {
-        CompoundTag tag = stack.getTag();
-        return tag != null && tag.contains(DECORATED_POT_ITEM_TAG, Tag.TAG_BYTE);
+        CompoundTag tag = stack.getComponents().getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).getUnsafe();
+        return tag.contains(DECORATED_POT_ITEM_TAG, Tag.TAG_BYTE);
     }
 
     public static ItemStack createPotRenderStack(ItemStack source) {
         ItemStack stack = source.copy();
-        stack.getOrCreateTag().putBoolean(DECORATED_POT_ITEM_TAG, true);
+        CompoundTag tag = new CompoundTag();
+        tag.putBoolean(DECORATED_POT_ITEM_TAG, true);
+        stack.applyComponents(DataComponentPatch.builder().set(DataComponents.CUSTOM_DATA, CustomData.of(tag)).build());
         return stack;
     }
 

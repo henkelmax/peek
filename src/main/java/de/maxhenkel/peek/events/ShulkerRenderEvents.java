@@ -8,12 +8,15 @@ import de.maxhenkel.peek.utils.ShulkerHintData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 
@@ -84,13 +87,15 @@ public class ShulkerRenderEvents {
     }
 
     public static boolean isShulkerRenderStack(ItemStack stack) {
-        CompoundTag tag = stack.getTag();
-        return tag != null && tag.contains(SHULKER_ITEM_TAG, Tag.TAG_BYTE);
+        CompoundTag tag = stack.getComponents().getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).getUnsafe();
+        return tag.contains(SHULKER_ITEM_TAG, Tag.TAG_BYTE);
     }
 
     public static ItemStack createShulkerRenderStack(ItemStack source) {
         ItemStack stack = source.copy();
-        stack.getOrCreateTag().putBoolean(SHULKER_ITEM_TAG, true);
+        CompoundTag tag = new CompoundTag();
+        tag.putBoolean(SHULKER_ITEM_TAG, true);
+        stack.applyComponents(DataComponentPatch.builder().set(DataComponents.CUSTOM_DATA, CustomData.of(tag)).build());
         return stack;
     }
 

@@ -13,7 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,7 +25,7 @@ import java.util.List;
 public class ItemMixin {
 
     @Inject(method = "appendHoverText", at = @At("HEAD"))
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag, CallbackInfo ci) {
+    public void appendHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag, CallbackInfo ci) {
         Object o = this;
         if (o != Items.RECOVERY_COMPASS) {
             return;
@@ -46,12 +45,14 @@ public class ItemMixin {
             return;
         }
 
-        addDeathLocationText(level, list, lastDeathLocation);
+        addDeathLocationText(tooltipContext, list, lastDeathLocation);
     }
 
     @Unique
-    private void addDeathLocationText(@Nullable Level level, List<Component> list, GlobalPos deathLocation) {
+    private void addDeathLocationText(Item.TooltipContext tooltipContext, List<Component> list, GlobalPos deathLocation) {
         ResourceLocation location = deathLocation.dimension().location();
+
+        Level level = Minecraft.getInstance().level;
 
         if (level != null && location.equals(level.dimension().location())) {
             list.add(Component.translatable("tooltip.peek.recovery_compass.death_location",

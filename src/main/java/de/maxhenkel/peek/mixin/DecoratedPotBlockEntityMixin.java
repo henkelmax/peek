@@ -3,6 +3,7 @@ package de.maxhenkel.peek.mixin;
 import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.interfaces.PeekDecoratedPot;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -42,13 +43,12 @@ public class DecoratedPotBlockEntityMixin extends BlockEntity implements PeekDec
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
+    public CompoundTag getUpdateTag(HolderLookup.Provider provider) {
         if (!Peek.CONFIG.sendDecoratedPotDataToClient.get()) {
-            return super.getUpdateTag();
+            return super.getUpdateTag(provider);
         }
         CompoundTag tag = new CompoundTag();
-        saveAdditional(tag);
+        saveAdditional(tag, provider);
         return tag;
     }
-
 }

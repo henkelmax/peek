@@ -3,7 +3,6 @@ package de.maxhenkel.peek.mixin;
 import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.events.TooltipImageEvents;
 import de.maxhenkel.peek.utils.ShulkerBoxUtils;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.BlockItem;
@@ -40,7 +39,7 @@ public abstract class BlockItemMixin extends Item {
         return TooltipImageEvents.getTooltipImage(stack, block).or(() -> super.getTooltipImage(stack));
     }
 
-    @Inject(method = "place", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;gameEvent(Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
+    @Inject(method = "place", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;gameEvent(Lnet/minecraft/core/Holder;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
     private void place(BlockPlaceContext blockPlaceContext, CallbackInfoReturnable<InteractionResult> cir, BlockPlaceContext blockPlaceContext2) {
         if (!Peek.CONFIG.showShulkerBoxBlockHint.get()) {
             return;
@@ -59,12 +58,7 @@ public abstract class BlockItemMixin extends Item {
             return;
         }
 
-        shulkerBoxBlockEntity.setItems(ShulkerBoxUtils.getItems(item));
-
-        Component customName = ShulkerBoxUtils.getCustomName(item);
-        if (customName != null) {
-            shulkerBoxBlockEntity.setCustomName(customName);
-        }
+        shulkerBoxBlockEntity.applyComponentsFromItemStack(item);
     }
 
 }

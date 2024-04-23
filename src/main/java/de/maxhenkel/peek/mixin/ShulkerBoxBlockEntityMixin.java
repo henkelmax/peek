@@ -3,6 +3,7 @@ package de.maxhenkel.peek.mixin;
 import de.maxhenkel.peek.Peek;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -44,16 +45,16 @@ public abstract class ShulkerBoxBlockEntityMixin extends RandomizableContainerBl
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
+    public CompoundTag getUpdateTag(HolderLookup.Provider provider) {
         if (!Peek.CONFIG.sendShulkerBoxDataToClient.get()) {
-            return super.getUpdateTag();
+            return super.getUpdateTag(provider);
         }
         CompoundTag tag = new CompoundTag();
-        saveAdditional(tag);
+        saveAdditional(tag, provider);
         if (tag.isEmpty()) {
             // If the tag is empty, save container items again with an empty items list,so that the update packet is actually processed
             // Empty tags are replaced with null in the ClientboundBlockEntityDataPacket and thus not processed on the client
-            ContainerHelper.saveAllItems(tag, itemStacks, true);
+            ContainerHelper.saveAllItems(tag, itemStacks, true, provider);
         }
 
         return tag;
@@ -85,6 +86,6 @@ public abstract class ShulkerBoxBlockEntityMixin extends RandomizableContainerBl
     }
 
     @Shadow
-    protected abstract void saveAdditional(CompoundTag compoundTag);
+    protected abstract void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider);
 
 }
