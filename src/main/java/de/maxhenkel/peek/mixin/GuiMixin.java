@@ -1,6 +1,7 @@
 package de.maxhenkel.peek.mixin;
 
 import de.maxhenkel.peek.events.HudEvents;
+import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
@@ -19,8 +20,8 @@ public class GuiMixin {
     private Minecraft minecraft;
 
     @Inject(method = "renderEffects", at = @At(value = "HEAD"))
-    private void render(GuiGraphics graphics, float f, CallbackInfo ci) {
-        HudEvents.onRenderHud(graphics, minecraft.getWindow().getGuiScaledWidth(), minecraft.getWindow().getGuiScaledHeight());
+    private void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
+        HudEvents.onRenderHud(guiGraphics, minecraft.getWindow().getGuiScaledWidth(), minecraft.getWindow().getGuiScaledHeight());
     }
 
 }

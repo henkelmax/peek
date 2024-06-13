@@ -73,10 +73,11 @@ public class ShulkerBoxUtils {
         if (level == null) {
             return null;
         }
-        if (!ResourceLocation.isValidResourceLocation(id)) {
+        ResourceLocation resourceLocation = ResourceLocation.tryParse(id);
+        if (resourceLocation == null) {
             return null;
         }
-        return level.registryAccess().registryOrThrow(Registries.ITEM).get(new ResourceLocation(id));
+        return level.registryAccess().registryOrThrow(Registries.ITEM).get(resourceLocation);
     }
 
     public static Component cleanName(Component component) {

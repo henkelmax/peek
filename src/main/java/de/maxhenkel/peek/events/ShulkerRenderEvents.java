@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 
 public class ShulkerRenderEvents {
 
-    public static final ResourceLocation SHULKER_ITEM_PREDICATE = new ResourceLocation(Peek.MODID, "shulker_item");
+    public static final ResourceLocation SHULKER_ITEM_PREDICATE = ResourceLocation.fromNamespaceAndPath(Peek.MODID, "shulker_item");
 
     private static final Minecraft mc = Minecraft.getInstance();
     private static final String SHULKER_ITEM_TAG = "ShulkerBoxItem";

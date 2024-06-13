@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class ClientContainerTooltip implements ClientTooltipComponent {
 
-    public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(Peek.MODID, "textures/gui/container/slot.png");
+    public static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(Peek.MODID, "textures/gui/container/slot.png");
     private static final int MARGIN_Y = 4;
     private static final int BORDER_WIDTH = 1;
     private static final int TEXTURE_SIZE = 32;
