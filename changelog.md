@@ -1,1 +1,1 @@
-- Fixed pack format
+- Added Belarusian translation
