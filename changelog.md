@@ -1,1 +1,1 @@
-- Added Belarusian translation
+- Added Traditional Chinese translation
