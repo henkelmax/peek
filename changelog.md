@@ -1,1 +1,1 @@
-- Updated to 1.21.1
+- Fixed Shulker Box names not being respected on servers without the mod
