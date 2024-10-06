@@ -1,1 +1,1 @@
-- Added Traditional Chinese translation
+- Fixed crash when having larger ender chests
