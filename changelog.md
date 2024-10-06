@@ -1,1 +1,1 @@
-- Fixed Shulker Box names not being respected on servers without the mod
+- Fixed crash when having larger ender chests
