@@ -10,25 +10,24 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SuspiciousStewItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(SuspiciousStewItem.class)
-public abstract class SuspiciousStewItemMixin extends Item {
+@Mixin(Item.class)
+public abstract class SuspiciousStewItemMixin {
 
-    public SuspiciousStewItemMixin(Properties properties) {
-        super(properties);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
-        super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
-
+    @Inject(method = "appendHoverText", at = @At("RETURN"))
+    public void appendHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag, CallbackInfo ci) {
+        if (!itemStack.has(DataComponents.SUSPICIOUS_STEW_EFFECTS)) {
+            return;
+        }
         if (!Peek.CONFIG.peekSuspiciousStews.get()) {
             return;
         }
@@ -40,7 +39,7 @@ public abstract class SuspiciousStewItemMixin extends Item {
     }
 
     @Unique
-    private static void addPotionTooltip(TooltipContext tooltipContext, MobEffectInstance effect, List<Component> list) {
+    private static void addPotionTooltip(Item.TooltipContext tooltipContext, MobEffectInstance effect, List<Component> list) {
         MutableComponent tooltip = Component.translatable(effect.getDescriptionId());
 
         if (effect.getAmplifier() > 0) {

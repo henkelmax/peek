@@ -9,6 +9,7 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -113,7 +114,7 @@ public class HudEvents {
     private static final Map<EntityType<?>, LivingEntity> ENTITY_CACHE = new HashMap<>();
 
     private static LivingEntity getCachedEntity(EntityType<?> entityType) {
-        return ENTITY_CACHE.computeIfAbsent(entityType, type -> (LivingEntity) type.create(MC.level));
+        return ENTITY_CACHE.computeIfAbsent(entityType, type -> (LivingEntity) type.create(MC.level, EntitySpawnReason.COMMAND));
     }
 
 }

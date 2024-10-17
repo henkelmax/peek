@@ -3,6 +3,7 @@ package de.maxhenkel.peek.utils;
 import de.maxhenkel.peek.interfaces.PeekItemStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.Holder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
@@ -77,7 +78,7 @@ public class ShulkerBoxUtils {
         if (resourceLocation == null) {
             return null;
         }
-        return level.registryAccess().registryOrThrow(Registries.ITEM).get(resourceLocation);
+        return level.registryAccess().lookupOrThrow(Registries.ITEM).get(resourceLocation).map(Holder.Reference::value).orElse(null);
     }
 
     public static Component cleanName(Component component) {

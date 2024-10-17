@@ -5,6 +5,7 @@ import de.maxhenkel.peek.Peek;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -28,7 +29,7 @@ public class ClientContainerTooltip implements ClientTooltipComponent {
     }
 
     @Override
-    public int getHeight() {
+    public int getHeight(Font font) {
         return gridHeight * SLOT_SIZE_Y + 2 * BORDER_WIDTH + MARGIN_Y;
     }
 
@@ -38,7 +39,7 @@ public class ClientContainerTooltip implements ClientTooltipComponent {
     }
 
     @Override
-    public void renderImage(Font font, int tooltipX, int tooltipY, GuiGraphics guiGraphics) {
+    public void renderImage(Font font, int tooltipX, int tooltipY, int i1, int i2, GuiGraphics guiGraphics) {
         int slotId = 0;
         for (int y = 0; y < gridHeight; y++) {
             for (int x = 0; x < gridWidth; x++) {
@@ -81,7 +82,7 @@ public class ClientContainerTooltip implements ClientTooltipComponent {
 
     private void blit(GuiGraphics guiGraphics, int i, int j, Texture texture) {
         RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
-        guiGraphics.blit(TEXTURE_LOCATION, i, j, 0, (float) texture.x, (float) texture.y, texture.w, texture.h, TEXTURE_SIZE, TEXTURE_SIZE);
+        guiGraphics.blit(RenderType::guiTextured, TEXTURE_LOCATION, i, j, (float) texture.x, (float) texture.y, texture.w, texture.h, TEXTURE_SIZE, TEXTURE_SIZE);
     }
 
     enum Texture {

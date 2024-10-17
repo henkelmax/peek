@@ -19,7 +19,7 @@ public class ItemNameCache {
 
     public static void loadTranslatedNames(ClientLevel clientLevel) {
         translatedItemNamesCache.clear();
-        Registry<Item> itemRegistry = clientLevel.registryAccess().registryOrThrow(Registries.ITEM);
+        Registry<Item> itemRegistry = clientLevel.registryAccess().lookupOrThrow(Registries.ITEM);
         for (Item item : itemRegistry) {
             Component name = Component.translatable(item.getDescriptionId());
             translatedItemNamesCache.put(name.getString().toLowerCase(), item);
@@ -28,7 +28,7 @@ public class ItemNameCache {
 
     public static void loadIdNames(ClientLevel clientLevel) {
         translatedItemIdNamesCache.clear();
-        Registry<Item> itemRegistry = clientLevel.registryAccess().registryOrThrow(Registries.ITEM);
+        Registry<Item> itemRegistry = clientLevel.registryAccess().lookupOrThrow(Registries.ITEM);
         for (Map.Entry<ResourceKey<Item>, Item> item : itemRegistry.entrySet()) {
             ResourceLocation location = item.getKey().location();
             if (location.getNamespace().equals(ResourceLocation.DEFAULT_NAMESPACE)) {

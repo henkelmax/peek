@@ -1,1 +1,1 @@
-- Fixed crash when having larger ender chests
+- Updated to 1.21.2
