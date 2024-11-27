@@ -42,11 +42,8 @@ public abstract class CompassItemMixin extends Item {
             return;
         }
 
-        if (level != null) {
-            GlobalPos spawnPosition = CompassItem.getSpawnPosition(level);
-            if (spawnPosition != null) {
-                addSpawnHoverText(list, spawnPosition);
-            }
+        if (level != null && level.dimensionType().natural()) {
+            addSpawnHoverText(list, GlobalPos.of(level.dimension(), level.getSharedSpawnPos()));
         }
     }
 

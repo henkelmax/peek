@@ -24,9 +24,8 @@ import javax.annotation.Nullable;
 
 public class ShulkerRenderEvents {
 
-    public static final ResourceLocation SHULKER_ITEM_PREDICATE = ResourceLocation.fromNamespaceAndPath(Peek.MODID, "shulker_item");
+    public static final ResourceLocation SHULKER_ITEM_CONDITION = ResourceLocation.fromNamespaceAndPath(Peek.MODID, "shulker_item");
 
-    private static final Minecraft mc = Minecraft.getInstance();
     private static final String SHULKER_ITEM_TAG = "ShulkerBoxItem";
 
     public static void renderShulkerBoxItemLabel(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
@@ -40,6 +39,7 @@ public class ShulkerRenderEvents {
     }
 
     private static void renderShulkerBoxLabel(float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay, @Nullable ShulkerBoxBlockEntity shulkerBoxBlockEntity, ShulkerHintData data) {
+        Minecraft mc = Minecraft.getInstance();
         poseStack.pushPose();
         poseStack.translate(0.5D, 0.5D, 0.5D);
         if (shulkerBoxBlockEntity != null) {

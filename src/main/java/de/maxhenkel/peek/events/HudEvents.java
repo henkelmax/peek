@@ -53,7 +53,7 @@ public class HudEvents {
         }
 
         Block block = blockState.getBlock();
-        ItemStack item = block.getCloneItemStack(level, blockHitResult.getBlockPos(), blockState);
+        ItemStack item = block.defaultBlockState().getCloneItemStack(level, blockHitResult.getBlockPos(), true); //TODO Check what the boolean does
 
         Component name = item.getHoverName();
         Font font = MC.font;
