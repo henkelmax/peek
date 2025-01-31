@@ -45,8 +45,6 @@
   "cloth_config.peek.show_shulker_box_item_hint.description": "界伏盒物品是否應在其蓋子上顯示資訊。",
   "cloth_config.peek.show_shulker_box_block_hint": "顯示界伏盒方塊提示",
   "cloth_config.peek.show_shulker_box_block_hint.description": "界伏盒方塊是否應在其蓋子上顯示資訊。",
-  "cloth_config.peek.show_shulker_box_items": "顯示界伏盒物品",
-  "cloth_config.peek.show_shulker_box_items.description": "如果啟用此選項，如果界伏盒只包含一種物品，模組將會在界伏盒蓋子上顯示該物品。",
   "cloth_config.peek.show_shulker_box_labels": "顯示界伏盒標籤",
   "cloth_config.peek.show_shulker_box_labels.description": "如果啟用此選項，模組將會在界伏盒蓋子上顯示界伏盒的自訂名稱。",
   "cloth_config.peek.show_decorated_pot_hint": "顯示裝飾花盆提示",

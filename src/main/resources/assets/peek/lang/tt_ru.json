@@ -45,8 +45,6 @@
   "cloth_config.peek.show_shulker_box_item_hint.description": "Шалкер тартмасы предметлары капкачта мәгълүматны күрсәтә.",
   "cloth_config.peek.show_shulker_box_block_hint": "Шалкер тартмасы блок киңәшләрен күрсәтү",
   "cloth_config.peek.show_shulker_box_block_hint.description": "Шалкер тартмасы блоклары капкачта мәгълүматны күрсәтә.",
-  "cloth_config.peek.show_shulker_box_items": "Шалкер тартмасы предметларын күрсәтү",
-  "cloth_config.peek.show_shulker_box_items.description": "Кушылса, мод шалкер тартмасының капкачында предметны күрсәтәчәк, әгәр анда предмет бер төре генә булса.",
   "cloth_config.peek.show_shulker_box_labels": "Шалкер тартмасы тамгаларын күрсәтү",
   "cloth_config.peek.show_shulker_box_labels.description": "Кушылса, мод шалкер тартмасының капкачында үзенең исемен күрсәтәчәк"
 }

@@ -45,8 +45,6 @@
   "cloth_config.peek.show_shulker_box_item_hint.description": "Калі прадметы шалкеравых скрынь павінны адлюстроўвацца з інфармацыяй пра іх.",
   "cloth_config.peek.show_shulker_box_block_hint": "Паказваць падказкі шалкеравых скрынь",
   "cloth_config.peek.show_shulker_box_block_hint.description": "Калі шалкеравыя скрыні павінны адлюстроўвацца з інфармацыяй пра іх.",
-  "cloth_config.peek.show_shulker_box_items": "Паказваьц прадметы шалкеравых скрынь",
-  "cloth_config.peek.show_shulker_box_items.description": "Калі ўключана, мод будзе паказваць крышкі шалкеравых скрынь толькі калі яны маюць прадметы.",
   "cloth_config.peek.show_shulker_box_labels": "Паказваць іконкі шалкеравых скрынь",
   "cloth_config.peek.show_shulker_box_labels.description": "Калі ўключана, Мод будзе паказваць уласнае імя шалкеравай скрыні на крышцы.",
   "cloth_config.peek.show_decorated_pot_hint": "Паказваць падказкі дэкаратыўных чарапкоў",

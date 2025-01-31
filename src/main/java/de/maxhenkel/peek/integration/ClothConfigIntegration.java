@@ -2,12 +2,16 @@ package de.maxhenkel.peek.integration;
 
 import de.maxhenkel.configbuilder.entry.*;
 import de.maxhenkel.peek.Peek;
+import de.maxhenkel.peek.config.PeekConfig;
 import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+
+import java.util.Optional;
 
 public class ClothConfigIntegration {
     public static Screen createConfigScreen(Screen parent) {
@@ -106,11 +110,17 @@ public class ClothConfigIntegration {
                 Peek.CONFIG.showShulkerBoxBlockHint
         ));
 
-        shulkerBoxHints.addEntry(fromConfigEntry(entryBuilder,
-                Component.translatable("cloth_config.peek.show_shulker_box_items"),
-                Component.translatable("cloth_config.peek.show_shulker_box_items.description"),
-                Peek.CONFIG.showShulkerBoxItems
-        ));
+        shulkerBoxHints.addEntry(entryBuilder
+                .startEnumSelector(Component.translatable("cloth_config.peek.shulker_box_item_display_type"), PeekConfig.ShulkerItemDisplayType.class, Peek.CONFIG.shulkerBoxItemDisplayType.get())
+                .setTooltip(Component.translatable("cloth_config.peek.shulker_box_item_display_type.description"))
+                .setDefaultValue(() -> Peek.CONFIG.shulkerBoxItemDisplayType.getDefault())
+                .setSaveConsumer(d -> Peek.CONFIG.shulkerBoxItemDisplayType.set(d).save())
+                .setEnumNameProvider(v -> ((PeekConfig.ShulkerItemDisplayType) v).getName())
+                .setTooltipSupplier(shulkerItemDisplayType -> Optional.of(new Component[]{
+                        Component.translatable("cloth_config.peek.shulker_box_item_display_type.description"),
+                        Component.translatable("cloth_config.peek.shulker_box_item_display_type.selected", shulkerItemDisplayType.getName().copy().withStyle(ChatFormatting.GREEN), shulkerItemDisplayType.getDescription().copy().withStyle(ChatFormatting.GREEN)),
+                }))
+                .build());
 
         shulkerBoxHints.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.show_shulker_box_labels"),

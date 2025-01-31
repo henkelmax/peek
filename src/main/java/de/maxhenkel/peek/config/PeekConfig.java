@@ -2,6 +2,7 @@ package de.maxhenkel.peek.config;
 
 import de.maxhenkel.configbuilder.ConfigBuilder;
 import de.maxhenkel.configbuilder.entry.ConfigEntry;
+import net.minecraft.network.chat.Component;
 
 import java.math.BigInteger;
 
@@ -23,10 +24,10 @@ public class PeekConfig {
 
     public final ConfigEntry<Boolean> showShulkerBoxItemHint;
     public final ConfigEntry<Boolean> showShulkerBoxBlockHint;
-    public final ConfigEntry<Boolean> showShulkerBoxItems;
     public final ConfigEntry<Boolean> showShulkerBoxLabels;
     public final ConfigEntry<Boolean> useShulkerBoxDataStrings;
     public final ConfigEntry<Boolean> useShulkerBoxItemNames;
+    public final ConfigEntry<ShulkerItemDisplayType> shulkerBoxItemDisplayType;
     public final ConfigEntry<Boolean> hideShulkerBoxDataStrings;
     public final ConfigEntry<Boolean> sendShulkerBoxDataToClient;
 
@@ -110,11 +111,6 @@ public class PeekConfig {
                 true,
                 "If this is enabled, the mod will show additional information about the shulker box block on the lid of the shulker box"
         );
-        showShulkerBoxItems = builder.booleanEntry(
-                "show_shulker_box_items",
-                true,
-                "If this is enabled, the mod will show the item on the shulker box lid if it only contains one type of item"
-        );
         showShulkerBoxLabels = builder.booleanEntry(
                 "show_shulker_box_labels",
                 true,
@@ -131,6 +127,17 @@ public class PeekConfig {
                 false,
                 "If this is enabled, the mod will use item names to determine what to show on the shulker box lid",
                 "Note that this setting is experimental and subject to change"
+        );
+        shulkerBoxItemDisplayType = builder.enumEntry(
+                "shulker_box_item_display_type",
+                ShulkerItemDisplayType.SINGLE_TYPE,
+                "How the mod should determine which item to show on the shulker box lid",
+                "This gets overridden if you are using data strings or item names",
+                "Possible values:",
+                "NONE: Don't show any item",
+                "SINGLE_TYPE: If the shulker box only contains one type of item, show that item",
+                "BULK: Show the item thats most common in the shulker box",
+                "FIRST_ITEM: Show the first item in the shulker box"
         );
         hideShulkerBoxDataStrings = builder.booleanEntry(
                 "hide_shulker_box_data_strings",
@@ -163,6 +170,30 @@ public class PeekConfig {
 
         hudBackgroundColorValue = new BigInteger(hudBackgroundColor.get(), 16).intValue();
         hudTextColorValue = new BigInteger(hudTextColor.get(), 16).intValue();
+    }
+
+    public static enum ShulkerItemDisplayType {
+        NONE("none"),
+        SINGLE_TYPE("single_type"),
+        BULK("bulk"),
+        FIRST_ITEM("first_item");
+
+        private final Component name;
+        private final Component description;
+
+        ShulkerItemDisplayType(String name) {
+            String key = "cloth_config.peek.shulker_box_item_display_type.%s".formatted(name);
+            this.name = Component.translatable(key);
+            this.description = Component.translatable("%s.description".formatted(key));
+        }
+
+        public Component getName() {
+            return name;
+        }
+
+        public Component getDescription() {
+            return description;
+        }
     }
 
 }
