@@ -66,13 +66,21 @@ public class ShulkerHintData {
 
     public static ShulkerHintData fromContents(NonNullList<ItemStack> contents, @Nullable Component name) {
         ShulkerHintData data = new ShulkerHintData();
-        if (Peek.CONFIG.showShulkerBoxItems.get()) {
-            data.setDisplayItem(ShulkerBoxUtils.getBulkItem(contents));
-        }
+        data.setDisplayItem(determineDisplayItem(contents));
         if (Peek.CONFIG.showShulkerBoxLabels.get()) {
             data.setLabel(name);
         }
         return data;
+    }
+
+    @Nullable
+    private static ItemStack determineDisplayItem(NonNullList<ItemStack> contents) {
+        return switch (Peek.CONFIG.shulkerBoxItemDisplayType.get()) {
+            case NONE -> null;
+            case SINGLE_TYPE -> ShulkerBoxUtils.getSingleTypeItem(contents);
+            case BULK -> ShulkerBoxUtils.getBulkItem(contents);
+            case FIRST_ITEM -> contents.stream().filter(stack -> !stack.isEmpty()).findFirst().orElse(null);
+        };
     }
 
     @Nullable
