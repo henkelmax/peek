@@ -16,6 +16,8 @@ import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 
 import javax.annotation.Nullable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 
 public class ShulkerBoxUtils {
@@ -38,6 +40,19 @@ public class ShulkerBoxUtils {
 
     @Nullable
     public static ItemStack getBulkItem(NonNullList<ItemStack> contents) {
+        Map<Item, Integer> itemMap = new LinkedHashMap<>();
+        for (ItemStack itemStack : contents) {
+            if (itemStack.isEmpty()) {
+                continue;
+            }
+            Item item = itemStack.getItem();
+            itemMap.put(item, itemMap.getOrDefault(item, 0) + itemStack.getCount());
+        }
+        return itemMap.entrySet().stream().max(Map.Entry.comparingByValue()).map(Map.Entry::getKey).map(ItemStack::new).orElse(null);
+    }
+
+    @Nullable
+    public static ItemStack getSingleTypeItem(NonNullList<ItemStack> contents) {
         boolean exactSame = true;
         ItemStack renderItem = null;
         for (ItemStack itemStack : contents) {
