@@ -1,1 +1,2 @@
 - Removed redundant beehive tooltips
+- Removed redundant suspicious stew tooltips in creative inventory

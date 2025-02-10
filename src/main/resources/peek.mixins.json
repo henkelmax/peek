@@ -29,7 +29,7 @@
     "ShulkerBoxRendererMixin",
     "ShulkerBoxScreenMixin",
     "ShulkerBoxSpecialRendererMixin",
-    "SuspiciousStewItemMixin"
+    "SuspiciousStewEffectsMixin"
   ],
   "mixins": [
     "ShulkerBoxBlockEntityMixin"
