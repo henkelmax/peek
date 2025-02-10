@@ -19,8 +19,6 @@
   "cloth_config.peek.show_empty_containers.description": "Калі кантэйнер пусты, ён усё роўна паказваецца ў падказках.",
   "cloth_config.peek.peek_shulker_boxes": "Паказваць шалкеравыя скрыні",
   "cloth_config.peek.peek_shulker_boxes.description": "Паказвае прадметы ўнутры шалкеравых скрынь.",
-  "cloth_config.peek.peek_beehives": "Паказваць вуллі",
-  "cloth_config.peek.peek_beehives.description": "Паказваць колькасць пчол і ўзровень мёду.",
   "cloth_config.peek.peek_exploration_maps": "Паказваць карты даследчыкаў",
   "cloth_config.peek.peek_exploration_maps.description": "Паказвае адметкі каардынат на мапах даследчыка.",
   "cloth_config.peek.peek_compasses": "Паказваць компасы",

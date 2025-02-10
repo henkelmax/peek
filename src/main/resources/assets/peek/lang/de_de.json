@@ -19,8 +19,6 @@
   "cloth_config.peek.show_empty_containers.description": "Ob Behälter ohne Gegenstände angezeigt werden sollen.",
   "cloth_config.peek.peek_shulker_boxes": "Shulker-Kisten anzeigen",
   "cloth_config.peek.peek_shulker_boxes.description": "Zeigt die Gegenstände in Shulker-Kisten an.",
-  "cloth_config.peek.peek_beehives": "Bienenstöcke anzeigen",
-  "cloth_config.peek.peek_beehives.description": "Zeigt die Anzahl der Bienen und das Honiglevel an.",
   "cloth_config.peek.peek_exploration_maps": "Erkundungskarten anzeigen",
   "cloth_config.peek.peek_exploration_maps.description": "Zeigt die Koordinaten der Markierungen auf Erkundungskarten an.",
   "cloth_config.peek.peek_compasses": "Kompassziele anzeigen",

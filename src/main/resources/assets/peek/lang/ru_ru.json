@@ -14,8 +14,6 @@
   "cloth_config.peek.show_empty_containers.description": "Отображать контейнер без предметов",
   "cloth_config.peek.peek_shulker_boxes": "Подсказки шалкеровых ящиков",
   "cloth_config.peek.peek_shulker_boxes.description": "Отображать предметы внутри шалкерового ящика",
-  "cloth_config.peek.peek_beehives": "Подсказки ульев",
-  "cloth_config.peek.peek_beehives.description": "Отображать количество пчёл и мёда внутри улья",
   "cloth_config.peek.peek_exploration_maps": "Подсказки карт исследователя",
   "cloth_config.peek.peek_exploration_maps.description": "Отображать координаты карты исследователя",
   "cloth_config.peek.peek_compasses": "Подсказки компасов",

@@ -19,8 +19,6 @@
   "cloth_config.peek.show_empty_containers.description": "If empty containers should show the item slots in the tooltip.",
   "cloth_config.peek.peek_shulker_boxes": "Peek Shulker Boxes",
   "cloth_config.peek.peek_shulker_boxes.description": "Displays the items inside shulker boxes.",
-  "cloth_config.peek.peek_beehives": "Peek Beehives",
-  "cloth_config.peek.peek_beehives.description": "Displays the amount of bees and the honey level.",
   "cloth_config.peek.peek_exploration_maps": "Peek Exploration Maps",
   "cloth_config.peek.peek_exploration_maps.description": "Displays the marker coordinates of exploration maps.",
   "cloth_config.peek.peek_compasses": "Peek Compasses",

@@ -18,8 +18,6 @@
   "cloth_config.peek.show_empty_containers.description": "Чи порожні шалкери повинні показувати слоти предметів у підказці.",
   "cloth_config.peek.peek_shulker_boxes": "Перегляд шалкерових ящиків",
   "cloth_config.peek.peek_shulker_boxes.description": "Показує предмети всередині шалкерових ящиків.",
-  "cloth_config.peek.peek_beehives": "Перегляд бджолиних гнізд",
-  "cloth_config.peek.peek_beehives.description": "Показує кількість бджіл та рівень меду.",
   "cloth_config.peek.peek_exploration_maps": "Перегляд мап дослідника",
   "cloth_config.peek.peek_exploration_maps.description": "Показує координати маркера мапи дослідника.",
   "cloth_config.peek.peek_compasses": "Перегляд компасів",

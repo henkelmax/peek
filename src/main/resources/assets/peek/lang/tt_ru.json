@@ -20,8 +20,6 @@
   "cloth_config.peek.show_empty_containers.description": "Киңәштә буш предмет слотларын күрсәтә.",
   "cloth_config.peek.peek_shulker_boxes": "Шалкер тартмаларын караштыру",
   "cloth_config.peek.peek_shulker_boxes.description": "Шалкер тартмалары эчендә предметларны күрсәтә.",
-  "cloth_config.peek.peek_beehives": "Умарталарны караштыру",
-  "cloth_config.peek.peek_beehives.description": "Корт санын һәм бал дәрәҗәсен күрсәтә.",
   "cloth_config.peek.peek_exploration_maps": "Тикшеренүченең карталарын караштыру",
   "cloth_config.peek.peek_exploration_maps.description": "Тикшеренүченең карталары маркер координатларын күрсәтә.",
   "cloth_config.peek.peek_compasses": "Компасларны караштыру",

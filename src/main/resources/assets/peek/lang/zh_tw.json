@@ -19,8 +19,6 @@
   "cloth_config.peek.show_empty_containers.description": "是否在工具提示中顯示空容器的物品欄位。",
   "cloth_config.peek.peek_shulker_boxes": "預覽界伏盒",
   "cloth_config.peek.peek_shulker_boxes.description": "顯示界伏盒內的物品。",
-  "cloth_config.peek.peek_beehives": "預覽蜂巢",
-  "cloth_config.peek.peek_beehives.description": "顯示蜜蜂的數量和蜂蜜等級。",
   "cloth_config.peek.peek_exploration_maps": "預覽探險地圖",
   "cloth_config.peek.peek_exploration_maps.description": "顯示探險地圖的標記座標。",
   "cloth_config.peek.peek_compasses": "預覽羅盤",

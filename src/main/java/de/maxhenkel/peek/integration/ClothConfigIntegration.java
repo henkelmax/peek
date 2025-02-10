@@ -37,12 +37,6 @@ public class ClothConfigIntegration {
         ));
 
         peeking.addEntry(fromConfigEntry(entryBuilder,
-                Component.translatable("cloth_config.peek.peek_beehives"),
-                Component.translatable("cloth_config.peek.peek_beehives.description"),
-                Peek.CONFIG.peekBeehives
-        ));
-
-        peeking.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_exploration_maps"),
                 Component.translatable("cloth_config.peek.peek_exploration_maps.description"),
                 Peek.CONFIG.peekExplorationMaps
