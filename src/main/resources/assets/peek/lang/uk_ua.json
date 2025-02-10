@@ -1,6 +1,4 @@
 {
-  "tooltip.peek.beehive.bee_count": "Містить %s бджіл",
-  "tooltip.peek.beehive.honey_level": "%s рівнів меду",
   "tooltip.peek.map.marker_position": "Маркер на %s, %s",
   "tooltip.peek.compass.lodestone_position": "Магнетит на %s, %s, %s",
   "tooltip.peek.compass.lodestone_position.other_dimension": "Магнетит на %s, %s, %s у %s",

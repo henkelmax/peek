@@ -15,7 +15,6 @@ public class PeekConfig {
     public final ConfigEntry<Boolean> peekBarrels;
     public final ConfigEntry<Boolean> peekDispensers;
     public final ConfigEntry<Boolean> peekHoppers;
-    public final ConfigEntry<Boolean> peekBeehives;
     public final ConfigEntry<Boolean> peekExplorationMaps;
     public final ConfigEntry<Boolean> peekCompasses;
     public final ConfigEntry<Boolean> peekRecoveryCompasses;
@@ -72,11 +71,6 @@ public class PeekConfig {
                 "peek_hoppers",
                 true,
                 "Displays the items inside pick-blocked hoppers"
-        );
-        peekBeehives = builder.booleanEntry(
-                "peek_beehives",
-                true,
-                "Displays the amount of bees and the honey level"
         );
         peekExplorationMaps = builder.booleanEntry(
                 "peek_exploration_maps",

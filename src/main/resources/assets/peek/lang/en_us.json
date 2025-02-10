@@ -1,6 +1,4 @@
 {
-  "tooltip.peek.beehive.bee_count": "Contains %s bees",
-  "tooltip.peek.beehive.honey_level": "Honey level %s",
   "tooltip.peek.map.marker_position": "Marker at %s, %s",
   "tooltip.peek.compass.lodestone_position": "Lodestone at %s, %s, %s",
   "tooltip.peek.compass.lodestone_position.other_dimension": "Lodestone at %s, %s, %s in %s",

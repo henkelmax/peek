@@ -1,6 +1,4 @@
 {
-  "tooltip.peek.beehive.bee_count": "Пчёл внутри: %s",
-  "tooltip.peek.beehive.honey_level": "Количество мёда: %s",
   "tooltip.peek.map.marker_position": "Координаты: %s, %s",
   "tooltip.peek.compass.lodestone_position": "Координаты: %s, %s, %s",
   "tooltip.peek.compass.lodestone_position.other_dimension": "Координаты: %s, %s, %s, в %s",

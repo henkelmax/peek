@@ -1,8 +1,6 @@
 {
   "modmenu.summaryTranslation.peek": "Предмет киңәшендәге өстәмә мәгълүмат.",
   "modmenu.descriptionTranslation.peek": "Предмет киңәшендәге корт санын һәм бал дәрәжәсен, магнетитның, маркерның, килү һәм үлем нокталарны (киңлек белән), серле аш тәэсирен, сандыкларның (һәм капкын сандыкларның да), кисмәкләрнең, өләшкечләрнең белән ташлаткычларның, бүрәнкәләрнең эчен күрсәтә. Шулай ук шалкер тартмаларын эчен, исемен, анда була торган предмет бер төрен күрсәтә.",
-  "tooltip.peek.beehive.bee_count": "%s корт",
-  "tooltip.peek.beehive.honey_level": "%s бал дәрәжәсе",
   "tooltip.peek.map.marker_position": "%s, %s ноктасында маркер",
   "tooltip.peek.compass.lodestone_position": "%s, %s, %s ноктасында магнетит",
   "tooltip.peek.compass.lodestone_position.other_dimension": "%4$s киңлегендәге %s, %s, %s ноктасында магнетит",

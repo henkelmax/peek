@@ -1,6 +1,4 @@
 {
-  "tooltip.peek.beehive.bee_count": "包含 %s 只蜜蜂",
-  "tooltip.peek.beehive.honey_level": "蜂蜜等级 %s",
   "tooltip.peek.map.marker_position": "标记在 %s, %s",
   "tooltip.peek.compass.lodestone_position": "磁石在 %s, %s, %s",
   "tooltip.peek.compass.lodestone_position.other_dimension": "磁石在 %s, %s, %s 于 %s",

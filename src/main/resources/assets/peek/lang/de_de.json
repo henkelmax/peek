@@ -1,6 +1,4 @@
 {
-  "tooltip.peek.beehive.bee_count": "Enthält %s Bienen",
-  "tooltip.peek.beehive.honey_level": "Honiglevel %s",
   "tooltip.peek.map.marker_position": "Markierung bei %s, %s",
   "tooltip.peek.compass.lodestone_position": "Magnetit bei %s, %s, %s",
   "tooltip.peek.compass.lodestone_position.other_dimension": "Leitstein bei %s, %s, %s in %s",
