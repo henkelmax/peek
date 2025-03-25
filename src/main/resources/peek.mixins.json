@@ -8,19 +8,14 @@
     "BlockItemMixin",
     "ClientPlayNetworkHandlerMixin",
     "ClientTooltipComponentMixin",
-    "CompassItemMixin",
     "ConditionalItemModelPropertiesMixin",
     "DecoratedPotBlockEntityMixin",
     "DecoratedPotBlockMixin",
     "DecoratedPotRendererMixin",
     "GuiMixin",
-    "ItemMixin",
-    "ItemModelResolverMixin",
     "ItemStackMixin",
-    "ItemStackRenderStateMixin",
-    "LayerRenderStateMixin",
     "LocalPlayerMixin",
-    "MapItemMixin",
+    "MapDecorationsMixin",
     "MinecraftMixin",
     "MultiPlayerGameModeMixin",
     "PackRepositoryMixin",
@@ -29,7 +24,8 @@
     "ShulkerBoxRendererMixin",
     "ShulkerBoxScreenMixin",
     "ShulkerBoxSpecialRendererMixin",
-    "SuspiciousStewEffectsMixin"
+    "SuspiciousStewEffectsMixin",
+    "LodestoneTrackerMixin"
   ],
   "mixins": [
     "ShulkerBoxBlockEntityMixin"

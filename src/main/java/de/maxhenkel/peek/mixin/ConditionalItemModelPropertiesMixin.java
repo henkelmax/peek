@@ -21,7 +21,7 @@ public class ConditionalItemModelPropertiesMixin {
 
     @Shadow
     @Final
-    private static ExtraCodecs.LateBoundIdMapper<ResourceLocation, MapCodec<? extends ConditionalItemModelProperty>> ID_MAPPER;
+    public static ExtraCodecs.LateBoundIdMapper<ResourceLocation, MapCodec<? extends ConditionalItemModelProperty>> ID_MAPPER;
 
     @Inject(method = "bootstrap", at = @At("RETURN"))
     private static void init(CallbackInfo ci) {

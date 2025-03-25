@@ -30,8 +30,8 @@ public abstract class ClientPlayNetworkHandlerMixin extends ClientCommonPacketLi
             if (DataStore.enderChestInventory == null) {
                 DataStore.enderChestInventory = NonNullList.withSize(27, ItemStack.EMPTY);
             }
-            for (int i = 0; i < Math.min(packet.getItems().size() - 36, 27); i++) {
-                DataStore.enderChestInventory.set(i, packet.getItems().get(i));
+            for (int i = 0; i < Math.min(packet.items().size() - 36, 27); i++) {
+                DataStore.enderChestInventory.set(i, packet.items().get(i));
             }
         }
     }

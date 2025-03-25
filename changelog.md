@@ -1,2 +1,1 @@
-- Removed redundant beehive tooltips
-- Removed redundant suspicious stew tooltips in creative inventory
+- Updated to 1.21.5
