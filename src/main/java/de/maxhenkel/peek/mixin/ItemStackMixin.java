@@ -2,6 +2,7 @@ package de.maxhenkel.peek.mixin;
 
 import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.events.TooltipEvents;
+import de.maxhenkel.peek.events.TooltipImageEvents;
 import de.maxhenkel.peek.interfaces.PeekItemStack;
 import de.maxhenkel.peek.utils.ShulkerBoxUtils;
 import net.minecraft.client.Minecraft;
@@ -10,6 +11,8 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -21,6 +24,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
 @Mixin(ItemStack.class)
@@ -38,8 +42,13 @@ public abstract class ItemStackMixin implements PeekItemStack, DataComponentHold
         if (dataComponentType != DataComponents.CONTAINER) {
             return;
         }
-        // Always hide ALL container tooltips no matter if options are enabled or disabled in the config
-        // TODO Maybe put this behind a config option
+        if (!(getItem() instanceof BlockItem blockItem)) {
+            return;
+        }
+        Optional<TooltipComponent> tooltipImage = TooltipImageEvents.getTooltipImage((ItemStack) (Object) this, blockItem.getBlock());
+        if (tooltipImage.isEmpty()) {
+            return;
+        }
         ci.cancel();
     }
 

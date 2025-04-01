@@ -1,1 +1,2 @@
-- Updated to 1.21.5
+- Fixed container tooltips missing if peeking is disabled
+
