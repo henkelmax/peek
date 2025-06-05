@@ -88,19 +88,24 @@ public class HudEvents {
         int hudLeft = screenWidth / 2 - hudWidth / 2;
 
         graphics.fill(hudLeft, 0, hudLeft + hudWidth, hudHeight, Peek.CONFIG.hudBackgroundColorValue);
-        renderEntity(graphics, hudLeft + PADDING + maxEntityWidth / 2F, PADDING + maxEntityHeight, maxEntityWidth, maxEntityHeight, getCachedEntity(livingEntity.getType()));
+        int x1 = hudLeft + PADDING;
+        int y1 = PADDING;
+        int x2 = x1 + maxEntityWidth;
+        int y2 = y1 + maxEntityHeight;
+        renderEntity(graphics, x1, y1, x2, y2, maxEntityWidth, maxEntityHeight, getCachedEntity(livingEntity.getType()));
         graphics.drawString(font, name, hudLeft + maxEntityWidth + PADDING * 2, hudHeight / 2 - font.lineHeight / 2, Peek.CONFIG.hudTextColorValue);
     }
 
-    private static final Vector3f ENTITY_TRANSLATION = new Vector3f();
     private static final Quaternionf ENTITY_ANGLE = new Quaternionf().rotationXYZ(0F, Mth.DEG_TO_RAD * 180F, Mth.DEG_TO_RAD * 180F);
 
-    private static void renderEntity(GuiGraphics graphics, float x, float y, float maxWidth, float maxHeight, LivingEntity entity) {
+    private static void renderEntity(GuiGraphics graphics, int x1, int y1, int x2, int y2, float maxWidth, float maxHeight, LivingEntity entity) {
         if (entity == null) {
             return;
         }
-        float maxXScale = maxWidth / entity.getBbWidth();
-        float maxYScale = maxHeight / entity.getBbHeight();
+        // Multiply the bounding box size by 1.5 to make the entity fit in the confined space,
+        // since the bounding box is always smaller than the rendered entity
+        float maxXScale = maxWidth / (entity.getBbWidth() * 1.5F);
+        float maxYScale = maxHeight / (entity.getBbHeight() * 1.5F);
 
         int entityScale = (int) Math.min(maxXScale, maxYScale);
 
@@ -108,7 +113,8 @@ public class HudEvents {
         float r = (float) (((double) System.currentTimeMillis() / 20D) % 360D);
         ENTITY_ANGLE.rotateY(Mth.DEG_TO_RAD * r, rot);
 
-        InventoryScreen.renderEntityInInventory(graphics, x, y, entityScale, ENTITY_TRANSLATION, rot, null, entity);
+        Vector3f offset = new Vector3f(0F, entity.getBbHeight() / 2F, 0F);
+        InventoryScreen.renderEntityInInventory(graphics, x1, y1, x2, y2, entityScale, offset, rot, null, entity);
     }
 
     private static final Map<EntityType<?>, LivingEntity> ENTITY_CACHE = new HashMap<>();

@@ -4,13 +4,13 @@ import de.maxhenkel.configbuilder.ConfigBuilder;
 import de.maxhenkel.peek.config.PeekConfig;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Peek implements ModInitializer {
 
     public static final String MODID = "peek";
-    public static final Logger LOGGER = LogManager.getLogger(MODID);
+    public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
     public static PeekConfig CONFIG;
 
     @Override

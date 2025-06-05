@@ -9,6 +9,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.item.ItemStack;
@@ -16,6 +17,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.TagValueOutput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -49,15 +52,17 @@ public abstract class ShulkerBoxBlockEntityMixin extends RandomizableContainerBl
         if (!Peek.CONFIG.sendShulkerBoxDataToClient.get()) {
             return super.getUpdateTag(provider);
         }
-        CompoundTag tag = new CompoundTag();
-        saveAdditional(tag, provider);
-        if (tag.isEmpty()) {
-            // If the tag is empty, save container items again with an empty items list,so that the update packet is actually processed
-            // Empty tags are replaced with null in the ClientboundBlockEntityDataPacket and thus not processed on the client
-            ContainerHelper.saveAllItems(tag, itemStacks, true, provider);
-        }
+        try (ProblemReporter.ScopedCollector scopedCollector = new ProblemReporter.ScopedCollector(problemPath(), Peek.LOGGER)) {
+            TagValueOutput tag = TagValueOutput.createWithContext(scopedCollector, provider);
+            saveAdditional(tag);
+            if (tag.isEmpty()) {
+                // If the tag is empty, save container items again with an empty items list,so that the update packet is actually processed
+                // Empty tags are replaced with null in the ClientboundBlockEntityDataPacket and thus not processed on the client
+                ContainerHelper.saveAllItems(tag, itemStacks, true);
+            }
 
-        return tag;
+            return tag.buildResult();
+        }
     }
 
     @Override
@@ -86,6 +91,5 @@ public abstract class ShulkerBoxBlockEntityMixin extends RandomizableContainerBl
     }
 
     @Shadow
-    protected abstract void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider);
-
+    protected abstract void saveAdditional(ValueOutput valueOutput);
 }
