@@ -32,6 +32,10 @@ public abstract class MapItemMixin extends Item {
 
         MapDecorations mapDecorations = itemStack.get(DataComponents.MAP_DECORATIONS);
 
+        if (mapDecorations == null) {
+            return;
+        }
+
         for (Map.Entry<String, MapDecorations.Entry> entry : mapDecorations.decorations().entrySet()) {
             if (!entry.getKey().equals("+")) {
                 continue;

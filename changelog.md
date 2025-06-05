@@ -1,2 +1,1 @@
-- Removed redundant beehive tooltips
-- Removed redundant suspicious stew tooltips in creative inventory
+- Fixed crash for maps without decorations
