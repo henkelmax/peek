@@ -1,3 +1,1 @@
-- Updated ConfigBuilder
-- Removed `show_shulker_box_items` config option
-- Added `shulker_box_item_display_type` config option
+- Fixed crash for maps without decorations
