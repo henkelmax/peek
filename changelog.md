@@ -1,1 +1,1 @@
-- Fixed shulker box item rendering
+- Fixed shulker lid text not being rendered

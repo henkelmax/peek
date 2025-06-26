@@ -79,7 +79,7 @@ public class ShulkerRenderEvents {
             poseStack.scale(textScale, textScale, textScale);
             poseStack.translate(0F, mc.font.lineHeight / 2F, 0F);
             poseStack.rotateAround(Axis.XP.rotationDegrees(180F), 1F, 0F, 0F);
-            mc.font.drawInBatch8xOutline(label.getVisualOrderText(), -width / 2F, 0F, 0xFFFFFF, 0x00, poseStack.last().pose(), multiBufferSource, light);
+            mc.font.drawInBatch8xOutline(label.getVisualOrderText(), -width / 2F, 0F, 0xFFFFFFFF, 0xFF000000, poseStack.last().pose(), multiBufferSource, light);
             poseStack.popPose();
         }
         poseStack.popPose();
