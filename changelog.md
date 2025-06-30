@@ -1,1 +1,1 @@
-- Fixed shulker lid text not being rendered
+- Updated to 1.21.7
