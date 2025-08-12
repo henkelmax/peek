@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 public class DataStore {
     @Nullable
     public static ShulkerBoxBlockEntity lastOpenedShulkerBox;
+    public static int lastOpenedShulkerBoxContainerId = -1;
     @Nullable
     public static NonNullList<ItemStack> enderChestInventory;
 }
