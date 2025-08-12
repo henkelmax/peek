@@ -6,6 +6,7 @@ import de.maxhenkel.peek.data.DataStore;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.inventory.ShulkerBoxMenu;
+import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -22,14 +23,13 @@ public class ShulkerBoxMenuMixin {
         if (!(container instanceof SimpleContainer)) {
             return container;
         }
-        if (DataStore.lastOpenedShulkerBox == null) {
+        ShulkerBoxBlockEntity lastOpenedShulkerBox = DataStore.lastOpenedShulkerBox;
+        if (lastOpenedShulkerBox == null) {
             return container;
         }
-        if (DataStore.lastOpenedShulkerBoxContainerId != containerId) {
-            return container;
-        }
-        DataStore.lastOpenedShulkerBox.clearContent();
-        return DataStore.lastOpenedShulkerBox;
+        lastOpenedShulkerBox.clearContent();
+        DataStore.lastOpenedShulkerBox = null;
+        return lastOpenedShulkerBox;
     }
 
 }
