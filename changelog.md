@@ -1,1 +1,1 @@
-- Fixed crash for maps without decorations
+- Fixed compatibility with Advanced Shulkerboxes
