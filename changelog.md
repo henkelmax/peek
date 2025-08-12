@@ -1,1 +1,1 @@
-- Fixed compatibility with Advanced Shulkerboxes
+- Properly fixed compatibility with Advanced Shulkerboxes
