@@ -5,34 +5,30 @@ import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.events.ShulkerRenderEvents;
 import de.maxhenkel.peek.utils.ShulkerBoxUtils;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.special.NoDataSpecialModelRenderer;
 import net.minecraft.client.renderer.special.ShulkerBoxSpecialRenderer;
+import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.Shadow;
 
 import javax.annotation.Nullable;
 
 @Mixin(ShulkerBoxSpecialRenderer.class)
-public abstract class ShulkerBoxSpecialRendererMixin implements NoDataSpecialModelRenderer {
+public abstract class ShulkerBoxSpecialRendererMixin implements SpecialModelRenderer<ItemStack> {
 
-    @Unique
-    @Nullable
-    private ItemStack itemStack;
+    @Shadow
+    public abstract void render(ItemDisplayContext displayContext, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay, boolean hasFoilType);
 
     @Nullable
     @Override
-    public Void extractArgument(ItemStack itemStack) {
-        this.itemStack = itemStack;
-        return NoDataSpecialModelRenderer.super.extractArgument(itemStack);
+    public ItemStack extractArgument(ItemStack itemStack) {
+        return itemStack;
     }
 
-    @Inject(method = "render", at = @At(value = "RETURN"))
-    public void render(ItemDisplayContext itemDisplayContext, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay, boolean bl, CallbackInfo ci) {
+    @Override
+    public void render(@Nullable ItemStack itemStack, ItemDisplayContext displayContext, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay, boolean hasFoilType) {
+        render(displayContext, poseStack, bufferSource, packedLight, packedOverlay, hasFoilType);
         if (itemStack == null) {
             return;
         }
@@ -42,7 +38,7 @@ public abstract class ShulkerBoxSpecialRendererMixin implements NoDataSpecialMod
         if (!Peek.CONFIG.showShulkerBoxItemHint.get()) {
             return;
         }
-        ShulkerRenderEvents.renderShulkerBoxItemLabel(itemStack, itemDisplayContext, poseStack, multiBufferSource, light, overlay);
+        ShulkerRenderEvents.renderShulkerBoxItemLabel(itemStack, displayContext, poseStack, bufferSource, packedLight, packedOverlay);
     }
 
 }

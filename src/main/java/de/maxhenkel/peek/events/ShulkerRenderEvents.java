@@ -11,7 +11,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -68,7 +67,7 @@ public class ShulkerRenderEvents {
                 poseStack.scale(12F / 16F, 12F / 16F, 12F / 16F);
             }
             ItemStack renderItemStack = createShulkerRenderStack(displayItem);
-            mc.getItemRenderer().renderStatic(renderItemStack, ItemDisplayContext.GUI, light, overlay, poseStack, multiBufferSource, mc.level, 0);
+            mc.getItemRenderer().renderStatic(renderItemStack, ItemDisplayContext.FIXED, light, overlay, poseStack, multiBufferSource, mc.level, 0);
             poseStack.popPose();
         }
 
@@ -82,7 +81,7 @@ public class ShulkerRenderEvents {
             poseStack.scale(textScale, textScale, textScale);
             poseStack.translate(0F, mc.font.lineHeight / 2F, 0F);
             poseStack.rotateAround(Axis.XP.rotationDegrees(180F), 1F, 0F, 0F);
-            mc.font.drawInBatch8xOutline(label.getVisualOrderText(), -width / 2F, 0F, 0xFFFFFF, 0x00, poseStack.last().pose(), multiBufferSource, light);
+            mc.font.drawInBatch8xOutline(label.getVisualOrderText(), -width / 2F, 0F, 0xFFFFFFFF, 0xFF000000, poseStack.last().pose(), multiBufferSource, light);
             poseStack.popPose();
         }
         poseStack.popPose();
@@ -90,7 +89,7 @@ public class ShulkerRenderEvents {
 
     public static boolean isShulkerRenderStack(ItemStack stack) {
         CompoundTag tag = stack.getComponents().getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).getUnsafe();
-        return tag.contains(SHULKER_ITEM_TAG, Tag.TAG_BYTE);
+        return tag.contains(SHULKER_ITEM_TAG);
     }
 
     public static ItemStack createShulkerRenderStack(ItemStack source) {

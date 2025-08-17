@@ -1,11 +1,10 @@
 package de.maxhenkel.peek.tooltips;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import de.maxhenkel.peek.Peek;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -81,8 +80,7 @@ public class ClientContainerTooltip implements ClientTooltipComponent {
     }
 
     private void blit(GuiGraphics guiGraphics, int i, int j, Texture texture) {
-        RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
-        guiGraphics.blit(RenderType::guiTextured, TEXTURE_LOCATION, i, j, (float) texture.x, (float) texture.y, texture.w, texture.h, TEXTURE_SIZE, TEXTURE_SIZE);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE_LOCATION, i, j, (float) texture.x, (float) texture.y, texture.w, texture.h, TEXTURE_SIZE, TEXTURE_SIZE);
     }
 
     enum Texture {
