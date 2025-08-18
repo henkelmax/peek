@@ -3,4 +3,3 @@ accessible method net/minecraft/world/level/block/entity/ShulkerBoxBlockEntity g
 accessible method net/minecraft/world/level/block/entity/ShulkerBoxBlockEntity setItems (Lnet/minecraft/core/NonNullList;)V
 accessible field net/minecraft/world/inventory/ShulkerBoxMenu container Lnet/minecraft/world/Container;
 mutable field net/minecraft/client/gui/screens/Screen title Lnet/minecraft/network/chat/Component;
-accessible field net/minecraft/client/renderer/item/ItemStackRenderState isLeftHand Z

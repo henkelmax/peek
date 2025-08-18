@@ -1,6 +1,4 @@
 {
-  "tooltip.peek.beehive.bee_count": "包含 %s 只蜜蜂",
-  "tooltip.peek.beehive.honey_level": "蜂蜜等级 %s",
   "tooltip.peek.map.marker_position": "标记在 %s, %s",
   "tooltip.peek.compass.lodestone_position": "磁石在 %s, %s, %s",
   "tooltip.peek.compass.lodestone_position.other_dimension": "磁石在 %s, %s, %s 于 %s",
@@ -14,8 +12,6 @@
   "cloth_config.peek.settings": "设置",
   "cloth_config.peek.peek_shulker_boxes": "预览潜影箱",
   "cloth_config.peek.peek_shulker_boxes.description": "显示潜影箱内的物品。",
-  "cloth_config.peek.peek_beehives": "预览蜂巢",
-  "cloth_config.peek.peek_beehives.description": "显示蜜蜂的数量和蜂蜜等级。",
   "cloth_config.peek.peek_exploration_maps": "预览探索地图",
   "cloth_config.peek.peek_exploration_maps.description": "显示探索地图的标记坐标。",
   "cloth_config.peek.peek_compasses": "预览指南针",
