@@ -10,7 +10,8 @@ import org.slf4j.LoggerFactory;
 public class Peek implements ModInitializer {
 
     public static final String MODID = "titancraft-peek";
-    public static final Logger LOGGER = LogManager.getLogger(MODID);
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
     public static PeekConfig CONFIG;
 

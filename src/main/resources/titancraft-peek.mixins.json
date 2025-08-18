@@ -16,7 +16,6 @@
     "DecoratedPotRendererMixin",
 
 	"GuiMixin",
-    "ItemModelResolverMixin",
 
     "ItemStackMixin",
     "LocalPlayerMixin",

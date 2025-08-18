@@ -1,7 +1,6 @@
 package de.maxhenkel.peek.mixin;
 
 import de.maxhenkel.peek.Peek;
-import de.maxhenkel.peek.events.TooltipEvents;
 import de.maxhenkel.peek.events.TooltipImageEvents;
 import de.maxhenkel.peek.interfaces.PeekItemStack;
 import de.maxhenkel.peek.utils.ShulkerBoxUtils;
@@ -32,7 +31,6 @@ public abstract class ItemStackMixin implements PeekItemStack, DataComponentHold
 
     @Inject(method = "addDetailsToTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;addToTooltip(Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/world/item/Item$TooltipContext;Lnet/minecraft/world/item/component/TooltipDisplay;Ljava/util/function/Consumer;Lnet/minecraft/world/item/TooltipFlag;)V", shift = At.Shift.AFTER, ordinal = 0))
     public void addDetailsToTooltip(Item.TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Player player, TooltipFlag tooltipFlag, Consumer<Component> consumer, CallbackInfo ci) {
-        TooltipEvents.getTooltip((ItemStack) (Object) this, tooltipContext, tooltipFlag, consumer);
         addToTooltip(DataComponents.LODESTONE_TRACKER, tooltipContext, tooltipDisplay, consumer, tooltipFlag);
         addToTooltip(DataComponents.MAP_DECORATIONS, tooltipContext, tooltipDisplay, consumer, tooltipFlag);
     }
