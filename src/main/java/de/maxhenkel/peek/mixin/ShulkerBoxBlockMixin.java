@@ -3,6 +3,7 @@ package de.maxhenkel.peek.mixin;
 import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.data.DataStore;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -28,7 +29,7 @@ public class ShulkerBoxBlockMixin {
     }
 
     @Inject(method = "use", at = @At(value = "HEAD"))
-    private void use(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult, CallbackInfoReturnable<InteractionResult> cir) {
+    private void use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, CallbackInfoReturnable<InteractionResult> cir) {
         if (!Peek.CONFIG.showShulkerBoxBlockHint.get()) {
             return;
         }
@@ -36,7 +37,7 @@ public class ShulkerBoxBlockMixin {
         if (!level.isClientSide) {
             return;
         }
-        BlockEntity blockEntity = level.getBlockEntity(blockPos);
+        BlockEntity blockEntity = level.getBlockEntity(pos);
         if (blockEntity instanceof ShulkerBoxBlockEntity shulkerBoxBlockEntity) {
             DataStore.lastOpenedShulkerBox = shulkerBoxBlockEntity;
         }

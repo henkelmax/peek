@@ -1,1 +1,1 @@
-- Properly fixed compatibility with Advanced Shulkerboxes
+- Fixed mixin crash
