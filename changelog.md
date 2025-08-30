@@ -1,1 +1,1 @@
-- Fixed mixin crash
+- Updated Ukrainian translation
