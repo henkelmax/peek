@@ -2,69 +2,75 @@ package de.maxhenkel.peek.events;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import com.mojang.serialization.Codec;
 import de.maxhenkel.peek.Peek;
-import de.maxhenkel.peek.interfaces.PeekDecoratedPot;
+import de.maxhenkel.peek.interfaces.PeekDecoratedPotRenderState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.blockentity.state.DecoratedPotRenderState;
+import net.minecraft.client.renderer.item.ItemStackRenderState;
+import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.component.DataComponentPatch;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.CustomData;
-import net.minecraft.world.level.block.entity.DecoratedPotBlockEntity;
+
+import javax.annotation.Nullable;
 
 public class DecoratedPotRenderEvents {
 
     public static final ResourceLocation DECORATED_POT_ITEM_CONDITION = ResourceLocation.fromNamespaceAndPath(Peek.MODID, "decorated_pot_item");
 
-    private static final String DECORATED_POT_ITEM_TAG = "DecoratedPotItem";
+    public static void submitDecoratedPotLabel(DecoratedPotRenderState decoratedPotRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+        if (!(decoratedPotRenderState instanceof PeekDecoratedPotRenderState peekDecoratedPotRenderState)) {
+            throw new IllegalStateException("DecoratedPotRenderState is not a PeekDecoratedPotRenderState");
+        }
+        ItemStackRenderState itemStackRenderState = peekDecoratedPotRenderState.peek$getDisplayItem();
+        FormattedCharSequence label = peekDecoratedPotRenderState.peek$getLabel();
 
-    public static void renderDecoratedPotLabel(DecoratedPotBlockEntity pot, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
-        if (pot == null) {
+        if (itemStackRenderState == null || label == null) {
             return;
         }
-        ItemStack containedItem = ((PeekDecoratedPot) pot).peek$getContainedItem();
-        if (containedItem == null || containedItem.isEmpty()) {
-            return;
-        }
+
         Minecraft mc = Minecraft.getInstance();
-        ItemStack renderItemStack = createPotRenderStack(containedItem);
         poseStack.pushPose();
 
         poseStack.translate(0.5D, 0.5D, 0.5D);
         poseStack.rotateAround(Axis.YP.rotationDegrees(180F), 0F, 1F, 0F);
 
         poseStack.translate(0D, 0D, -7.001D / 16D);
+
         poseStack.pushPose();
         poseStack.scale(0.5F, 0.5F, 0.5F);
         poseStack.translate(0D, 4D / 16D, 0D);
-        mc.getItemRenderer().renderStatic(renderItemStack, ItemDisplayContext.FIXED, light, overlay, poseStack, multiBufferSource, mc.level, 0);
+        itemStackRenderState.submit(poseStack, submitNodeCollector, decoratedPotRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
         poseStack.popPose();
+
         poseStack.translate(0D, -5D / 16D, 0D);
-        MutableComponent text = Component.translatable("label.peek.decorated_pot_count", containedItem.getCount());
-        int width = mc.font.width(text);
+        int width = mc.font.width(label);
         float textScale = 0.02F;
         poseStack.scale(textScale, textScale, textScale);
         poseStack.translate(0F, mc.font.lineHeight / 2F, 0F);
         poseStack.rotateAround(Axis.ZP.rotationDegrees(180F), 0F, 0F, 1F);
-        mc.font.drawInBatch8xOutline(text.getVisualOrderText(), -width / 2F, 0F, 0xFFFFFF, 0x00, poseStack.last().pose(), multiBufferSource, light);
+        submitNodeCollector.submitText(poseStack, -width / 2F, 0F, label, false, Font.DisplayMode.POLYGON_OFFSET, decoratedPotRenderState.lightCoords, 0xFFFFFFFF, 0x00000000, 0xFF000000);
         poseStack.popPose();
     }
 
+    private static final DataComponentType<Boolean> DECORATED_POT_ITEM_TYPE = DataComponentType.<Boolean>builder().persistent(Codec.BOOL).build();
+
     public static boolean isPotRenderStack(ItemStack stack) {
-        CompoundTag tag = stack.getComponents().getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).getUnsafe();
-        return tag.contains(DECORATED_POT_ITEM_TAG);
+        return stack.getComponents().getOrDefault(DECORATED_POT_ITEM_TYPE, false);
     }
 
-    public static ItemStack createPotRenderStack(ItemStack source) {
+    public static ItemStack createPotRenderStack(@Nullable ItemStack source) {
+        if (source == null) {
+            return null;
+        }
         ItemStack stack = source.copy();
-        CompoundTag tag = new CompoundTag();
-        tag.putBoolean(DECORATED_POT_ITEM_TAG, true);
-        stack.applyComponents(DataComponentPatch.builder().set(DataComponents.CUSTOM_DATA, CustomData.of(tag)).build());
+        stack.applyComponents(DataComponentPatch.builder().set(DECORATED_POT_ITEM_TYPE, true).build());
         return stack;
     }
 

@@ -25,7 +25,7 @@ public class ShulkerBoxBlockMixin {
             return;
         }
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             return;
         }
         BlockEntity blockEntity = level.getBlockEntity(blockPos);

@@ -2,7 +2,6 @@ package de.maxhenkel.peek.mixin;
 
 import de.maxhenkel.peek.utils.ItemNameCache;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.ReceivingLevelScreen;
 import net.minecraft.client.multiplayer.ClientLevel;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,7 +21,7 @@ public class MinecraftMixin {
     public ClientLevel level;
 
     @Inject(method = "setLevel", at = @At("RETURN"))
-    public void setLevel(ClientLevel clientLevel, ReceivingLevelScreen.Reason reason, CallbackInfo ci) {
+    public void setLevel(ClientLevel clientLevel, CallbackInfo ci) {
         if (clientLevel != null) {
             ItemNameCache.loadTranslatedNames(clientLevel);
             ItemNameCache.loadIdNames(clientLevel);

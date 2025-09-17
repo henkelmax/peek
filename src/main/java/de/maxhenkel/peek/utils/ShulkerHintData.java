@@ -3,6 +3,7 @@ package de.maxhenkel.peek.utils;
 import de.maxhenkel.peek.Peek;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -33,6 +34,14 @@ public class ShulkerHintData {
     @Nullable
     public Component getLabel() {
         return label;
+    }
+
+    @Nullable
+    public FormattedCharSequence getLabelFormatted() {
+        if (label == null) {
+            return null;
+        }
+        return label.getVisualOrderText();
     }
 
     @Nullable

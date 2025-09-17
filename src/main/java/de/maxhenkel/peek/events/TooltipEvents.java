@@ -45,7 +45,7 @@ public class TooltipEvents {
         @Nullable Level level = Minecraft.getInstance().level;
 
         if (level != null && level.dimensionType().natural()) {
-            GlobalPos spawnPosition = GlobalPos.of(level.dimension(), level.getSharedSpawnPos());
+            GlobalPos spawnPosition = GlobalPos.of(level.dimension(), level.getRespawnData().pos());
             consumer.accept(Component.translatable("tooltip.peek.compass.spawn_position",
                     Component.literal(String.valueOf(spawnPosition.pos().getX())).withStyle(ChatFormatting.WHITE),
                     Component.literal(String.valueOf(spawnPosition.pos().getY())).withStyle(ChatFormatting.WHITE),

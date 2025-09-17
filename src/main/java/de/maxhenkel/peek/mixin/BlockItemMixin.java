@@ -45,7 +45,7 @@ public abstract class BlockItemMixin extends Item {
             return;
         }
         Level level = blockPlaceContext2.getLevel();
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             return;
         }
         BlockEntity blockEntity = level.getBlockEntity(blockPlaceContext2.getClickedPos());

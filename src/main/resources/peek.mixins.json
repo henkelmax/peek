@@ -12,9 +12,11 @@
     "DecoratedPotBlockEntityMixin",
     "DecoratedPotBlockMixin",
     "DecoratedPotRendererMixin",
+    "DecoratedPotRenderStateMixin",
     "GuiMixin",
     "ItemStackMixin",
     "LocalPlayerMixin",
+    "LodestoneTrackerMixin",
     "MapDecorationsMixin",
     "MinecraftMixin",
     "MultiPlayerGameModeMixin",
@@ -22,10 +24,10 @@
     "ShulkerBoxBlockMixin",
     "ShulkerBoxMenuMixin",
     "ShulkerBoxRendererMixin",
+    "ShulkerBoxRenderStateMixin",
     "ShulkerBoxScreenMixin",
     "ShulkerBoxSpecialRendererMixin",
-    "SuspiciousStewEffectsMixin",
-    "LodestoneTrackerMixin"
+    "SuspiciousStewEffectsMixin"
   ],
   "mixins": [
     "ShulkerBoxBlockEntityMixin"

@@ -4,7 +4,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.events.ShulkerRenderEvents;
 import de.maxhenkel.peek.utils.ShulkerBoxUtils;
-import net.minecraft.client.renderer.MultiBufferSource;
+import de.maxhenkel.peek.utils.ShulkerHintData;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.special.ShulkerBoxSpecialRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -15,30 +16,26 @@ import org.spongepowered.asm.mixin.Shadow;
 import javax.annotation.Nullable;
 
 @Mixin(ShulkerBoxSpecialRenderer.class)
-public abstract class ShulkerBoxSpecialRendererMixin implements SpecialModelRenderer<ItemStack> {
+public abstract class ShulkerBoxSpecialRendererMixin implements SpecialModelRenderer<ShulkerHintData> {
 
     @Shadow
-    public abstract void render(ItemDisplayContext displayContext, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay, boolean hasFoilType);
+    public abstract void submit(ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int j, boolean bl);
 
     @Nullable
     @Override
-    public ItemStack extractArgument(ItemStack itemStack) {
-        return itemStack;
+    public ShulkerHintData extractArgument(ItemStack stack) {
+        return ShulkerHintData.fromShulkerBox(ShulkerBoxUtils.getItems(stack), ShulkerBoxUtils.getCustomName(stack));
     }
 
     @Override
-    public void render(@Nullable ItemStack itemStack, ItemDisplayContext displayContext, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay, boolean hasFoilType) {
-        render(displayContext, poseStack, bufferSource, packedLight, packedOverlay, hasFoilType);
-        if (itemStack == null) {
-            return;
-        }
-        if (!ShulkerBoxUtils.isShulkerBox(itemStack)) {
-            return;
-        }
+    public void submit(@Nullable ShulkerHintData data, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int j, boolean bl) {
+        submit(itemDisplayContext, poseStack, submitNodeCollector, i, j, bl);
         if (!Peek.CONFIG.showShulkerBoxItemHint.get()) {
             return;
         }
-        ShulkerRenderEvents.renderShulkerBoxItemLabel(itemStack, displayContext, poseStack, bufferSource, packedLight, packedOverlay);
+        if (data != null) {
+            ShulkerRenderEvents.submitShulkerBoxItemLabel(data, poseStack, submitNodeCollector);
+        }
     }
 
 }
