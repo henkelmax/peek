@@ -9,7 +9,6 @@ import de.maxhenkel.peek.utils.ItemRenderUtils;
 import de.maxhenkel.peek.utils.ShulkerHintData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.state.ShulkerBoxRenderState;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
@@ -35,9 +34,9 @@ public class ShulkerRenderEvents {
         submitShulkerBoxLabel(shulkerBoxRenderState.direction, shulkerBoxRenderState.progress, peekState.peek$getDisplayItem(), peekState.peek$getLabel(), shulkerBoxRenderState.lightCoords, poseStack, submitNodeCollector);
     }
 
-    public static void submitShulkerBoxItemLabel(ShulkerHintData shulkerHintData, PoseStack poseStack, SubmitNodeCollector submitNodeCollector) {
+    public static void submitShulkerBoxItemLabel(ShulkerHintData shulkerHintData, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light) {
         ItemStackRenderState itemStackRenderState = ItemRenderUtils.fromStack(Minecraft.getInstance().level, null, createShulkerRenderStack(shulkerHintData.getDisplayItem()));
-        submitShulkerBoxLabel(Direction.UP, 0F, itemStackRenderState, shulkerHintData.getLabelFormatted(), LightTexture.FULL_BRIGHT, poseStack, submitNodeCollector);
+        submitShulkerBoxLabel(Direction.UP, 0F, itemStackRenderState, shulkerHintData.getLabelFormatted(), light, poseStack, submitNodeCollector);
     }
 
     private static void submitShulkerBoxLabel(Direction direction, float progress, @Nullable ItemStackRenderState displayItem, @Nullable FormattedCharSequence label, int lightCoords, PoseStack poseStack, SubmitNodeCollector submitNodeCollector) {

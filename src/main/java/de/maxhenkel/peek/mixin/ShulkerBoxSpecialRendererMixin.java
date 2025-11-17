@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 public abstract class ShulkerBoxSpecialRendererMixin implements SpecialModelRenderer<ShulkerHintData> {
 
     @Shadow
-    public abstract void submit(ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int j, boolean bl, int k);
+    public abstract void submit(ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light, int overlay, boolean bl, int k);
 
     @Nullable
     @Override
@@ -28,13 +28,13 @@ public abstract class ShulkerBoxSpecialRendererMixin implements SpecialModelRend
     }
 
     @Override
-    public void submit(@Nullable ShulkerHintData data, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int j, boolean bl, int k) {
-        submit(itemDisplayContext, poseStack, submitNodeCollector, i, j, bl, k);
+    public void submit(@Nullable ShulkerHintData data, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light, int overlay, boolean bl, int k) {
+        submit(itemDisplayContext, poseStack, submitNodeCollector, light, overlay, bl, k);
         if (!Peek.CONFIG.showShulkerBoxItemHint.get()) {
             return;
         }
         if (data != null) {
-            ShulkerRenderEvents.submitShulkerBoxItemLabel(data, poseStack, submitNodeCollector);
+            ShulkerRenderEvents.submitShulkerBoxItemLabel(data, poseStack, submitNodeCollector, light);
         }
     }
 
