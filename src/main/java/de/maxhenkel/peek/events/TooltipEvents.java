@@ -10,7 +10,7 @@ import net.minecraft.core.GlobalPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -44,8 +44,8 @@ public class TooltipEvents {
 
         @Nullable Level level = Minecraft.getInstance().level;
 
-        if (level != null && level.dimensionType().natural()) {
-            GlobalPos spawnPosition = GlobalPos.of(level.dimension(), level.getRespawnData().pos());
+        if (level != null) {
+            GlobalPos spawnPosition = level.getRespawnData().globalPos();
             consumer.accept(Component.translatable("tooltip.peek.compass.spawn_position",
                     Component.literal(String.valueOf(spawnPosition.pos().getX())).withStyle(ChatFormatting.WHITE),
                     Component.literal(String.valueOf(spawnPosition.pos().getY())).withStyle(ChatFormatting.WHITE),
@@ -69,11 +69,11 @@ public class TooltipEvents {
             return;
         }
 
-        ResourceLocation location = deathLocation.dimension().location();
+        Identifier location = deathLocation.dimension().identifier();
 
         Level level = Minecraft.getInstance().level;
 
-        if (level != null && location.equals(level.dimension().location())) {
+        if (level != null && location.equals(level.dimension().identifier())) {
             consumer.accept(Component.translatable("tooltip.peek.recovery_compass.death_location",
                     Component.literal(String.valueOf(deathLocation.pos().getX())).withStyle(ChatFormatting.WHITE),
                     Component.literal(String.valueOf(deathLocation.pos().getY())).withStyle(ChatFormatting.WHITE),

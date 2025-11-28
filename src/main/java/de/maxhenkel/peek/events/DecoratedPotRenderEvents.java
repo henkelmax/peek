@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponentType;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.ItemStack;
 
@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 
 public class DecoratedPotRenderEvents {
 
-    public static final ResourceLocation DECORATED_POT_ITEM_CONDITION = ResourceLocation.fromNamespaceAndPath(Peek.MODID, "decorated_pot_item");
+    public static final Identifier DECORATED_POT_ITEM_CONDITION = Identifier.fromNamespaceAndPath(Peek.MODID, "decorated_pot_item");
 
     public static void submitDecoratedPotLabel(DecoratedPotRenderState decoratedPotRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
         if (!(decoratedPotRenderState instanceof PeekDecoratedPotRenderState peekDecoratedPotRenderState)) {

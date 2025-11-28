@@ -17,7 +17,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponentType;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.ItemStack;
 
@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 
 public class ShulkerRenderEvents {
 
-    public static final ResourceLocation SHULKER_ITEM_CONDITION = ResourceLocation.fromNamespaceAndPath(Peek.MODID, "shulker_item");
+    public static final Identifier SHULKER_ITEM_CONDITION = Identifier.fromNamespaceAndPath(Peek.MODID, "shulker_item");
 
     public static void submitShulkerBoxLabel(ShulkerBoxRenderState shulkerBoxRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
         if (!(shulkerBoxRenderState instanceof PeekShulkerBoxRenderState peekState)) {

@@ -1,1 +1,1 @@
-- Fixed shulker box lids being rendered full bright in hand
+- Updated to 1.21.11

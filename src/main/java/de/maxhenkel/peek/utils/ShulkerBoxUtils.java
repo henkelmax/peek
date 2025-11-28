@@ -8,7 +8,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -89,7 +89,7 @@ public class ShulkerBoxUtils {
         if (level == null) {
             return null;
         }
-        ResourceLocation resourceLocation = ResourceLocation.tryParse(id);
+        Identifier resourceLocation = Identifier.tryParse(id);
         if (resourceLocation == null) {
             return null;
         }

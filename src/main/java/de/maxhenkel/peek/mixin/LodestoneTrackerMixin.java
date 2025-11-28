@@ -7,7 +7,7 @@ import net.minecraft.core.GlobalPos;
 import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.LodestoneTracker;
@@ -36,9 +36,9 @@ public class LodestoneTrackerMixin implements TooltipProvider {
 
     @Unique
     private void addLodeStoneHoverText(Item.TooltipContext tooltipContext, Consumer<Component> consumer, GlobalPos lodestonePosition, @Nullable Level level) {
-        ResourceLocation location = lodestonePosition.dimension().location();
+        Identifier location = lodestonePosition.dimension().identifier();
 
-        if (level != null && location.equals(level.dimension().location())) {
+        if (level != null && location.equals(level.dimension().identifier())) {
             consumer.accept(Component.translatable("tooltip.peek.compass.lodestone_position",
                     Component.literal(String.valueOf(lodestonePosition.pos().getX())).withStyle(ChatFormatting.WHITE),
                     Component.literal(String.valueOf(lodestonePosition.pos().getY())).withStyle(ChatFormatting.WHITE),

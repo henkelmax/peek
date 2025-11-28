@@ -4,8 +4,11 @@ import de.maxhenkel.peek.Peek;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -18,6 +21,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
@@ -114,7 +118,17 @@ public class HudEvents {
         ENTITY_ANGLE.rotateY(Mth.DEG_TO_RAD * r, rot);
 
         Vector3f offset = new Vector3f(0F, entity.getBbHeight() / 2F, 0F);
-        InventoryScreen.renderEntityInInventory(graphics, x1, y1, x2, y2, entityScale, offset, rot, null, entity);
+        renderEntityInInventory(graphics, x1, y1, x2, y2, entityScale, offset, rot, null, entity);
+    }
+
+    private static void renderEntityInInventory(GuiGraphics guiGraphics, int x1, int y1, int x2, int y2, float scale, Vector3f translation, Quaternionf rotation, @Nullable Quaternionf overrideCameraAngle, LivingEntity entity) {
+        EntityRenderDispatcher dispatcher = MC.getEntityRenderDispatcher();
+        EntityRenderer<? super LivingEntity, ?> entityRenderer = dispatcher.getRenderer(entity);
+        EntityRenderState state = entityRenderer.createRenderState(entity, 1F);
+        state.lightCoords = LightTexture.FULL_BRIGHT;
+        state.shadowPieces.clear();
+        state.outlineColor = 0;
+        guiGraphics.submitEntityRenderState(state, scale, translation, rotation, overrideCameraAngle, x1, y1, x2, y2);
     }
 
     private static final Map<EntityType<?>, LivingEntity> ENTITY_CACHE = new HashMap<>();

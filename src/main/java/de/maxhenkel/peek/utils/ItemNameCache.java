@@ -5,7 +5,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 
 import javax.annotation.Nullable;
@@ -30,16 +30,16 @@ public class ItemNameCache {
         translatedItemIdNamesCache.clear();
         Registry<Item> itemRegistry = clientLevel.registryAccess().lookupOrThrow(Registries.ITEM);
         for (Map.Entry<ResourceKey<Item>, Item> item : itemRegistry.entrySet()) {
-            ResourceLocation location = item.getKey().location();
-            if (location.getNamespace().equals(ResourceLocation.DEFAULT_NAMESPACE)) {
-                translatedItemIdNamesCache.put(getResourceLocationName(location.getPath()), item.getValue());
+            Identifier location = item.getKey().identifier();
+            if (location.getNamespace().equals(Identifier.DEFAULT_NAMESPACE)) {
+                translatedItemIdNamesCache.put(getIdentifierName(location.getPath()), item.getValue());
             } else {
-                translatedItemIdNamesCache.put("%s %s".formatted(getResourceLocationName(location.getNamespace()), getResourceLocationName(location.getPath())), item.getValue());
+                translatedItemIdNamesCache.put("%s %s".formatted(getIdentifierName(location.getNamespace()), getIdentifierName(location.getPath())), item.getValue());
             }
         }
     }
 
-    private static String getResourceLocationName(String str) {
+    private static String getIdentifierName(String str) {
         return str.replace("_", " ").replace("/", " ").toLowerCase().trim();
     }
 
