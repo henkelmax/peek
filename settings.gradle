@@ -4,5 +4,7 @@ pluginManagement {
         maven { url = 'https://maven.fabricmc.net/' }
         gradlePluginPortal()
         mavenCentral()
+        //TODO Remove once gradle plugin is pushed
+        mavenLocal()
     }
 }
