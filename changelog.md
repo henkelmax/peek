@@ -1,1 +1,1 @@
-- Updated to 1.21.11
+- Fixed `send_decorated_pot_data_to_client` config option not working anymore
