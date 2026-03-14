@@ -2,7 +2,7 @@ package de.maxhenkel.peek.tooltips;
 
 import de.maxhenkel.peek.Peek;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.core.NonNullList;
@@ -38,30 +38,30 @@ public class ClientContainerTooltip implements ClientTooltipComponent {
     }
 
     @Override
-    public void renderImage(Font font, int tooltipX, int tooltipY, int i1, int i2, GuiGraphics guiGraphics) {
+    public void extractImage(Font font, int tooltipX, int tooltipY, int w, int h, GuiGraphicsExtractor graphics) {
         int slotId = 0;
         for (int y = 0; y < gridHeight; y++) {
             for (int x = 0; x < gridWidth; x++) {
                 int posX = tooltipX + x * SLOT_SIZE_X + BORDER_WIDTH;
                 int posY = tooltipY + y * SLOT_SIZE_Y + BORDER_WIDTH;
-                renderSlot(posX, posY, slotId++, font, guiGraphics);
+                renderSlot(posX, posY, slotId++, font, graphics);
             }
         }
-        drawBorder(tooltipX, tooltipY, guiGraphics);
+        drawBorder(tooltipX, tooltipY, graphics);
     }
 
-    private void renderSlot(int posX, int posY, int slotId, Font font, GuiGraphics guiGraphics) {
+    private void renderSlot(int posX, int posY, int slotId, Font font, GuiGraphicsExtractor guiGraphics) {
         ItemStack itemStack = ItemStack.EMPTY;
         if (slotId < items.size()) {
             itemStack = items.get(slotId);
         }
 
         blit(guiGraphics, posX, posY, Texture.SLOT);
-        guiGraphics.renderItem(itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH, slotId);
-        guiGraphics.renderItemDecorations(font, itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH);
+        guiGraphics.item(itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH, slotId);
+        guiGraphics.itemDecorations(font, itemStack, posX + BORDER_WIDTH, posY + BORDER_WIDTH);
     }
 
-    private void drawBorder(int x, int y, GuiGraphics guiGraphics) {
+    private void drawBorder(int x, int y, GuiGraphicsExtractor guiGraphics) {
         blit(guiGraphics, x, y, Texture.BORDER_CORNER);
         blit(guiGraphics, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y, Texture.BORDER_CORNER);
 
@@ -79,7 +79,7 @@ public class ClientContainerTooltip implements ClientTooltipComponent {
         blit(guiGraphics, x + gridWidth * SLOT_SIZE_X + BORDER_WIDTH, y + gridHeight * SLOT_SIZE_Y + 1, Texture.BORDER_CORNER);
     }
 
-    private void blit(GuiGraphics guiGraphics, int i, int j, Texture texture) {
+    private void blit(GuiGraphicsExtractor guiGraphics, int i, int j, Texture texture) {
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE_LOCATION, i, j, (float) texture.x, (float) texture.y, texture.w, texture.h, TEXTURE_SIZE, TEXTURE_SIZE);
     }
 

@@ -80,7 +80,7 @@ public class TooltipImageEvents {
     private static Optional<TooltipComponent> sizedContainerTooltipImage(ItemStack stack, int width, int height) {
         ItemContainerContents contents = stack.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY);
 
-        if (!Peek.CONFIG.showEmptyContainers.get() && contents.stream().allMatch(ItemStack::isEmpty)) {
+        if (!Peek.CONFIG.showEmptyContainers.get() && !contents.nonEmptyItems().iterator().hasNext()) {
             return Optional.empty();
         }
 
