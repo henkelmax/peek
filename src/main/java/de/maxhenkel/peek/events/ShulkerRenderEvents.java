@@ -31,7 +31,10 @@ public class ShulkerRenderEvents {
         if (!(shulkerBoxRenderState instanceof PeekShulkerBoxRenderState peekState)) {
             throw new IllegalStateException("ShulkerBoxRenderState is not a PeekShulkerBoxRenderState");
         }
+        poseStack.pushPose();
+        poseStack.translate(0.5D, 0.5D, 0.5D);
         submitShulkerBoxLabel(shulkerBoxRenderState.direction, shulkerBoxRenderState.progress, peekState.peek$getDisplayItem(), peekState.peek$getLabel(), shulkerBoxRenderState.lightCoords, poseStack, submitNodeCollector);
+        poseStack.popPose();
     }
 
     public static void submitShulkerBoxItemLabel(ShulkerHintData shulkerHintData, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light) {
@@ -43,7 +46,6 @@ public class ShulkerRenderEvents {
         Minecraft mc = Minecraft.getInstance();
 
         poseStack.pushPose();
-        poseStack.translate(0.5D, 0.5D, 0.5D);
         poseStack.mulPose(direction.getRotation());
         poseStack.translate(0D, 0.5D, 0D);
         poseStack.translate(0F, progress * 0.5F, 0F);
