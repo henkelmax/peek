@@ -31,23 +31,25 @@ public class ShulkerRenderEvents {
         if (!(shulkerBoxRenderState instanceof PeekShulkerBoxRenderState peekState)) {
             throw new IllegalStateException("ShulkerBoxRenderState is not a PeekShulkerBoxRenderState");
         }
-        poseStack.pushPose();
-        poseStack.translate(0.5D, 0.5D, 0.5D);
         submitShulkerBoxLabel(shulkerBoxRenderState.direction, shulkerBoxRenderState.progress, peekState.peek$getDisplayItem(), peekState.peek$getLabel(), shulkerBoxRenderState.lightCoords, poseStack, submitNodeCollector);
-        poseStack.popPose();
     }
 
     public static void submitShulkerBoxItemLabel(ShulkerHintData shulkerHintData, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light) {
         ItemStackRenderState itemStackRenderState = ItemRenderUtils.fromStack(Minecraft.getInstance().level, null, createShulkerRenderStack(shulkerHintData.getDisplayItem()));
+        poseStack.pushPose();
+        poseStack.translate(-0.5F, 1.5F, 0.5F);
+        poseStack.rotateAround(Axis.XP.rotationDegrees(180F), 1F, 0F, 0F);
         submitShulkerBoxLabel(Direction.UP, 0F, itemStackRenderState, shulkerHintData.getLabelFormatted(), light, poseStack, submitNodeCollector);
+        poseStack.popPose();
     }
 
     private static void submitShulkerBoxLabel(Direction direction, float progress, @Nullable ItemStackRenderState displayItem, @Nullable FormattedCharSequence label, int lightCoords, PoseStack poseStack, SubmitNodeCollector submitNodeCollector) {
         Minecraft mc = Minecraft.getInstance();
 
         poseStack.pushPose();
+        poseStack.translate(0.5F, 0.5F, 0.5F);
         poseStack.mulPose(direction.getRotation());
-        poseStack.translate(0D, 0.5D, 0D);
+        poseStack.translate(0F, 0.5F, 0F);
         poseStack.translate(0F, progress * 0.5F, 0F);
         poseStack.rotateAround(Axis.YP.rotationDegrees(-270F * progress), 0F, 1F, 0F);
 
@@ -74,6 +76,7 @@ public class ShulkerRenderEvents {
             poseStack.scale(textScale, textScale, textScale);
             poseStack.translate(0F, mc.font.lineHeight / 2F, 0F);
             poseStack.rotateAround(Axis.XP.rotationDegrees(180F), 1F, 0F, 0F);
+            poseStack.translate(0F, 0F, -0.05F);
             submitNodeCollector.submitText(poseStack, -width / 2F, 0F, label, false, Font.DisplayMode.POLYGON_OFFSET, lightCoords, 0xFFFFFFFF, 0x00000000, 0xFF000000);
             poseStack.popPose();
         }
