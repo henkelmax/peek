@@ -27,6 +27,7 @@ public class PeekConfig {
     public final ConfigEntry<Boolean> useShulkerBoxDataStrings;
     public final ConfigEntry<Boolean> useShulkerBoxItemNames;
     public final ConfigEntry<ShulkerItemDisplayType> shulkerBoxItemDisplayType;
+    public final ConfigEntry<Boolean> hideShulkerBoxItemBehindHint;
     public final ConfigEntry<Boolean> hideShulkerBoxDataStrings;
     public final ConfigEntry<Boolean> sendShulkerBoxDataToClient;
 
@@ -135,6 +136,11 @@ public class PeekConfig {
                 "SINGLE_TYPE: If the shulker box only contains one type of item, show that item",
                 "BULK: Show the item thats most common in the shulker box",
                 "FIRST_ITEM: Show the first item in the shulker box"
+        );
+        hideShulkerBoxItemBehindHint = builder.booleanEntry(
+                "hide_shulker_box_item_behind_hint",
+                false,
+                "If this is enabled, the shulker box model will not be rendered behind the item hint in the inventory"
         );
         hideShulkerBoxDataStrings = builder.booleanEntry(
                 "hide_shulker_box_data_strings",

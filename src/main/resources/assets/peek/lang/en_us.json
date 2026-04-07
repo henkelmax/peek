@@ -54,6 +54,8 @@
   "cloth_config.peek.shulker_box_item_display_type.first_item.description": "Show the first item in the shulker box",
   "cloth_config.peek.show_shulker_box_labels": "Show Shulker Box Labels",
   "cloth_config.peek.show_shulker_box_labels.description": "If this is enabled, the mod will show the custom name of the Shulker Box on the lid of the shulker box.",
+  "cloth_config.peek.hide_shulker_box_item_behind_hint": "Hide Shulker Box Behind Hint",
+  "cloth_config.peek.hide_shulker_box_item_behind_hint.description": "If this is enabled, the shulker box model will not be rendered behind the item hint in the inventory.",
   "cloth_config.peek.show_decorated_pot_hint": "Show Decorated Pot Hint",
   "cloth_config.peek.show_decorated_pot_hint.description": "If this is enabled, decorated pots will show the contained item and amount."
 }

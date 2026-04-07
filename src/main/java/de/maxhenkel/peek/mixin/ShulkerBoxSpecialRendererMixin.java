@@ -29,7 +29,9 @@ public abstract class ShulkerBoxSpecialRendererMixin implements SpecialModelRend
 
     @Override
     public void submit(@Nullable ShulkerHintData data, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light, int overlay, boolean bl, int k) {
-        submit(itemDisplayContext, poseStack, submitNodeCollector, light, overlay, bl, k);
+        if (!Peek.CONFIG.hideShulkerBoxItemBehindHint.get() || itemDisplayContext != ItemDisplayContext.GUI || data == null || data.getDisplayItem() == null) {
+            submit(itemDisplayContext, poseStack, submitNodeCollector, light, overlay, bl, k);
+        }
         if (!Peek.CONFIG.showShulkerBoxItemHint.get()) {
             return;
         }
