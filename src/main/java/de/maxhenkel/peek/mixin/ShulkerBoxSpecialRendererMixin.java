@@ -34,7 +34,8 @@ public abstract class ShulkerBoxSpecialRendererMixin implements SpecialModelRend
             return;
         }
         if (data != null) {
-            ShulkerRenderEvents.submitShulkerBoxItemLabel(data, poseStack, submitNodeCollector, light);
+            float itemScale = itemDisplayContext == ItemDisplayContext.GUI ? Peek.CONFIG.shulkerBoxHintItemScale.get() / 100F : 1F;
+            ShulkerRenderEvents.submitShulkerBoxItemLabel(data, poseStack, submitNodeCollector, light, itemScale);
         }
     }
 

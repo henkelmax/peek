@@ -122,6 +122,12 @@ public class ClothConfigIntegration {
                 Peek.CONFIG.showShulkerBoxLabels
         ));
 
+        shulkerBoxHints.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.shulker_box_hint_item_scale"),
+                Component.translatable("cloth_config.peek.shulker_box_hint_item_scale.description"),
+                Peek.CONFIG.shulkerBoxHintItemScale
+        ));
+
         ConfigCategory decoratedPotHints = builder.getOrCreateCategory(Component.translatable("cloth_config.peek.category.decorated_pot_hints"));
 
         decoratedPotHints.addEntry(fromConfigEntry(entryBuilder,

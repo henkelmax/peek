@@ -54,6 +54,8 @@
   "cloth_config.peek.shulker_box_item_display_type.first_item.description": "Zeigt den ersten Gegenstand in der Shulker-Kiste an",
   "cloth_config.peek.show_shulker_box_labels": "Shulker-Kisten Namen anzeigen",
   "cloth_config.peek.show_shulker_box_labels.description": "Ob der Mod den benutzerdefinierten Namen der Shulker-Box auf dem Deckel der Shulker Box anzeigen soll.",
+  "cloth_config.peek.shulker_box_hint_item_scale": "Hinweis-Gegenstand Skalierung",
+  "cloth_config.peek.shulker_box_hint_item_scale.description": "Die Skalierung des Gegenstandshinweises auf Shulker-Kisten im Inventar in Prozent.",
   "cloth_config.peek.show_decorated_pot_hint": "Hinweis für verzierte Krüge anzeigen",
   "cloth_config.peek.show_decorated_pot_hint.description": "Ob Informationen zum Gegenstand in dekorierten Krügen angezeigt werden sollen."
 }
