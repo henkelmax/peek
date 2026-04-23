@@ -34,7 +34,7 @@
   "depends": {
     "fabricloader": "${fabric_loader_dependency}",
     "minecraft": [
-      "1.21.8"
+      "1.21.11"
     ]
   },
   "suggests": {
