@@ -34,29 +34,10 @@ public abstract class DecoratedPotBlockEntityMixin extends BlockEntity implement
         return item;
     }
 
+
     @Override
     public void setChanged() {
-        super.setChanged();
-        if (!Peek.CONFIG.sendDecoratedPotDataToClient.get()) {
-            return;
-        }
-        if (level == null || level.isClientSide()) {
-            return;
-        }
-        ClientboundBlockEntityDataPacket packet = getUpdatePacket();
-        if (packet == null) {
-            return;
-        }
-        CompoundTag tag = packet.getTag();
-        if (tag == null) {
-            tag = new CompoundTag();
-        }
-        if (lastData != null && lastData.equals(tag)) {
-            return;
-        }
-
-        PlayerLookup.tracking(this).forEach(p -> p.connection.send(packet));
-        lastData = tag;
+       
     }
     
     @Shadow

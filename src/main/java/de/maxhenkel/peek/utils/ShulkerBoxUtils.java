@@ -93,7 +93,9 @@ public class ShulkerBoxUtils {
         if (resourceLocation == null) {
             return null;
         }
+
         return level.registryAccess().lookupOrThrow(Registries.ITEM).get(resourceLocation).map(Holder.Reference::value).orElse(null);
+
     }
 
     public static Component cleanName(Component component) {

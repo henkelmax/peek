@@ -36,53 +36,7 @@ public class ClothConfigIntegration {
                 Peek.CONFIG.peekShulkerBoxes
         ));
 
-        peeking.addEntry(fromConfigEntry(entryBuilder,
-                Component.translatable("cloth_config.peek.peek_exploration_maps"),
-                Component.translatable("cloth_config.peek.peek_exploration_maps.description"),
-                Peek.CONFIG.peekExplorationMaps
-        ));
 
-        peeking.addEntry(fromConfigEntry(entryBuilder,
-                Component.translatable("cloth_config.peek.peek_compasses"),
-                Component.translatable("cloth_config.peek.peek_compasses.description"),
-                Peek.CONFIG.peekCompasses
-        ));
-
-        peeking.addEntry(fromConfigEntry(entryBuilder,
-                Component.translatable("cloth_config.peek.peek_recovery_compasses"),
-                Component.translatable("cloth_config.peek.peek_recovery_compasses.description"),
-                Peek.CONFIG.peekRecoveryCompasses
-        ));
-
-        peeking.addEntry(fromConfigEntry(entryBuilder,
-                Component.translatable("cloth_config.peek.peek_suspicious_stews"),
-                Component.translatable("cloth_config.peek.peek_suspicious_stews.description"),
-                Peek.CONFIG.peekSuspiciousStews
-        ));
-
-        peeking.addEntry(fromConfigEntry(entryBuilder,
-                Component.translatable("cloth_config.peek.peek_chests"),
-                Component.translatable("cloth_config.peek.peek_chests.description"),
-                Peek.CONFIG.peekChests
-        ));
-
-        peeking.addEntry(fromConfigEntry(entryBuilder,
-                Component.translatable("cloth_config.peek.peek_barrels"),
-                Component.translatable("cloth_config.peek.peek_barrels.description"),
-                Peek.CONFIG.peekBarrels
-        ));
-
-        peeking.addEntry(fromConfigEntry(entryBuilder,
-                Component.translatable("cloth_config.peek.peek_dispensers"),
-                Component.translatable("cloth_config.peek.peek_dispensers.description"),
-                Peek.CONFIG.peekDispensers
-        ));
-
-        peeking.addEntry(fromConfigEntry(entryBuilder,
-                Component.translatable("cloth_config.peek.peek_hoppers"),
-                Component.translatable("cloth_config.peek.peek_hoppers.description"),
-                Peek.CONFIG.peekHoppers
-        ));
 
         peeking.addEntry(fromConfigEntry(entryBuilder,
                 Component.translatable("cloth_config.peek.peek_ender_chests"),

@@ -32,6 +32,7 @@ public class ShulkerRenderEvents {
             throw new IllegalStateException("ShulkerBoxRenderState is not a PeekShulkerBoxRenderState");
         }
         submitShulkerBoxLabel(shulkerBoxRenderState.direction, shulkerBoxRenderState.progress, peekState.peek$getDisplayItem(), peekState.peek$getLabel(), shulkerBoxRenderState.lightCoords, poseStack, submitNodeCollector);
+
     }
 
     public static void submitShulkerBoxItemLabel(ShulkerHintData shulkerHintData, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light) {

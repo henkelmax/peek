@@ -24,20 +24,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class DecoratedPotBlockMixin {
 
     @Inject(method = "useItemOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/entity/DecoratedPotBlockEntity;setChanged()V"))
+
     private void setTheItem(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult, CallbackInfoReturnable<InteractionResult> cir) {
-        if (!Peek.CONFIG.sendDecoratedPotDataToClient.get()) {
-            return;
-        }
         BlockEntity be = level.getBlockEntity(blockPos);
         if (!(be instanceof DecoratedPotBlockEntity pot)) {
             return;
         }
-        Packet<ClientGamePacketListener> packet = pot.getUpdatePacket();
-        if (packet == null) {
-            return;
-        }
-        //TODO Move this to utility class and use it for shulker boxes as well
-        PlayerLookup.tracking(pot).forEach(p -> p.connection.send(packet));
+
     }
 
 }

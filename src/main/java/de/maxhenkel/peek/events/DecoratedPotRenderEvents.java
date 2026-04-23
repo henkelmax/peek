@@ -24,6 +24,7 @@ public class DecoratedPotRenderEvents {
 
     public static final Identifier DECORATED_POT_ITEM_CONDITION = Identifier.fromNamespaceAndPath(Peek.MODID, "decorated_pot_item");
 
+
     public static void submitDecoratedPotLabel(DecoratedPotRenderState decoratedPotRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
         if (!(decoratedPotRenderState instanceof PeekDecoratedPotRenderState peekDecoratedPotRenderState)) {
             throw new IllegalStateException("DecoratedPotRenderState is not a PeekDecoratedPotRenderState");
