@@ -31,8 +31,6 @@ public abstract class ItemStackMixin implements PeekItemStack, DataComponentHold
 
     @Inject(method = "addDetailsToTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;addToTooltip(Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/world/item/Item$TooltipContext;Lnet/minecraft/world/item/component/TooltipDisplay;Ljava/util/function/Consumer;Lnet/minecraft/world/item/TooltipFlag;)V", shift = At.Shift.AFTER, ordinal = 0))
     public void addDetailsToTooltip(Item.TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Player player, TooltipFlag tooltipFlag, Consumer<Component> consumer, CallbackInfo ci) {
-        addToTooltip(DataComponents.LODESTONE_TRACKER, tooltipContext, tooltipDisplay, consumer, tooltipFlag);
-        addToTooltip(DataComponents.MAP_DECORATIONS, tooltipContext, tooltipDisplay, consumer, tooltipFlag);
     }
 
     @Inject(method = "addToTooltip", at = @At(value = "HEAD"), cancellable = true)
