@@ -20,7 +20,7 @@ public class LocalPlayerMixin {
 
     @Inject(method = "clientSideCloseContainer", at = @At("HEAD"))
     public void onClientSideCloseContainer(CallbackInfo ci) {
-        if (EnderChestUtils.isScreenEnderChest(minecraft.screen)) {
+        if (EnderChestUtils.isScreenEnderChest(minecraft.gui.screen())) {
             DataStore.enderChestInventory = minecraft.player.containerMenu.getItems();
         }
     }

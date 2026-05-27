@@ -21,7 +21,7 @@ public class MultiPlayerGameModeMixin {
     private Minecraft minecraft;
     @Inject(method = "handleContainerInput", at = @At("TAIL"))
     public void handleContainerInput(int containerId, int slotNum, int buttonNum, ContainerInput containerInput, Player player, CallbackInfo ci) {
-        if (EnderChestUtils.isScreenEnderChest(minecraft.screen)) {
+        if (EnderChestUtils.isScreenEnderChest(minecraft.gui.screen())) {
             DataStore.enderChestInventory = player.containerMenu.getItems();
         }
     }

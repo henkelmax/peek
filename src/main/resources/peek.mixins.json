@@ -13,7 +13,6 @@
     "DecoratedPotBlockMixin",
     "DecoratedPotRendererMixin",
     "DecoratedPotRenderStateMixin",
-    "GuiMixin",
     "ItemStackMixin",
     "LocalPlayerMixin",
     "LodestoneTrackerMixin",

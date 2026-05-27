@@ -1,6 +1,7 @@
 package de.maxhenkel.peek;
 
 import de.maxhenkel.peek.data.DataStore;
+import de.maxhenkel.peek.events.HudEvents;
 import de.maxhenkel.peek.interfaces.PeekPackRepository;
 import de.maxhenkel.peek.resourcepacks.PeekResourcePack;
 import net.fabricmc.api.ClientModInitializer;
@@ -17,6 +18,7 @@ public class PeekClient implements ClientModInitializer {
         ORTHOGONAL_SHULKER_ICONS = new PeekResourcePack("flat_shulker_icons", Component.translatable("resourcepack.peek.flat_shulker_icons"));
         PeekPackRepository repository = (PeekPackRepository) Minecraft.getInstance().getResourcePackRepository();
         repository.peek$addSource((consumer) -> consumer.accept(ORTHOGONAL_SHULKER_ICONS.toPack()));
+        HudEvents.init();
 
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
             DataStore.enderChestInventory = null;

@@ -26,7 +26,7 @@ public abstract class ClientPlayNetworkHandlerMixin extends ClientCommonPacketLi
     private void onHandleContainerContent(ClientboundContainerSetContentPacket packet, CallbackInfo ci) {
         // Intercept packet on opening Ender Chest to set contents
         // Could ignore all but the first, but this is potentially more reliable
-        if (EnderChestUtils.isScreenEnderChest(minecraft.screen)) {
+        if (EnderChestUtils.isScreenEnderChest(minecraft.gui.screen())) {
             if (DataStore.enderChestInventory == null) {
                 DataStore.enderChestInventory = NonNullList.withSize(27, ItemStack.EMPTY);
             }

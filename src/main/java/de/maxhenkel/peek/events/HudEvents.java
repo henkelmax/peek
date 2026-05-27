@@ -1,6 +1,9 @@
 package de.maxhenkel.peek.events;
 
 import de.maxhenkel.peek.Peek;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
+import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -9,6 +12,7 @@ import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -32,8 +36,13 @@ public class HudEvents {
 
     private static final Minecraft MC = Minecraft.getInstance();
     private static final int PADDING = 4;
+    private static final Identifier PEEK_HUD_LAYER = Identifier.fromNamespaceAndPath(Peek.MODID, "hud");
 
-    public static void onRenderHud(GuiGraphicsExtractor graphics, int screenWidth, int screenHeight) {
+    public static void init() {
+        HudElementRegistry.attachElementBefore(VanillaHudElements.MOB_EFFECTS, PEEK_HUD_LAYER, HudEvents::onRenderHud);
+    }
+
+    private static void onRenderHud(GuiGraphicsExtractor graphics, DeltaTracker deltaTracker) {
         if (!Peek.CONFIG.showHud.get()) {
             return;
         }
@@ -41,10 +50,12 @@ public class HudEvents {
         if (player == null) {
             return;
         }
+        int guiScaledWidth = MC.getWindow().getGuiScaledWidth();
+        int guiScaledHeight = MC.getWindow().getGuiScaledHeight();
         if (MC.hitResult instanceof BlockHitResult blockHitResult) {
-            renderBlockHud(player, graphics, screenWidth, screenHeight, blockHitResult);
+            renderBlockHud(player, graphics, guiScaledWidth, guiScaledHeight, blockHitResult);
         } else if (MC.hitResult instanceof EntityHitResult entityHitResult) {
-            renderEntityHud(player, graphics, screenWidth, screenHeight, entityHitResult);
+            renderEntityHud(player, graphics, guiScaledWidth, guiScaledHeight, entityHitResult);
         }
     }
 
