@@ -1,1 +1,1 @@
-- Updated Ukrainian translation
+- Updated Belarusian (Cyrillic) translation
