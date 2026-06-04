@@ -1,1 +1,2 @@
 - Updated to 26.2
+- Updated Belarusian (Cyrillic) translation
