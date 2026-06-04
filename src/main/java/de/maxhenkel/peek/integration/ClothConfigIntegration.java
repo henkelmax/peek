@@ -12,6 +12,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ClothConfigIntegration {
     public static Screen createConfigScreen(Screen parent) {
@@ -129,6 +130,37 @@ public class ClothConfigIntegration {
                 Component.translatable("cloth_config.peek.show_decorated_pot_hint.description"),
                 Peek.CONFIG.showDecoratedPotHint
         ));
+
+        ConfigCategory bundles = builder.getOrCreateCategory(Component.translatable("cloth_config.peek.category.bundles"));
+
+        AtomicInteger bundleColumns = new AtomicInteger(Peek.CONFIG.bundleColumns.get());
+        bundles.addEntry(entryBuilder
+                .startIntField(Component.translatable("cloth_config.peek.bundle_item_amount"), Peek.CONFIG.bundleItemCount.get())
+                .setTooltip(Component.translatable("cloth_config.peek.bundle_item_amount.description"))
+                .setMin(Peek.CONFIG.bundleItemCount.getMin())
+                .setMax(Peek.CONFIG.bundleItemCount.getMax())
+                .setDefaultValue(Peek.CONFIG.bundleItemCount::getDefault)
+                .setSaveConsumer(d -> Peek.CONFIG.bundleItemCount.set(d).save())
+                .setErrorSupplier(i -> {
+                    if (bundleColumns.get() > i) {
+                        return Optional.of(Component.translatable("cloth_config.peek.bundle_item_amount.columns_error"));
+                    }
+                    return Optional.empty();
+                })
+                .build());
+
+        bundles.addEntry(entryBuilder
+                .startIntField(Component.translatable("cloth_config.peek.bundle_columns"), Peek.CONFIG.bundleColumns.get())
+                .setTooltip(Component.translatable("cloth_config.peek.bundle_columns.description"))
+                .setMin(Peek.CONFIG.bundleColumns.getMin())
+                .setMax(Peek.CONFIG.bundleColumns.getMax())
+                .setDefaultValue(Peek.CONFIG.bundleColumns::getDefault)
+                .setSaveConsumer(d -> Peek.CONFIG.bundleColumns.set(d).save())
+                .setErrorSupplier(i -> {
+                    bundleColumns.set(i);
+                    return Optional.empty();
+                })
+                .build());
 
         return builder.build();
     }
