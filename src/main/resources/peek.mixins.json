@@ -6,6 +6,7 @@
   "client": [
     "AnvilScreenMixin",
     "BlockItemMixin",
+    "ClientBundleTooltipMixin",
     "ClientPlayNetworkHandlerMixin",
     "ClientTooltipComponentMixin",
     "ConditionalItemModelPropertiesMixin",
@@ -29,6 +30,7 @@
     "SuspiciousStewEffectsMixin"
   ],
   "mixins": [
+    "BundleContentsMixin",
     "ShulkerBoxBlockEntityMixin"
   ],
   "injectors": {

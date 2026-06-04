@@ -2,6 +2,7 @@ package de.maxhenkel.peek.config;
 
 import de.maxhenkel.configbuilder.ConfigBuilder;
 import de.maxhenkel.configbuilder.entry.ConfigEntry;
+import de.maxhenkel.configbuilder.entry.IntegerConfigEntry;
 import net.minecraft.network.chat.Component;
 
 import java.math.BigInteger;
@@ -32,6 +33,9 @@ public class PeekConfig {
 
     public final ConfigEntry<Boolean> showDecoratedPotHint;
     public final ConfigEntry<Boolean> sendDecoratedPotDataToClient;
+
+    public final IntegerConfigEntry bundleColumns;
+    public final IntegerConfigEntry bundleItemCount;
 
     public final ConfigEntry<Boolean> showHud;
     public final ConfigEntry<String> hudBackgroundColor;
@@ -162,6 +166,17 @@ public class PeekConfig {
                 "This allows the mod to display hints on decorated pots",
                 "If you want to use this feature on a server, the server needs the mod installed and this setting enabled"
         );
+        bundleColumns = builder.integerEntry(
+                "bundle_columns",
+                4, 4, 64,
+                "The amount of horizontal items that should be displayed when hovering over a bundle"
+        );
+        bundleItemCount = builder.integerEntry(
+                "bundle_item_count",
+                12, 4, 64,
+                "The amount of items that should be displayed when hovering over a bundle",
+                "Must be larger or equal to the bundle columns"
+        );
         showHud = builder.booleanEntry(
                 "show_hud",
                 false,
@@ -181,6 +196,10 @@ public class PeekConfig {
 
         hudBackgroundColorValue = new BigInteger(hudBackgroundColor.get(), 16).intValue();
         hudTextColorValue = new BigInteger(hudTextColor.get(), 16).intValue();
+    }
+
+    public int getBundleItemCount() {
+        return Math.max(bundleColumns.get(), bundleItemCount.get());
     }
 
     public static enum ShulkerItemDisplayType {
