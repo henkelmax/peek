@@ -1,1 +1,1 @@
-- Fixed `send_decorated_pot_data_to_client` config option not working anymore
+- Updated Belarusian (Cyrillic) translation
