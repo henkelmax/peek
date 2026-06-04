@@ -1,1 +1,1 @@
-- Updated Belarusian (Cyrillic) translation
+- Added configurable amount of items and columns in the bundle tooltip
