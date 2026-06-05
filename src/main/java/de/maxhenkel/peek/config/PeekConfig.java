@@ -3,6 +3,8 @@ package de.maxhenkel.peek.config;
 import de.maxhenkel.configbuilder.ConfigBuilder;
 import de.maxhenkel.configbuilder.entry.ConfigEntry;
 import de.maxhenkel.configbuilder.entry.IntegerConfigEntry;
+import de.maxhenkel.peek.Peek;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.network.chat.Component;
 
 import java.math.BigInteger;
@@ -200,6 +202,18 @@ public class PeekConfig {
 
     public int getBundleItemCount() {
         return Math.max(bundleColumns.get(), bundleItemCount.get());
+    }
+
+    private static Boolean shouldUseBundles;
+
+    public static boolean shouldModifyBundles() {
+        if (shouldUseBundles == null) {
+            shouldUseBundles = !FabricLoader.getInstance().isModLoaded("bundlesbeyond");
+            if (!shouldUseBundles) {
+                Peek.LOGGER.info("Bundle configuration disabled, as Bundles Beyond is present");
+            }
+        }
+        return shouldUseBundles;
     }
 
     public static enum ShulkerItemDisplayType {
