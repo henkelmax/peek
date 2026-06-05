@@ -14,7 +14,7 @@ public abstract class BundleContentsMixin {
     @Shadow
     public abstract int size();
 
-    @Inject(method = "getNumberOfItemsToShow", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getNumberOfItemsToShow", at = @At("HEAD"), cancellable = true, require = 0)
     private void overrideGetNumberOfItemsToShow(CallbackInfoReturnable<Integer> cir) {
         int maxItems = Peek.CONFIG.getBundleItemCount();
         int columns = Peek.CONFIG.bundleColumns.get();
