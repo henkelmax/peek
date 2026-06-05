@@ -35,5 +35,6 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "plugin": "de.maxhenkel.peek.PeekMixinConfigPlugin"
 }

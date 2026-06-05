@@ -1,2 +1,1 @@
 - Updated to 26.2
-- Added configurable amount of items and columns in the bundle tooltip
