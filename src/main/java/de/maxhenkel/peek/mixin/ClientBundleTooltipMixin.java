@@ -1,5 +1,6 @@
 package de.maxhenkel.peek.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import de.maxhenkel.peek.Peek;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientBundleTooltip;
 import org.spongepowered.asm.mixin.Mixin;
@@ -8,32 +9,32 @@ import org.spongepowered.asm.mixin.injection.*;
 @Mixin(ClientBundleTooltip.class)
 public class ClientBundleTooltipMixin {
 
-    @ModifyConstant(method = {"slotCount", "extractBundleWithItemsTooltip"}, constant = @Constant(intValue = 12))
+    @ModifyExpressionValue(method = {"slotCount", "extractBundleWithItemsTooltip"}, at = @At(value = "CONSTANT", args = "intValue=12"))
     private int modifyMaxBundleSlots(int original) {
         return Peek.CONFIG.getBundleItemCount();
     }
 
-    @ModifyConstant(method = {"getWidth", "getContentXOffset", "extractBundleWithItemsTooltip", "extractProgressbar", "extractEmptyBundleDescriptionText", "getEmptyBundleDescriptionTextHeight"}, constant = @Constant(intValue = 96))
+    @ModifyExpressionValue(method = {"getWidth", "getContentXOffset", "extractBundleWithItemsTooltip", "extractProgressbar", "extractEmptyBundleDescriptionText", "getEmptyBundleDescriptionTextHeight"}, at = @At(value = "CONSTANT", args = "intValue=96"))
     private static int scaleGridWidth(int original) {
         return Peek.CONFIG.bundleColumns.get() * 24;
     }
 
-    @ModifyConstant(method = "gridSizeY", constant = @Constant(intValue = 4))
+    @ModifyExpressionValue(method = "gridSizeY", at = @At(value = "CONSTANT", args = "intValue=4"))
     private int modifyGridColumns(int original) {
         return Peek.CONFIG.bundleColumns.get();
     }
 
-    @ModifyConstant(method = "extractBundleWithItemsTooltip", constant = @Constant(intValue = 4, ordinal = 0))
+    @ModifyExpressionValue(method = "extractBundleWithItemsTooltip", at = @At(value = "CONSTANT", args = "intValue=4", ordinal = 0))
     private int modifyColumnLoopLimit(int original) {
         return Peek.CONFIG.bundleColumns.get();
     }
 
-    @ModifyConstant(method = "getProgressBarFill", constant = @Constant(intValue = 94))
+    @ModifyExpressionValue(method = "getProgressBarFill", at = @At(value = "CONSTANT", args = "intValue=94"))
     private static int modifyProgressBarFillWidth(int original) {
         return Peek.CONFIG.bundleColumns.get() * 24 - 2;
     }
 
-    @ModifyConstant(method = "extractProgressbar", constant = @Constant(intValue = 48))
+    @ModifyExpressionValue(method = "extractProgressbar", at = @At(value = "CONSTANT", args = "intValue=48"))
     private static int modifyProgressBarTextCenter(int original) {
         return (Peek.CONFIG.bundleColumns.get() * 24) / 2;
     }
