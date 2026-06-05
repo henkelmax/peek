@@ -7,6 +7,7 @@ import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
+import me.shedaniel.clothconfig2.gui.entries.IntegerListEntry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -131,10 +132,9 @@ public class ClothConfigIntegration {
                 Peek.CONFIG.showDecoratedPotHint
         ));
 
-        ConfigCategory bundles = builder.getOrCreateCategory(Component.translatable("cloth_config.peek.category.bundles"));
 
         AtomicInteger bundleColumns = new AtomicInteger(Peek.CONFIG.bundleColumns.get());
-        bundles.addEntry(entryBuilder
+        IntegerListEntry bundleItemAmountEntry = entryBuilder
                 .startIntField(Component.translatable("cloth_config.peek.bundle_item_amount"), Peek.CONFIG.bundleItemCount.get())
                 .setTooltip(Component.translatable("cloth_config.peek.bundle_item_amount.description"))
                 .setMin(Peek.CONFIG.bundleItemCount.getMin())
@@ -147,9 +147,9 @@ public class ClothConfigIntegration {
                     }
                     return Optional.empty();
                 })
-                .build());
+                .build();
 
-        bundles.addEntry(entryBuilder
+        IntegerListEntry bundleColumnsEntry = entryBuilder
                 .startIntField(Component.translatable("cloth_config.peek.bundle_columns"), Peek.CONFIG.bundleColumns.get())
                 .setTooltip(Component.translatable("cloth_config.peek.bundle_columns.description"))
                 .setMin(Peek.CONFIG.bundleColumns.getMin())
@@ -160,7 +160,13 @@ public class ClothConfigIntegration {
                     bundleColumns.set(i);
                     return Optional.empty();
                 })
-                .build());
+                .build();
+
+        if (PeekConfig.shouldModifyBundles()) {
+            ConfigCategory bundles = builder.getOrCreateCategory(Component.translatable("cloth_config.peek.category.bundles"));
+            bundles.addEntry(bundleItemAmountEntry);
+            bundles.addEntry(bundleColumnsEntry);
+        }
 
         return builder.build();
     }

@@ -1,1 +1,1 @@
-- Added configurable amount of items and columns in the bundle tooltip
+- Fixed compatibility with bundles beyond
