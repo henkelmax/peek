@@ -109,7 +109,7 @@ public class SulfurCubeContentMixin {
                 if (Language.getInstance().has(translationKey)) {
                     attributeComponent = Component.translatable(translationKey);
                 } else {
-                    attributeComponent = Component.literal(name.toString()).withStyle(ChatFormatting.DARK_GRAY);
+                    attributeComponent = Component.literal(name.toString());
                 }
 
                 instance.accept(
