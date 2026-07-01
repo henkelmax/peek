@@ -10,6 +10,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.SulfurCubeArchetype;
 import net.minecraft.world.item.Item;
@@ -95,25 +96,29 @@ public class SulfurCubeContentMixin {
 
             SulfurCubeArchetype.KnockbackModifiers km = a.knockbackModifiers();
             instance.accept(Component.translatable("tooltip.peek.sulfur_cube_archetype_advanced.knockback_modifiers", ATTRIBUTE_DECIMAL_FORMAT.format(km.horizontalPower()), ATTRIBUTE_DECIMAL_FORMAT.format(km.verticalPower())).withStyle(ChatFormatting.GRAY));
-            instance.accept(Component.empty());
 
             List<SulfurCubeArchetype.AttributeEntry> attributeEntries = a.attributeModifiers();
-            if (!attributeEntries.isEmpty()) {
-                instance.accept(Component.translatable("tooltip.peek.sulfur_cube_archetype_advanced.attributes").append(":").withStyle(ChatFormatting.GRAY));
-            }
+
             attributeEntries.forEach(attribute -> {
+                Identifier name = Identifier.tryParse(attribute.attribute().getRegisteredName());
+                if (name == null) {
+                    return;
+                }
+                MutableComponent attributeComponent;
+                String translationKey = "tooltip.peek.sulfur_cube_archetype_advanced.attribute.%s.%s".formatted(name.getNamespace(), name.getPath());
+                if (Language.getInstance().has(translationKey)) {
+                    attributeComponent = Component.translatable(translationKey);
+                } else {
+                    attributeComponent = Component.literal(name.toString()).withStyle(ChatFormatting.DARK_GRAY);
+                }
+
                 instance.accept(
-                        Component.literal("  ")
-                                .append(attribute.attribute().getRegisteredName())
+                        attributeComponent
                                 .append(": ")
                                 .append(ATTRIBUTE_DECIMAL_FORMAT.format(attribute.modifier().amount()))
                                 .withStyle(ChatFormatting.GRAY)
                 );
             });
-
-            if (!attributeEntries.isEmpty()) {
-                instance.accept(Component.empty());
-            }
         }
     }
 
