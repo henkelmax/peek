@@ -91,6 +91,11 @@ public class ClothConfigIntegration {
                 Component.translatable("cloth_config.peek.peek_ender_chests.description"),
                 Peek.CONFIG.peekEnderChests
         ));
+        peeking.addEntry(fromConfigEntry(entryBuilder,
+                Component.translatable("cloth_config.peek.peek_sulfur_cube_archetype"),
+                Component.translatable("cloth_config.peek.peek_sulfur_cube_archetype.description"),
+                Peek.CONFIG.peekSulfurCubeArchetype
+        ));
 
         ConfigCategory shulkerBoxHints = builder.getOrCreateCategory(Component.translatable("cloth_config.peek.category.shulker_box_hints"));
 

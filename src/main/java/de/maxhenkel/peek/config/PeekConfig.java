@@ -107,7 +107,8 @@ public class PeekConfig {
         peekSulfurCubeArchetype = builder.booleanEntry(
                 "peek_sulfur_cube_archetype",
                 true,
-                "Displays the archetype of sulfur cubes in a bucket"
+                "Displays the archetype of sulfur cubes in a bucket",
+                "Also shows all information about the archetype when advanced tooltips are enabled"
         );
 
         showShulkerBoxItemHint = builder.booleanEntry(

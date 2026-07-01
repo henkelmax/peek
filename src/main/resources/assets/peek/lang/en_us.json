@@ -58,6 +58,8 @@
   "cloth_config.peek.peek_hoppers.description": "Displays the items inside pick-blocked hoppers.",
   "cloth_config.peek.peek_ender_chests": "Peek Ender Chests",
   "cloth_config.peek.peek_ender_chests.description": "Displays the cached contents of ender chests.",
+  "cloth_config.peek.peek_sulfur_cube_archetype": "Peek Sulfur Cube Archetypes",
+  "cloth_config.peek.peek_sulfur_cube_archetype.description": "Displays the archetype of sulfur cubes in a bucket.\nAlso shows all information about the archetype when advanced tooltips are enabled.",
   "cloth_config.peek.show_shulker_box_item_hint": "Show Shulker Box Item Hint",
   "cloth_config.peek.show_shulker_box_item_hint.description": "If Shulker Box items should render information on the lid.",
   "cloth_config.peek.show_shulker_box_block_hint": "Show Shulker Box Block Hint",
