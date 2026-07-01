@@ -100,16 +100,17 @@ public class SulfurCubeContentMixin {
             List<SulfurCubeArchetype.AttributeEntry> attributeEntries = a.attributeModifiers();
 
             attributeEntries.forEach(attribute -> {
+                MutableComponent attributeComponent;
                 Identifier name = Identifier.tryParse(attribute.attribute().getRegisteredName());
                 if (name == null) {
-                    return;
-                }
-                MutableComponent attributeComponent;
-                String translationKey = "tooltip.peek.sulfur_cube_archetype_advanced.attribute.%s.%s".formatted(name.getNamespace(), name.getPath());
-                if (Language.getInstance().has(translationKey)) {
-                    attributeComponent = Component.translatable(translationKey);
+                    attributeComponent = Component.literal(attribute.attribute().getRegisteredName());
                 } else {
-                    attributeComponent = Component.literal(name.toString());
+                    String translationKey = "tooltip.peek.sulfur_cube_archetype_advanced.attribute.%s.%s".formatted(name.getNamespace(), name.getPath());
+                    if (Language.getInstance().has(translationKey)) {
+                        attributeComponent = Component.translatable(translationKey);
+                    } else {
+                        attributeComponent = Component.literal(name.toString());
+                    }
                 }
 
                 instance.accept(
