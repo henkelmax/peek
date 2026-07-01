@@ -1,1 +1,1 @@
-- Updated to 26.2
+- Added sulfur cube in a bucket tooltips

@@ -23,6 +23,7 @@ public class PeekConfig {
     public final ConfigEntry<Boolean> peekRecoveryCompasses;
     public final ConfigEntry<Boolean> peekSuspiciousStews;
     public final ConfigEntry<Boolean> peekEnderChests;
+    public final ConfigEntry<Boolean> peekSulfurCubeArchetype;
 
     public final ConfigEntry<Boolean> showShulkerBoxItemHint;
     public final ConfigEntry<Boolean> showShulkerBoxBlockHint;
@@ -102,6 +103,11 @@ public class PeekConfig {
                 "peek_ender_chests",
                 false,
                 "Displays the cached contents of ender chests"
+        );
+        peekSulfurCubeArchetype = builder.booleanEntry(
+                "peek_sulfur_cube_archetype",
+                true,
+                "Displays the archetype of sulfur cubes in a bucket"
         );
 
         showShulkerBoxItemHint = builder.booleanEntry(

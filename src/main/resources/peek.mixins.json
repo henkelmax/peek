@@ -31,7 +31,8 @@
   ],
   "mixins": [
     "BundleContentsMixin",
-    "ShulkerBoxBlockEntityMixin"
+    "ShulkerBoxBlockEntityMixin",
+    "SulfurCubeContentMixin"
   ],
   "injectors": {
     "defaultRequire": 1
