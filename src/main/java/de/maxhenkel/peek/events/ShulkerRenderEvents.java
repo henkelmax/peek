@@ -52,14 +52,6 @@ public class ShulkerRenderEvents {
         onSubmitShulkerBoxLabel(shulkerBoxRenderState.direction, shulkerBoxRenderState.progress, peekState.peek$getDisplayItem(), peekState.peek$getLabel(), shulkerBoxRenderState.lightCoords, poseStack, submitNodeCollector);
     }
 
-    public static boolean shouldRenderShulkerBox(ShulkerBoxBlockEntity shulkerBox) {
-        if (!Peek.CONFIG.showShulkerBoxBlockHint.get()) {
-            return false;
-        }
-        ShulkerHintData shulkerHintData = ShulkerHintData.fromShulkerBox(shulkerBox.getItems(), shulkerBox.getCustomName());
-        return shulkerHintData.getDisplayItem() != null || shulkerHintData.getLabelFormatted() != null;
-    }
-
     public static void submitShulkerBoxItemLabel(ShulkerHintData shulkerHintData, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light) {
         ItemStackRenderState itemStackRenderState = ItemRenderUtils.fromStack(Minecraft.getInstance().level, null, createShulkerRenderStack(shulkerHintData.getDisplayItem()));
         onSubmitShulkerBoxLabel(Direction.UP, 0F, itemStackRenderState, shulkerHintData.getLabelFormatted(), light, poseStack, submitNodeCollector);
