@@ -20,6 +20,7 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 
 import javax.annotation.Nullable;
 
@@ -27,11 +28,33 @@ public class ShulkerRenderEvents {
 
     public static final Identifier SHULKER_ITEM_CONDITION = Identifier.fromNamespaceAndPath(Peek.MODID, "shulker_item");
 
-    public static void submitShulkerBoxLabel(ShulkerBoxRenderState shulkerBoxRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+    public static void onExtractShulkerBoxRenderState(ShulkerBoxBlockEntity shulkerBoxBlockEntity, ShulkerBoxRenderState shulkerBoxRenderState) {
+        if (!(shulkerBoxRenderState instanceof PeekShulkerBoxRenderState peekShulkerBoxRenderState)) {
+            throw new IllegalStateException("ShulkerBoxRenderState is not a PeekShulkerBoxRenderState");
+        }
+        if (!Peek.CONFIG.showShulkerBoxBlockHint.get()) {
+            peekShulkerBoxRenderState.peek$setLabel(null);
+            peekShulkerBoxRenderState.peek$setDisplayItem(null);
+            return;
+        }
+        ShulkerHintData shulkerHintData = ShulkerHintData.fromShulkerBox(shulkerBoxBlockEntity.getItems(), shulkerBoxBlockEntity.getCustomName());
+        peekShulkerBoxRenderState.peek$setLabel(shulkerHintData.getLabelFormatted());
+
+        ItemStack displayItem = ShulkerRenderEvents.createShulkerRenderStack(shulkerHintData.getDisplayItem());
+        ItemStackRenderState itemStackRenderState = ItemRenderUtils.fromStack(shulkerBoxBlockEntity.getLevel(), shulkerBoxBlockEntity.getBlockPos(), displayItem);
+        peekShulkerBoxRenderState.peek$setDisplayItem(itemStackRenderState);
+    }
+
+    public static void onSubmitShulkerBoxLabel(ShulkerBoxRenderState shulkerBoxRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
         if (!(shulkerBoxRenderState instanceof PeekShulkerBoxRenderState peekState)) {
             throw new IllegalStateException("ShulkerBoxRenderState is not a PeekShulkerBoxRenderState");
         }
-        submitShulkerBoxLabel(shulkerBoxRenderState.direction, shulkerBoxRenderState.progress, peekState.peek$getDisplayItem(), peekState.peek$getLabel(), shulkerBoxRenderState.lightCoords, poseStack, submitNodeCollector);
+        onSubmitShulkerBoxLabel(shulkerBoxRenderState.direction, shulkerBoxRenderState.progress, peekState.peek$getDisplayItem(), peekState.peek$getLabel(), shulkerBoxRenderState.lightCoords, poseStack, submitNodeCollector);
+    }
+
+    public static boolean shouldRenderShulkerBox(ShulkerBoxBlockEntity shulkerBox) {
+        ShulkerHintData shulkerHintData = ShulkerHintData.fromShulkerBox(shulkerBox.getItems(), shulkerBox.getCustomName());
+        return shulkerHintData.getDisplayItem() != null || shulkerHintData.getLabelFormatted() != null;
     }
 
     public static void submitShulkerBoxItemLabel(ShulkerHintData shulkerHintData, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int light) {
@@ -39,11 +62,11 @@ public class ShulkerRenderEvents {
         poseStack.pushPose();
         poseStack.translate(-0.5F, 1.5F, 0.5F);
         poseStack.rotateAround(Axis.XP.rotationDegrees(180F), 1F, 0F, 0F);
-        submitShulkerBoxLabel(Direction.UP, 0F, itemStackRenderState, shulkerHintData.getLabelFormatted(), light, poseStack, submitNodeCollector);
+        onSubmitShulkerBoxLabel(Direction.UP, 0F, itemStackRenderState, shulkerHintData.getLabelFormatted(), light, poseStack, submitNodeCollector);
         poseStack.popPose();
     }
 
-    private static void submitShulkerBoxLabel(Direction direction, float progress, @Nullable ItemStackRenderState displayItem, @Nullable FormattedCharSequence label, int lightCoords, PoseStack poseStack, SubmitNodeCollector submitNodeCollector) {
+    private static void onSubmitShulkerBoxLabel(Direction direction, float progress, @Nullable ItemStackRenderState displayItem, @Nullable FormattedCharSequence label, int lightCoords, PoseStack poseStack, SubmitNodeCollector submitNodeCollector) {
         Minecraft mc = Minecraft.getInstance();
 
         poseStack.pushPose();

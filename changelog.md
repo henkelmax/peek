@@ -1,1 +1,1 @@
-- Added sulfur cube in a bucket tooltips
+- Added compatibility with Better Block Entities
