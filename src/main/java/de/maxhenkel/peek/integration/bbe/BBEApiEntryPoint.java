@@ -7,5 +7,6 @@ public class BBEApiEntryPoint implements betterblockentities.registration.BBEApi
     @Override
     public void registerRenderers(AltRendererRegistration context) {
         context.registerRenderer(SupportedBlockEntityTypes.SHULKER_BOX, BBEShulkerBoxRenderer::new);
+        context.registerRenderer(SupportedBlockEntityTypes.DECORATED_POT, BBEDecoratedPotRenderer::new);
     }
 }
