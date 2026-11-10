@@ -53,6 +53,9 @@ public class ShulkerRenderEvents {
     }
 
     public static boolean shouldRenderShulkerBox(ShulkerBoxBlockEntity shulkerBox) {
+        if (!Peek.CONFIG.showShulkerBoxBlockHint.get()) {
+            return false;
+        }
         ShulkerHintData shulkerHintData = ShulkerHintData.fromShulkerBox(shulkerBox.getItems(), shulkerBox.getCustomName());
         return shulkerHintData.getDisplayItem() != null || shulkerHintData.getLabelFormatted() != null;
     }
