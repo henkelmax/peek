@@ -27,7 +27,7 @@
       "de.maxhenkel.peek.integration.ModMenuIntegration"
     ],
     "bbe:renderer_registration_api": [
-      "de.maxhenkel.peek.integration.bbe.BBEIntegration"
+      "de.maxhenkel.peek.integration.bbe.BBEApiEntryPoint"
     ]
   },
   "mixins": [
