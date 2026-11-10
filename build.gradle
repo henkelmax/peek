@@ -11,7 +11,12 @@ apply from: "https://raw.githubusercontent.com/henkelmax/mod-gradle-scripts/${mo
 repositories {
     maven { url = 'https://maven.shedaniel.me/' }
     maven { url = 'https://maven.terraformersmc.com/releases/' }
-    maven { url = 'https://maven.edeenmc.net/releases' }
+    maven {
+        url = 'https://maven.edeenmc.net/releases'
+        content {
+            includeGroup 'net.edeenmc'
+        }
+    }
 }
 
 dependencies {
