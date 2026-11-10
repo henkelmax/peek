@@ -3,6 +3,7 @@ package de.maxhenkel.peek.integration.bbe;
 import betterblockentities.render.AltRenderer;
 import betterblockentities.render.AltRendererProvider;
 import com.mojang.blaze3d.vertex.PoseStack;
+import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.events.ShulkerRenderEvents;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.state.ShulkerBoxRenderState;
@@ -21,7 +22,7 @@ public class BBEShulkerBoxRenderer implements AltRenderer<ShulkerBoxBlockEntity,
 
     @Override
     public boolean shouldRender(ShulkerBoxBlockEntity blockEntity, Vec3 cameraPosition) {
-        return AltRenderer.super.shouldRender(blockEntity, cameraPosition) && ShulkerRenderEvents.shouldRenderShulkerBox(blockEntity);
+        return Peek.CONFIG.showShulkerBoxBlockHint.get() && AltRenderer.super.shouldRender(blockEntity, cameraPosition);
     }
 
     @Override
