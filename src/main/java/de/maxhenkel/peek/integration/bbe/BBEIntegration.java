@@ -1,12 +1,13 @@
 package de.maxhenkel.peek.integration.bbe;
 
-import betterblockentities.data.SupportedBlockEntityTypes;
-import betterblockentities.registration.AltRendererRegistration;
-import betterblockentities.registration.BBEApiEntryPoint;
+import net.fabricmc.loader.api.FabricLoader;
 
-public class BBEIntegration implements BBEApiEntryPoint {
-    @Override
-    public void registerRenderers(AltRendererRegistration context) {
-        context.registerRenderer(SupportedBlockEntityTypes.SHULKER_BOX, BBEShulkerBoxRenderer::new);
+public class BBEIntegration {
+
+    private static final boolean LOADED = FabricLoader.getInstance().isModLoaded("betterblockentities");
+
+    public static boolean isLoaded() {
+        return LOADED;
     }
+
 }
