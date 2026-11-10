@@ -1,1 +1,1 @@
-- Fixed compatibility with bundles beyond
+- Added compatibility with Better Block Entities

@@ -25,6 +25,9 @@
     ],
     "modmenu": [
       "de.maxhenkel.peek.integration.ModMenuIntegration"
+    ],
+    "bbe:renderer_registration_api": [
+      "de.maxhenkel.peek.integration.bbe.BBEIntegration"
     ]
   },
   "mixins": [
@@ -36,10 +39,12 @@
   },
   "suggests": {
     "modmenu": ">=${modmenu_version}",
-    "cloth-config2": ">=${cloth_config_version}"
+    "cloth-config2": ">=${cloth_config_version}",
+    "betterblockentities": ">=${bbe_api_version}"
   },
   "breaks": {
-    "fabric-api": "${fabric_api_dependency_breaks}"
+    "fabric-api": "${fabric_api_dependency_breaks}",
+    "betterblockentities": "<${bbe_api_version}"
   },
   "conflicts": {
     "enhancedblockentities": "*"
