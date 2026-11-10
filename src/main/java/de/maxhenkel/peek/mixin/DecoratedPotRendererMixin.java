@@ -1,20 +1,13 @@
 package de.maxhenkel.peek.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import de.maxhenkel.peek.Peek;
 import de.maxhenkel.peek.events.DecoratedPotRenderEvents;
-import de.maxhenkel.peek.interfaces.PeekDecoratedPot;
-import de.maxhenkel.peek.interfaces.PeekDecoratedPotRenderState;
-import de.maxhenkel.peek.utils.ItemRenderUtils;
+import de.maxhenkel.peek.integration.bbe.BBEIntegration;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.DecoratedPotRenderer;
 import net.minecraft.client.renderer.blockentity.state.DecoratedPotRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
-import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.DecoratedPotBlockEntity;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,30 +20,18 @@ public class DecoratedPotRendererMixin {
 
     @Inject(method = "extractRenderState(Lnet/minecraft/world/level/block/entity/DecoratedPotBlockEntity;Lnet/minecraft/client/renderer/blockentity/state/DecoratedPotRenderState;FLnet/minecraft/world/phys/Vec3;Lnet/minecraft/client/renderer/feature/ModelFeatureRenderer$CrumblingOverlay;)V", at = @At("HEAD"))
     private void extractRenderState(DecoratedPotBlockEntity decoratedPotBlockEntity, DecoratedPotRenderState decoratedPotRenderState, float f, Vec3 vec3, ModelFeatureRenderer.CrumblingOverlay crumblingOverlay, CallbackInfo ci) {
-        if (!(decoratedPotRenderState instanceof PeekDecoratedPotRenderState peekDecoratedPotRenderState)) {
-            throw new IllegalStateException("DecoratedPotRenderState is not a PeekDecoratedPotRenderState");
-        }
-        if (!Peek.CONFIG.showDecoratedPotHint.get()) {
-            peekDecoratedPotRenderState.peek$setLabel(null);
-            peekDecoratedPotRenderState.peek$setDisplayItem(null);
+        if (BBEIntegration.isLoaded()) {
             return;
         }
-        ItemStack containedItem = ((PeekDecoratedPot) decoratedPotBlockEntity).peek$getContainedItem();
-        if (containedItem == null || containedItem.isEmpty()) {
-            return;
-        }
-
-        MutableComponent text = Component.translatable("label.peek.decorated_pot_count", containedItem.getCount());
-        peekDecoratedPotRenderState.peek$setLabel(text.getVisualOrderText());
-
-        ItemStack displayItem = DecoratedPotRenderEvents.createPotRenderStack(containedItem);
-        ItemStackRenderState itemStackRenderState = ItemRenderUtils.fromStack(decoratedPotBlockEntity.getLevel(), decoratedPotBlockEntity.getBlockPos(), displayItem);
-        peekDecoratedPotRenderState.peek$setDisplayItem(itemStackRenderState);
+        DecoratedPotRenderEvents.onExtractDecoratedPotRenderState(decoratedPotBlockEntity, decoratedPotRenderState);
     }
 
-    @Inject(method = "submit(Lnet/minecraft/client/renderer/blockentity/state/DecoratedPotRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/level/CameraRenderState;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/blockentity/DecoratedPotRenderer;submit(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;IILnet/minecraft/world/level/block/entity/PotDecorations;I)V"))
+    @Inject(method = "submit(Lnet/minecraft/client/renderer/blockentity/state/DecoratedPotRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/level/CameraRenderState;)V", at = @At("RETURN"))
     private void submit(DecoratedPotRenderState decoratedPotRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState, CallbackInfo ci) {
-        DecoratedPotRenderEvents.submitDecoratedPotLabel(decoratedPotRenderState, poseStack, submitNodeCollector, cameraRenderState);
+        if (BBEIntegration.isLoaded()) {
+            return;
+        }
+        DecoratedPotRenderEvents.onSubmitDecoratedPotLabel(decoratedPotRenderState, poseStack, submitNodeCollector, cameraRenderState);
     }
 
 }
